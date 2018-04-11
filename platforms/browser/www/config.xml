@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-packageName="com.mercatovip.app" id="MercatoVIP" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <hook src="hooks/hookers.js" type="before_prepare" />
+    <hook src="hooks/beforedep.js" type="before_deploy" />
+    <name>MercatoVIP</name>
+    <description>
+        Update project!
+    </description>
+    <author email="adnan@mercatovip.com" href="http://mercatovip.com">
+        Adnan Masood
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="AndroidLaunchMode" value="singleInstance" />
+    <preference name="orientation" value="portrait" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+</widget>

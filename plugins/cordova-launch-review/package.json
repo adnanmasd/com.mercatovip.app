@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-launch-review",
+        "scope": null,
+        "escapedName": "cordova-launch-review",
+        "name": "cordova-launch-review",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/mercatovip/Desktop/MercatoVIP-v2/com.mercatovip.app"
+    ]
+  ],
+  "_from": "cordova-launch-review@latest",
+  "_id": "cordova-launch-review@3.1.0",
+  "_inCache": true,
+  "_location": "/cordova-launch-review",
+  "_nodeVersion": "7.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-launch-review-3.1.0.tgz_1512057859061_0.45826390688307583"
+  },
+  "_npmUser": {
+    "name": "davealden",
+    "email": "dave@workingedge.co.uk"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-launch-review",
+    "scope": null,
+    "escapedName": "cordova-launch-review",
+    "name": "cordova-launch-review",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-launch-review/-/cordova-launch-review-3.1.0.tgz",
+  "_shasum": "77d657ec1b46724be2a064d52b2ce36e403818f5",
+  "_shrinkwrap": null,
+  "_spec": "cordova-launch-review",
+  "_where": "/Users/mercatovip/Desktop/MercatoVIP-v2/com.mercatovip.app",
+  "author": {
+    "name": "Dave Alden"
+  },
+  "bugs": {
+    "url": "https://github.com/dpa99c/cordova-launch-review/issues"
+  },
+  "cordova": {
+    "id": "cordova-launch-review",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "cordova_name": "Launch Review",
+  "dependencies": {},
+  "description": "Cordova/Phonegap plugin for iOS and Android to assist in leaving user reviews/ratings in the App Stores.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "77d657ec1b46724be2a064d52b2ce36e403818f5",
+    "tarball": "https://registry.npmjs.org/cordova-launch-review/-/cordova-launch-review-3.1.0.tgz"
+  },
+  "gitHead": "62b5c99c6eda752f4be223eb4730e977cb740b9e",
+  "homepage": "https://github.com/dpa99c/cordova-launch-review#readme",
+  "issue": "https://github.com/dpa99c/cordova-launch-review/issues",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova",
+    "phonegap",
+    "ios",
+    "android",
+    "review",
+    "rating",
+    "app store"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "davealden",
+      "email": "dave@workingedge.co.uk"
+    }
+  ],
+  "name": "cordova-launch-review",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpa99c/cordova-launch-review.git"
+  },
+  "scripts": {},
+  "version": "3.1.0"
+}
