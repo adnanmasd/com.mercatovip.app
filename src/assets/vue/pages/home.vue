@@ -39,7 +39,7 @@
     <f7-tabs>
         <f7-page-content tab tab-active id="hometab">
             <f7-block>
-                <f7-swiper v-if="sliderHome.length" :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:5000,pagination:'.swiper-slow .swiper-pagination'}">
+                <f7-swiper v-if="sliderHome.length" pagination :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:true}">
                     <f7-swiper-slide class="image-slider" v-for="row in sliderHome" :key="row.id">
                         <span v-if="row.name" class="slider-title">{{row.name[currentLanguageId]}}</span>
                         <img @click="navigate(row.link_id)" :src="getCMSImage(row.image[currentLanguageId].path)" class="slider lazy swiper-lazy">
@@ -52,16 +52,16 @@
                 <f7-row class="full-width">
                     <f7-col width="33" v-for="row in specialBannersHome">
                         <span class="banner-title">{{row.name[currentLanguageId]}}</span>
-                            <img @click="navigate(row.link_id)" :src="getCMSImage(row.image[currentLanguageId].path)" class="specialBanner">
+                        <img @click="navigate(row.link_id)" :src="getCMSImage(row.image[currentLanguageId].path)" class="specialBanner">
                     </f7-col>
                 </f7-row>
             </f7-block>
 
             <f7-block>
-                <f7-swiper v-if="bannerHome.length" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: 3,slidesPerColumn: 2,spaceBetween:10,pagination:'.swiper-slow .swiper-pagination'}" style="width:100%">
+                <f7-swiper class="pagination-below" v-if="bannerHome.length" pagination :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: 3,slidesPerColumn: 2,spaceBetween:10}" style="width:100%">
                     <f7-swiper-slide v-for="row in bannerHome" class="image-slider" :key="row.id">
-                            <span class="banner-title">{{row.name[currentLanguageId]}}</span>
-                            <img @click="navigate(row.link_id)"  :src="getCMSImage(row.image[currentLanguageId].path)" class="banner lazy swiper-lazy">
+                        <span class="banner-title">{{row.name[currentLanguageId]}}</span>
+                        <img @click="navigate(row.link_id)" :src="getCMSImage(row.image[currentLanguageId].path)" class="banner lazy swiper-lazy">
                         <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
                     </f7-swiper-slide>
                 </f7-swiper>
@@ -70,111 +70,106 @@
 
             <f7-block-title>{{$t("home.bestOffer")}}<span class="pull-right"><f7-link class="color-blue" href="/special">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
             <f7-block class="carouselHomePage">
-                <div class="swiper-container" id="special_carousel">
-                    <div class="swiper-wrapper" v-if="specialProducts.length == 0">
-                        <div class="swiper-slide" v-for="num in 1,3">
-                            <f7-card class="animated-background">
-                                <div class="background-masker header-top"></div>
-                                <div class="background-masker header-left"></div>
-                                <div class="background-masker header-right"></div>
-                                <div class="background-masker header-bottom"></div>
-                                <div class="background-masker content-top"></div>
-                            </f7-card>
-                        </div>
-                    </div>
-                    <div class="swiper-wrapper" v-else>
-                        <div class="swiper-slide" v-for="row in specialProducts" :key="row.id">
-                            <f7-card>
-                                <f7-card-header>
-                                    <a @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></a>
-                                </f7-card-header>
-                                <f7-card-content>
-                                    <f7-link :href="'/product?product_id=' + row.product_id" class="color-black">
-                                        <p class="product-cart-title">{{row.name | andFilter}}</p>
-                                        <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                                        <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+              <f7-swiper v-if="specialProducts.length == 0" class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: false}">
+                <f7-swiper-slide v-for="num in 1,3">
+                    <f7-card class="animated-background">
+                        <div class="background-masker header-top"></div>
+                        <div class="background-masker header-left"></div>
+                        <div class="background-masker header-right"></div>
+                        <div class="background-masker header-bottom"></div>
+                        <div class="background-masker content-top"></div>
+                    </f7-card>
+                </f7-swiper-slide>
+              </f7-swiper>
 
-                                    </f7-link>
-                                </f7-card-content>
-                                <f7-card-footer>
-                                    <f7-segmented style="width:100%" v-if="theme.ios">
-                                        <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                                        <template v-if="!is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
-                                        </template>
-                                        <template v-else-if="is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                                        </template>
-                                    </f7-segmented>
-                                    <f7-segmented style="width:100%" v-if="theme.md">
-                                        <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                                        <template v-if="!is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
-                                        </template>
-                                        <template v-else-if="is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
-                                        </template>
-                                    </f7-segmented>
-                                </f7-card-footer>
-                            </f7-card>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+              <f7-swiper v-else class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: true}">
+                <f7-swiper-slide v-for="row in specialProducts" :key="row.id">
+                    <f7-card>
+                        <f7-card-header>
+                            <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
+                        </f7-card-header>
+                        <f7-card-content>
+                            <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
+                                <span class="product-cart-title">{{row.name | andFilter}}</span>
+                                <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
+                                <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                            </div>
+                        </f7-card-content>
+                        <f7-card-footer>
+                            <f7-segmented style="width:100%" v-if="theme.ios">
+                                <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
+                                <template v-if="!is_favourite(row.product_id)">
+                                    <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                </template>
+                                <template v-else-if="is_favourite(row.product_id)">
+                                    <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                </template>
+                            </f7-segmented>
+                            <f7-segmented style="width:100%" v-if="theme.md">
+                                <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
+                                <template v-if="!is_favourite(row.product_id)">
+                                    <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                                </template>
+                                <template v-else-if="is_favourite(row.product_id)">
+                                    <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                                </template>
+                            </f7-segmented>
+                        </f7-card-footer>
+                    </f7-card>
+                </f7-swiper-slide>
+              </f7-swiper>
             </f7-block>
 
             <f7-block-title>{{$t("home.latest")}}<span class="pull-right"><f7-link class="color-blue" href="/latest">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
             <f7-block class="carouselHomePage">
-                <div class="swiper-container" id="latest_carousel">
-                    <div v-if="latestProducts.length == 0" class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="num in 1,3">
-                            <f7-card class="animated-background">
-                                <div class="background-masker header-top"></div>
-                                <div class="background-masker header-left"></div>
-                                <div class="background-masker header-right"></div>
-                                <div class="background-masker header-bottom"></div>
-                                <div class="background-masker content-top"></div>
-                            </f7-card>
-                        </div>
-                    </div>
-                    <div class="swiper-wrapper" v-else>
-                        <div class="swiper-slide" v-for="row in latestProducts" :key="row.id">
-                            <f7-card>
-                                <f7-card-header>
-                                    <a @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></a>
-                                </f7-card-header>
-                                <f7-card-content>
-                                    <f7-link :href="'/product?product_id=' + row.product_id" class="color-black">
-                                        <span class="product-cart-title">{{row.name | andFilter}}</span>
-                                        <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                                        <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                                    </f7-link>
-                                </f7-card-content>
-                                <f7-card-footer>
-                                    <f7-segmented style="width:100%" v-if="theme.ios">
-                                        <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                                        <template v-if="!is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
-                                        </template>
-                                        <template v-else-if="is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                                        </template>
-                                    </f7-segmented>
-                                    <f7-segmented style="width:100%" v-if="theme.md">
-                                        <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                                        <template v-if="!is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
-                                        </template>
-                                        <template v-else-if="is_favourite(row.product_id)">
-                                            <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
-                                        </template>
-                                    </f7-segmented>
-                                </f7-card-footer>
-                            </f7-card>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+                <f7-swiper v-if="latestProducts.length == 0" class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: false}">
+                  <f7-swiper-slide v-for="num in 1,3">
+                      <f7-card class="animated-background">
+                          <div class="background-masker header-top"></div>
+                          <div class="background-masker header-left"></div>
+                          <div class="background-masker header-right"></div>
+                          <div class="background-masker header-bottom"></div>
+                          <div class="background-masker content-top"></div>
+                      </f7-card>
+                  </f7-swiper-slide>
+                </f7-swiper>
+
+                <f7-swiper v-else class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: true}">
+                  <f7-swiper-slide v-for="row in latestProducts" :key="row.id">
+                      <f7-card>
+                          <f7-card-header>
+                              <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
+                          </f7-card-header>
+                          <f7-card-content>
+                              <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
+                                  <span class="product-cart-title">{{row.name | andFilter}}</span>
+                                  <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
+                                  <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                              </div>
+                          </f7-card-content>
+                          <f7-card-footer>
+                              <f7-segmented style="width:100%" v-if="theme.ios">
+                                  <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
+                                  <template v-if="!is_favourite(row.product_id)">
+                                      <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                  </template>
+                                  <template v-else-if="is_favourite(row.product_id)">
+                                      <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                  </template>
+                              </f7-segmented>
+                              <f7-segmented style="width:100%" v-if="theme.md">
+                                  <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
+                                  <template v-if="!is_favourite(row.product_id)">
+                                      <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                                  </template>
+                                  <template v-else-if="is_favourite(row.product_id)">
+                                      <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                                  </template>
+                              </f7-segmented>
+                          </f7-card-footer>
+                      </f7-card>
+                  </f7-swiper-slide>
+                </f7-swiper>
             </f7-block>
 
             <f7-block-title>{{$t("home.featured")}}</f7-block-title>
@@ -198,16 +193,16 @@
                             <f7-col width="50">
                                 <f7-card>
                                     <f7-card-header>
-                                        <a :href="'/product?product_id=' + row.id" data-view=".view-main"><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span>
+                                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span>
                                             <span v-if="!row.quantity" class="tag out-of-stock-tag">{{row.stock_status}}</span>
-                                        </a>
+                                        </div>
                                     </f7-card-header>
                                     <f7-card-content>
-                                        <f7-link :href="'/product?product_id=' + row.id" data-view=".view-main" class="color-black">
+                                        <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
                                             <span class="product-cart-title">{{row.name | andFilter}}</span>
                                             <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
                                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                                        </f7-link>
+                                        </div>
                                     </f7-card-content>
                                     <f7-card-footer>
                                         <f7-segmented style="width:100%" v-if="theme.ios">
@@ -346,7 +341,7 @@
 
         <f7-page-content tab id="settingstab">
             <f7-list>
-                <f7-list-item smart-select :smart-select-params="{ closeOnSelect: true }" :title="$t('settings.language.title')">
+                <f7-list-item smart-select :smart-select-params="{ openIn: 'popover', closeOnSelect: true, formColorTheme: 'black' }" :title="$t('settings.language.title')">
                     <select name="langid" @change="changeLanguage" v-model="currentLanguageId">
                         <option value="1" :selected="currentLanguageId == 1">English</option>
                         <option value="2" :selected="currentLanguageId == 2">عربي</option>
@@ -419,21 +414,6 @@ export default {
                     }
                 });
             }
-            //store.dispatch('fetchHomeData');
-            //store.dispatch('fetchCart');
-
-            var swiper1 = new Swiper('#special_carousel', {
-                init: true,
-                slidesPerView: 2,
-                loop: false,
-                autoplay: 5000,
-            });
-            var swiper2 = new Swiper('#latest_carousel', {
-                init: true,
-                slidesPerView: 2,
-                loop: false,
-                autoplay: 5000,
-            });
 
             self.Dom7('.carouselHomePage').removeClass('block')
 
@@ -800,6 +780,7 @@ export default {
                     obj.push(val);
                     localStorage.setItem("recentSearch", JSON.stringify(obj))
                     self.items = JSON.parse(localStorage.getItem("recentSearch").split(","))
+                    $$("#search").blur();
                     self.$f7router.navigate("/result/" + val)
                 },
                 changeLanguage: function(event) {
@@ -866,8 +847,8 @@ export default {
                         window.pushOff();
                     }
                 },
-                navigate (link){
-                  this.$f7router.navigate(link);
+                navigate(link) {
+                    this.$f7router.navigate(link);
                 }
         },
 };

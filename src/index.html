@@ -32,7 +32,7 @@
               additionalData: data.notification.payload.additionalData
           }
           if (localStorage.getItem('notifications') == null){
-            localstorage.setItem('notification', JSON.stringify(notfctn))
+            localStorage.setItem('notification', JSON.stringify(notfctn))
           } else {
             temp = JSON.parse(localStorage.getItem('notification'));
             temp.push(notfctn);
@@ -94,7 +94,7 @@
               if ($$('.modal-in').length > 0) {
                   window.app.f7.popup.close();
                   return false;
-              } else if ($$('body').hasClass('with-panel-left-reveal') || $$('body').hasClass('with-panel-right-reveal')) {
+              } else if ($$('html').hasClass('with-panel-left-reveal') || $$('body').hasClass('with-panel-right-reveal')) {
                   window.app.f7.panel.close();
                   return false;
               } else if ($$('.photo-browser-in').length > 0) {
@@ -134,11 +134,7 @@
             }
             universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
             var notificationOpenedCallback = function(jsonData) {
-              save_notification(jsonData);
-              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-            };
-            var notificationRecievedCallback = function(jsonData) {
-              save_notification(jsonData);
+              //save_notification(jsonData);
               window.app.f7.addNotification({
                 title: jsonData.notification.payload.title,
                 message: jsonData.notification.payload.body,
@@ -148,6 +144,10 @@
                   }
                 }
               });
+              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            };
+            var notificationRecievedCallback = function(jsonData) {
+              save_notification(jsonData);
               console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
             };
 

@@ -17,7 +17,7 @@ const Routes = [
     component: require('./assets/vue/pages/confirm.vue'),
   },
   {
-    path: '/wishlist/',
+    path: '/wishlist',
     component: require('./assets/vue/pages/wishlist.vue'),
   },
   {

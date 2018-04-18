@@ -23,23 +23,23 @@
   font-style: normal;
 }
 
-.font-dubai-bold {
-  font-family: 'Dubai-Bold', Helvetica, sans-serif;
+html[dir="rtl"] .font-dubai-bold {
+  font-family: 'Dubai-Bold', Helvetica, sans-serif !important ;
   font-weight: normal;
   font-style: normal;
 }
-.font-dubai-medium {
-  font-family: 'Dubai-Medium', Helvetica, sans-serif;
+html[dir="rtl"] .font-dubai-medium {
+  font-family: 'Dubai-Medium', Helvetica, sans-serif !important ;
   font-weight: normal;
   font-style: normal;
 }
-.font-dubai-regular {
-  font-family: 'Dubai-Regular', Helvetica, sans-serif;
+html[dir="rtl"] .font-dubai-regular {
+  font-family: 'Dubai-Regular', Helvetica, sans-serif !important ;
   font-weight: normal;
   font-style: normal;
 }
-.font-dubai-light {
-  font-family: 'Dubai-Light', Helvetica, sans-serif;
+html[dir="rtl"] .font-dubai-light {
+  font-family: 'Dubai-Light', Helvetica, sans-serif !important ;
   font-weight: normal;
   font-style: normal;
 }
@@ -54,6 +54,39 @@
      url("../fonts/Framework7Icons-Regular.woff2") format("woff2"),
      url("../fonts/Framework7Icons-Regular.woff") format("woff"),
      url("../fonts/Framework7Icons-Regular.ttf") format("truetype");
+}
+
+.panel {
+   width: 80%; // just change this value (default: 260px)
+}
+
+body.with-panel-left-cover .panel-left {
+   -webkit-transform: translate3d(80%,0,0); // and these
+   -ms-transform: translate3d(80%,0,0);
+   transform: translate3d(80%,0,0);
+}
+
+
+body.with-panel-right-cover .panel-right {
+   -webkit-transform: translate3d(-80%,0,0); // and these
+   -ms-transform: translate3d(-80%,0,0);
+   transform: translate3d(-80%,0,0);
+}
+
+
+html.with-panel-left-reveal .views, html.with-panel-left-reveal .framework7-root > .view, html.with-panel-left-reveal .panel-backdrop{
+  -webkit-transform: translate3d(80%, 0, 0);
+  transform: translate3d(80%, 0, 0);
+}
+
+html.with-panel-right-reveal .views, html.with-panel-right-reveal .framework7-root > .view, html.with-panel-right-reveal .panel-backdrop {
+  -webkit-transform: translate3d(-80%, 0, 0);
+  transform: translate3d(-80%, 0, 0);
+}
+
+.panel.panel-left.panel-cover {
+   z-index: 6000;
+   left: -80%; // and this
 }
 
 
@@ -364,6 +397,8 @@ center {
    position: relative;
    width: 100%; /* for IE 6 */
 }
+
+
 
 span.slider-title {
   position: absolute;
@@ -1022,4 +1057,8 @@ transform: translate3d(0,0,0);
 .list.item-title{
   word-wrap: unset;
 white-space: initial;
+}
+
+.pagination-below > .swiper-wrapper{
+    margin-bottom: 3em !important
 }

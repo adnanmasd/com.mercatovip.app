@@ -1,10 +1,10 @@
 //paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7
 //4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR
-//let base_url = "https://mercatovip.com/api/rest";
-let base_url = "https://dyourw.com/demo/api/rest";
+let base_url = "https://mercatovip.com/api/rest";
+//let base_url = "https://dyourw.com/demo/api/rest";
 
 let headers = {
-  "X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
+  "X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
   "X-Oc-Merchant-Language" : localStorage.getItem('language_code'),
   "X-Oc-Session" : localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
   "Content-Type" : "application/json",

@@ -25,15 +25,15 @@
             <f7-col v-for="row in latest" :key="row.product_id" width="50">
                 <f7-card>
                     <f7-card-header>
-                        <a :href="'/product?product_id=' + row.product_id" data-view=".view-main"><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
-                            class="tag out-of-stock-tag">{{row.stock_status}}</span></a>
+                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
+                            class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
                     </f7-card-header>
                     <f7-card-content>
-                        <f7-link :href="'/product?product_id=' + row.product_id" data-view=".view-main" class="color-black">
+                        <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
                             <span class="product-cart-title">{{row.name | andFilter}}</span>
                             <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                        </f7-link>
+                        </div>
                     </f7-card-content>
                     <f7-card-footer>
                         <f7-segmented style="width:100%">

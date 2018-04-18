@@ -7,7 +7,7 @@
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>
     <!-- Left Panel -->
-    <f7-panel :side="sideBarPos" cover>
+    <f7-panel :side="sideBarPos" reveal>
         <f7-view url="/panel-left/" links-view=".view-main" />
     </f7-panel>
 

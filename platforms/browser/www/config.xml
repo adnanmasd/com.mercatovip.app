@@ -18,6 +18,16 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
+    <universal-links>
+        <host name="mercatovip.com" scheme="https">
+            <path event="payconfirm" url="/pay/confirm" />
+            <path event="payfail" url="/pay/fail" />
+            <path event="openurl" url="*" />
+        </host>
+        <host name="mercatovip.com" scheme="http">
+            <path event="openurl" url="*" />
+        </host>
+    </universal-links>
     <preference name="android-minSdkVersion" value="16" />
     <preference name="AndroidLaunchMode" value="singleInstance" />
     <preference name="orientation" value="portrait" />

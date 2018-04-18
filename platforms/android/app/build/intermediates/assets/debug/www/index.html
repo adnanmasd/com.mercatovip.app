@@ -13,7 +13,7 @@
               additionalData: data.notification.payload.additionalData
           }
           if (localStorage.getItem('notifications') == null){
-            localstorage.setItem('notification', JSON.stringify(notfctn))
+            localStorage.setItem('notification', JSON.stringify(notfctn))
           } else {
             temp = JSON.parse(localStorage.getItem('notification'));
             temp.push(notfctn);
@@ -115,11 +115,7 @@
             }
             universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
             var notificationOpenedCallback = function(jsonData) {
-              save_notification(jsonData);
-              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-            };
-            var notificationRecievedCallback = function(jsonData) {
-              save_notification(jsonData);
+              //save_notification(jsonData);
               window.app.f7.addNotification({
                 title: jsonData.notification.payload.title,
                 message: jsonData.notification.payload.body,
@@ -129,6 +125,10 @@
                   }
                 }
               });
+              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            };
+            var notificationRecievedCallback = function(jsonData) {
+              save_notification(jsonData);
               console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
             };
 
@@ -153,4 +153,4 @@
                 localStorage.setItem("connection", "true");
                 location.reload();
             }
-        }, false);</script><script src=759dfcd4924314377b48.main.js></script></body></html>
+        }, false);</script><script src=a72169f3df1a9371f2b4.main.js></script></body></html>

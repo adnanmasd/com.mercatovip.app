@@ -156,7 +156,7 @@ let self;
 export default {
     data() {
             return {
-                logo: (localStorage.getItem('language_id') == 1 ? "static/img/logo-en-big.png" : "static/img/logo-ar-big.png"),
+                logo: (localStorage.getItem('language_id') == 1 ? "static/img/Logo-en-big.png" : "static/img/Logo-ar-big.png"),
                 c: "",
                 z: "",
                 countries: [],

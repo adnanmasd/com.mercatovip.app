@@ -3,7 +3,7 @@
 <template>
 
 <f7-page no-tabbar>
-    <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
+    <f7-navbar sliding :class="theme.md ? 'color-black' : ''">
         <f7-nav-left sliding>
             <f7-link class="back" icon-only>
                 <f7-icon :icon="'fa fa-chevron-' + (this.$f7.rtl ? 'right' : 'left')"></f7-icon>
@@ -25,19 +25,18 @@
     <f7-card v-if="wishlist.length == 0" :content="$t('wishlist.empty')">
     </f7-card>
     <f7-list v-if="wishlist.length > 0" media-list id="wishlist-result-list" class="result">
-        <f7-grid no-gutter>
-            <f7-row v-for="row in wishlist" :key="row.product_id" width="50">
+        <f7-row>
+            <f7-col v-for="row in wishlist" :key="row.product_id" width="50">
                 <f7-card>
                     <f7-card-header>
-                        <a :href="'/product?product_id=' + row.product_id" data-view=".view-main"><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.stock"
-                            class="tag out-of-stock-tag">{{row.stock_status}}</span></a>
+                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
                     </f7-card-header>
                     <f7-card-content>
-                        <f7-link :href="'/product?product_id=' + row.product_id" data-view=".view-main">
+                        <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
                             <span class="product-cart-title">{{row.name | andFilter}}</span>
-                            <br/> <span v-if="row.special" class="old-price">{{row.price}}</span>
-                            <br/> <span v-if="row.special" class="price">{{row.special}}</span> <span v-if="!row.special" class="price">{{row.price}}</span>
-                        </f7-link>
+                            <br/>
+                            <br/> <span class="price">{{row.price}}</span>
+                        </div>
                     </f7-card-content>
                     <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
@@ -60,8 +59,8 @@
                         </f7-segmented>
                     </f7-card-footer>
                 </f7-card>
-            </f7-row>
-        </f7-grid>
+            </f7-col>
+        </f7-row>
     </f7-list>
 </f7-page>
 
@@ -79,6 +78,7 @@ export default {
                 currentLanguageId: (localStorage.getItem('language_id')),
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
+                theme: this.$theme
             }
         },
         computed: {
@@ -100,7 +100,7 @@ export default {
             }
         },
         mounted: function() {
-            window.FirebasePlugin.setScreenName("Wishlist");
+          store.dispatch('fetchWishlist')
         },
         methods: {
             shareProduct(pname, pimage, pid) {

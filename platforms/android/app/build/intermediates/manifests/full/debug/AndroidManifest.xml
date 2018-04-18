@@ -22,12 +22,11 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+    <uses-permission android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE" />
 
     <permission
         android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE"
         android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE" />
     <!-- for android -->
     <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
     <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
@@ -94,16 +93,15 @@
 
                 <data android:scheme="mercatovip" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter android:autoVerify="true" >
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host=" "
-                    android:pathPrefix="/"
-                    android:scheme=" " />
+                    android:host="mercatovip.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
@@ -121,8 +119,21 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <service
+            android:name="com.onesignal.ADMMessageHandler"
+            android:exported="false" />
 
         <receiver android:name="org.apache.cordova.firebase.OnNotificationOpenReceiver" />
+        <receiver
+            android:name="com.onesignal.ADMMessageHandler$Receiver"
+            android:permission="com.amazon.device.messaging.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
+                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
+
+                <category android:name="com.mercatovip.app" />
+            </intent-filter>
+        </receiver>
 
         <provider
             android:name="nl.xservices.plugins.FileProvider"
@@ -138,21 +149,6 @@
             xmlns:amazon="http://schemas.amazon.com/apk/res/android"
             android:name="com.amazon.device.messaging"
             android:required="false" />
-
-        <service
-            android:name="com.onesignal.ADMMessageHandler"
-            android:exported="false" />
-
-        <receiver
-            android:name="com.onesignal.ADMMessageHandler$Receiver"
-            android:permission="com.amazon.device.messaging.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
-                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
-
-                <category android:name="com.mercatovip.app" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
