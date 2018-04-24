@@ -85,18 +85,24 @@ export default {
                     var t = self.$f7.toast.create({
                         text: self.$t('review.submit.success.msg'),
                         closeTimeout: 5000,
-                        destroyOnClose: true
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass : 'toast-green'
                     });
                     t.open();
+                    navigator.vibrate(100)
                     self.$f7.preloader.hide();
                     self.$f7router.back();
                 }).catch(function(error) {
                     var t = self.$f7.toast.create({
                         text: error.response.data.error,
                         closeTimeout: 5000,
-                        destroyOnClose: true
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass : 'toast-red'
                     });
                     t.open();
+                    navigator.vibrate([80,80,80])
                     self.$f7.preloader.hide();
                 });
             },

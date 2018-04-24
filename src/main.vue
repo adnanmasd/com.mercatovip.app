@@ -11,6 +11,10 @@
         <f7-view url="/panel-left/" links-view=".view-main" />
     </f7-panel>
 
+    <f7-panel :side="sideBar2Pos" reveal>
+        <f7-view url="/panel-right/" links-view=".view-main" />
+    </f7-panel>
+
     <f7-view url="/" :main="true" id="main-view" class="ios-edges" :pushState="false">
 
     </f7-view>
@@ -46,21 +50,21 @@
             </f7-swiper-slide>
             <f7-swiper-slide class="welcome-slider">
                 <f7-block class="text-color-black">
-                <f7-row>
-                    <f7-col width="100" style="text-transform:uppercase">
-                        <h1>{{$t('welcome.second.heading1')}}</h1>
-                    </f7-col>
-                    <f7-col width="100" style="padding:0 2em">
-                        <h3>{{$t('welcome.second.para')}}</h3>
-                    </f7-col>
-                    <f7-col width="100">
-                        <h1><strong>"SAVE10"</strong></h1>
-                    </f7-col>
-                    <f7-col width="100" style="padding : 2em">
-                        <f7-button big round color="black" fill :text="$t('welcome.last.shopnow.title')" close-popup="#welcomePopup" v-on:click="onExitWelcome"></f7-button>
-                    </f7-col>
-                </f7-row>
-              </f7-block>
+                    <f7-row>
+                        <f7-col width="100" style="text-transform:uppercase">
+                            <h1>{{$t('welcome.second.heading1')}}</h1>
+                        </f7-col>
+                        <f7-col width="100" style="padding:0 2em">
+                            <h3>{{$t('welcome.second.para')}}</h3>
+                        </f7-col>
+                        <f7-col width="100">
+                            <h1><strong>"SAVE10"</strong></h1>
+                        </f7-col>
+                        <f7-col width="100" style="padding : 2em">
+                            <f7-button big round color="black" fill :text="$t('welcome.last.shopnow.title')" close-popup="#welcomePopup" v-on:click="onExitWelcome"></f7-button>
+                        </f7-col>
+                    </f7-row>
+                </f7-block>
             </f7-swiper-slide>
         </f7-swiper>
     </f7-popup>
@@ -90,12 +94,14 @@ export default {
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
                 sideBarPos: (localStorage.getItem('language_id') == 1 ? "left" : "right"),
+                sideBar2Pos: (localStorage.getItem('language_id') == 1 ? "right" : "left"),
                 logo: (localStorage.getItem('language_id') == 1 ? "static/img/logo-en.png" : "static/img/logo-ar.png"),
                 searchTerm: "",
                 swipeoutSide: (localStorage.getItem('language_id') == 1 ? "right" : "left")
             }
         },
-        mounted: function() {
+        mounted: function(){
+            let self = this;
 
         },
         filters: {

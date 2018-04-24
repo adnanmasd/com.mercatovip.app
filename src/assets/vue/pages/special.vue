@@ -25,7 +25,7 @@
     </f7-block>
 
     <f7-list v-else-if="specials.length == 0" media-list id="result-list" class="result">
-        <f7-row no-gutter>
+        <f7-row no-gap>
             <f7-col v-for="row in 1,4" width="50">
                 <f7-card class="animated-background">
                     <div class="background-masker header-top"></div>
@@ -40,7 +40,7 @@
 
 
     <f7-list v-else-if="specials.length > 0" media-list id="special-result-list" class="result">
-        <f7-row no-gutter>
+        <f7-row no-gap>
             <f7-col v-for="row in specials" :key="row.product_id" width="50">
                 <f7-card>
                     <f7-card-header>
@@ -54,7 +54,7 @@
                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
                         </div>
                     </f7-card-content>
-                    <f7-card-footer>
+                    <!-- <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
                             <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
                             <template v-if="!is_favourite(row.product_id)">
@@ -73,7 +73,7 @@
                                 <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
-                    </f7-card-footer>
+                    </f7-card-footer> -->
                 </f7-card>
             </f7-col>
         </f7-row>
@@ -161,9 +161,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -181,9 +184,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -199,6 +205,9 @@ export default {
                 getImagefromSource(src) {
                     return "<img src='" + src + "'/>";
                 },
+                navigate(link) {
+                    this.$f7router.navigate(link);
+                }
         },
 }
 

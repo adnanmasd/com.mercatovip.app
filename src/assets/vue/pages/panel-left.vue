@@ -146,9 +146,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },

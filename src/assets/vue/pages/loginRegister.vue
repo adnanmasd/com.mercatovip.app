@@ -220,23 +220,28 @@ export default {
                         localStorage.setItem("user", true);
                         store.dispatch("saveUser", response.data.data)
                         store.dispatch('fetchCart')
-                        let not = self.$f7.notification.create({
-                            icon: '<img class="favico" src="static/img/favico.PNG"/>',
-                            title: self.$t('login.notification.title'),
+                        let not = self.$f7.toast.create({
+                          title: self.$t('login.notification.title'),
                             text: self.$t('login.notification.welcome') + response.data.data.firstname,
-                            closeButton: true,
                             closeTimeout: 3000,
+                            destroyOnClose: true,
+                            cssClass : 'toast-green',
+                            position: 'top'
                         });
                         not.open();
+                        navigator.vibrate(100)
                         self.$f7.preloader.hide();
                         self.$f7router.back()
                     }).catch(function(error) {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                         self.$f7.preloader.hide();
                     });
                 },
@@ -280,9 +285,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                         self.$f7.preloader.hide();
                     });
                 }

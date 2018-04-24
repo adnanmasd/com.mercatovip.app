@@ -38,7 +38,7 @@
                             <br/> <span class="price">{{row.price}}</span>
                         </div>
                     </f7-card-content>
-                    <f7-card-footer>
+                    <!-- <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
                             <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
                             <template v-if="!is_favourite(row.product_id)">
@@ -57,7 +57,7 @@
                                 <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
-                    </f7-card-footer>
+                    </f7-card-footer> -->
                 </f7-card>
             </f7-col>
         </f7-row>
@@ -131,6 +131,9 @@ export default {
                     let val = 1 - (discount.match(/[0-9 , \.]+/g) / price.match(/[0-9 , \.]+/g));
                     return Math.floor(val * 100);
                 },
+                navigate(link) {
+                    this.$f7router.navigate(link);
+                },
                 addToWishlist(product_id) {
                     self.$f7.preloader.show();
                     axios({
@@ -145,9 +148,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -165,9 +171,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },

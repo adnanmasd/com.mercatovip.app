@@ -5,19 +5,20 @@
 <f7-page name="home" tabs hide-toolbar-on-scroll :page-content="false">
     <f7-navbar :class="this.$theme.md ? 'color-white text-color-black': ''">
         <f7-nav-left>
-            <f7-link class="panel-open" open-panel="left" icon="fa fa-bars">
+            <f7-link panel-open="left" icon="fa fa-bars">
             </f7-link>
         </f7-nav-left>
         <f7-nav-title class="nav-center-margin">
             <img :src="logo" class="logo" />
         </f7-nav-title>
         <f7-nav-right>
-            <f7-link>
+            <f7-link panel-open="right" icon="fa fa-bell">
             </f7-link>
         </f7-nav-right>
         <f7-subnavbar :inner="false">
             <f7-searchbar id="search" search-list="#search-list" :placeholder="$t('home.searchbar.placeholder')" :clear-button="true" customSearch v-model="searchTerm">
             </f7-searchbar>
+
         </f7-subnavbar>
     </f7-navbar>
     <f7-toolbar tabbar labels id="mainToolbar" :class="this.$theme.md ? 'color-black' : ''" bottom-md>
@@ -68,168 +69,167 @@
             </f7-block>
 
 
-            <f7-block-title>{{$t("home.bestOffer")}}<span class="pull-right"><f7-link class="color-blue" href="/special">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
-            <f7-block class="carouselHomePage">
-              <f7-swiper v-if="specialProducts.length == 0" class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: false}">
-                <f7-swiper-slide v-for="num in 1,3">
-                    <f7-card class="animated-background">
-                        <div class="background-masker header-top"></div>
-                        <div class="background-masker header-left"></div>
-                        <div class="background-masker header-right"></div>
-                        <div class="background-masker header-bottom"></div>
-                        <div class="background-masker content-top"></div>
-                    </f7-card>
-                </f7-swiper-slide>
-              </f7-swiper>
+            <f7-block-title v-if="specialProducts.length > 0">{{$t("home.bestOffer")}}<span class="pull-right"><f7-link class="color-blue" href="/special">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
+            <f7-block v-if="specialProducts.length > 0" class="carouselHomePage">
+                <f7-swiper v-if="specialProducts.length == 0" class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: false}">
+                    <f7-swiper-slide v-for="num in 1,3">
+                        <f7-card class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                        </f7-card>
+                    </f7-swiper-slide>
+                </f7-swiper>
 
-              <f7-swiper v-else class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: true}">
-                <f7-swiper-slide v-for="row in specialProducts" :key="row.id">
-                    <f7-card>
-                        <f7-card-header>
-                            <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
-                        </f7-card-header>
-                        <f7-card-content>
-                            <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
-                                <span class="product-cart-title">{{row.name | andFilter}}</span>
-                                <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                                <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                            </div>
-                        </f7-card-content>
-                        <f7-card-footer>
-                            <f7-segmented style="width:100%" v-if="theme.ios">
-                                <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                                <template v-if="!is_favourite(row.product_id)">
-                                    <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
-                                </template>
-                                <template v-else-if="is_favourite(row.product_id)">
-                                    <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                                </template>
-                            </f7-segmented>
-                            <f7-segmented style="width:100%" v-if="theme.md">
-                                <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                                <template v-if="!is_favourite(row.product_id)">
-                                    <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
-                                </template>
-                                <template v-else-if="is_favourite(row.product_id)">
-                                    <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
-                                </template>
-                            </f7-segmented>
-                        </f7-card-footer>
-                    </f7-card>
-                </f7-swiper-slide>
-              </f7-swiper>
+                <f7-swiper v-else class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: true}">
+                    <f7-swiper-slide v-for="row in specialProducts" :key="row.id">
+                        <f7-card>
+                            <f7-card-header>
+                                <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
+                            </f7-card-header>
+                            <f7-card-content>
+                                <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
+                                    <!-- <span class="product-cart-title">{{row.name | andFilter}}</span>
+                                    <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span> -->
+                                    <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                                </div>
+                            </f7-card-content>
+                            <!-- <f7-card-footer>
+                                <f7-segmented style="width:100%" v-if="theme.ios">
+                                    <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
+                                    <template v-if="!is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                    </template>
+                                    <template v-else-if="is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                    </template>
+                                </f7-segmented>
+                                <f7-segmented style="width:100%" v-if="theme.md">
+                                    <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
+                                    <template v-if="!is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                                    </template>
+                                    <template v-else-if="is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                                    </template>
+                                </f7-segmented>
+                            </f7-card-footer> -->
+                        </f7-card>
+                    </f7-swiper-slide>
+                </f7-swiper>
             </f7-block>
 
             <f7-block-title>{{$t("home.latest")}}<span class="pull-right"><f7-link class="color-blue" href="/latest">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
             <f7-block class="carouselHomePage">
                 <f7-swiper v-if="latestProducts.length == 0" class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: false}">
-                  <f7-swiper-slide v-for="num in 1,3">
-                      <f7-card class="animated-background">
-                          <div class="background-masker header-top"></div>
-                          <div class="background-masker header-left"></div>
-                          <div class="background-masker header-right"></div>
-                          <div class="background-masker header-bottom"></div>
-                          <div class="background-masker content-top"></div>
-                      </f7-card>
-                  </f7-swiper-slide>
+                    <f7-swiper-slide v-for="num in 1,3">
+                        <f7-card class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                        </f7-card>
+                    </f7-swiper-slide>
                 </f7-swiper>
 
                 <f7-swiper v-else class="pagination-below" pagination :params="{slidesPerView: 2,loop: false,autoplay: true}">
-                  <f7-swiper-slide v-for="row in latestProducts" :key="row.id">
-                      <f7-card>
-                          <f7-card-header>
-                              <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
-                          </f7-card-header>
-                          <f7-card-content>
-                              <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
-                                  <span class="product-cart-title">{{row.name | andFilter}}</span>
-                                  <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                                  <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                              </div>
-                          </f7-card-content>
-                          <f7-card-footer>
-                              <f7-segmented style="width:100%" v-if="theme.ios">
-                                  <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                                  <template v-if="!is_favourite(row.product_id)">
-                                      <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
-                                  </template>
-                                  <template v-else-if="is_favourite(row.product_id)">
-                                      <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                                  </template>
-                              </f7-segmented>
-                              <f7-segmented style="width:100%" v-if="theme.md">
-                                  <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                                  <template v-if="!is_favourite(row.product_id)">
-                                      <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
-                                  </template>
-                                  <template v-else-if="is_favourite(row.product_id)">
-                                      <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
-                                  </template>
-                              </f7-segmented>
-                          </f7-card-footer>
-                      </f7-card>
-                  </f7-swiper-slide>
+                    <f7-swiper-slide v-for="row in latestProducts" :key="row.id">
+                        <f7-card>
+                            <f7-card-header>
+                                <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.thumb" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span></div>
+                            </f7-card-header>
+                            <f7-card-content>
+                                <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
+                                    <!-- <span class="product-cart-title">{{row.name | andFilter}}</span>
+                                    <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span> -->
+                                    <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                                </div>
+                            </f7-card-content>
+                            <!-- <f7-card-footer>
+                                <f7-segmented style="width:100%" v-if="theme.ios">
+                                    <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
+                                    <template v-if="!is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                    </template>
+                                    <template v-else-if="is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                    </template>
+                                </f7-segmented>
+                                <f7-segmented style="width:100%" v-if="theme.md">
+                                    <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
+                                    <template v-if="!is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                                    </template>
+                                    <template v-else-if="is_favourite(row.product_id)">
+                                        <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                                    </template>
+                                </f7-segmented>
+                            </f7-card-footer> -->
+                        </f7-card>
+                    </f7-swiper-slide>
                 </f7-swiper>
             </f7-block>
 
             <f7-block-title>{{$t("home.featured")}}</f7-block-title>
-            <f7-block>
-                <f7-list v-if="homePageProducts.length == 0" media-list id="home-products-list" class="result">
-                    <f7-row no-gutter>
-                        <f7-col v-for="row in 1,4" width="50">
-                            <f7-card class="animated-background">
-                                <div class="background-masker header-top"></div>
-                                <div class="background-masker header-left"></div>
-                                <div class="background-masker header-right"></div>
-                                <div class="background-masker header-bottom"></div>
-                                <div class="background-masker content-top"></div>
-                            </f7-card>
-                        </f7-col>
-                    </f7-row>
-                </f7-list>
-                <f7-list v-else media-list id="home-products-list" class="result">
-                    <f7-row no-gutter>
-                        <template v-for="row in homePageProducts">
-                            <f7-col width="50">
-                                <f7-card>
-                                    <f7-card-header>
-                                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span>
-                                            <span v-if="!row.quantity" class="tag out-of-stock-tag">{{row.stock_status}}</span>
-                                        </div>
-                                    </f7-card-header>
-                                    <f7-card-content>
-                                        <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
-                                            <span class="product-cart-title">{{row.name | andFilter}}</span>
-                                            <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                                            <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
-                                        </div>
-                                    </f7-card-content>
-                                    <f7-card-footer>
+
+            <template v-if="homePageProducts.length == 0" media-list id="home-products-list" class="result">
+                <f7-row no-gap>
+                    <f7-col v-for="row in 1,4" width="50">
+                        <f7-card class="animated-background">
+                            <div class="background-masker header-top"></div>
+                            <div class="background-masker header-left"></div>
+                            <div class="background-masker header-right"></div>
+                            <div class="background-masker header-bottom"></div>
+                            <div class="background-masker content-top"></div>
+                        </f7-card>
+                    </f7-col>
+                </f7-row>
+            </template>
+            <template v-else id="home-products-list" class="result">
+                <f7-row no-gap>
+                    <template v-for="row in homePageProducts">
+                        <f7-col width="50">
+                            <f7-card>
+                                <f7-card-header>
+                                    <div @click='navigate("/product?product_id=" + row.id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span>
+                                        <span v-if="!row.quantity" class="tag out-of-stock-tag">{{row.stock_status}}</span>
+                                    </div>
+                                </f7-card-header>
+                                <f7-card-content>
+                                    <div @click='navigate("/product?product_id=" + row.id)' class="color-black">
+                                        <!-- <span class="product-cart-title">{{row.name | andFilter}}</span> <br/> -->
+                                        <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
+                                        <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                                    </div>
+                                </f7-card-content>
+                                <!-- <f7-card-footer>
                                         <f7-segmented style="width:100%" v-if="theme.ios">
-                                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                                            <template v-if="!is_favourite(row.product_id)">
-                                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.id)" icon-f7="share"></f7-button>
+                                            <template v-if="!is_favourite(row.id)">
+                                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.id)" icon-f7="heart"></f7-button>
                                             </template>
-                                            <template v-else-if="is_favourite(row.product_id)">
-                                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                            <template v-else-if="is_favourite(row.id)">
+                                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.id)" icon-f7="heart_fill" icon-color="red"></f7-button>
                                             </template>
                                         </f7-segmented>
                                         <f7-segmented style="width:100%" v-if="theme.md">
-                                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                                            <template v-if="!is_favourite(row.product_id)">
-                                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.id)" icon-material="share"></f7-button>
+                                            <template v-if="!is_favourite(row.id)">
+                                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.id)" icon-material="favorite_border"></f7-button>
                                             </template>
-                                            <template v-else-if="is_favourite(row.product_id)">
-                                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                                            <template v-else-if="is_favourite(row.id)">
+                                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.id)" icon-material="favorite" icon-color="red"></f7-button>
                                             </template>
                                         </f7-segmented>
-                                    </f7-card-footer>
-                                </f7-card>
-                            </f7-col>
-                        </template>
-                    </f7-row>
-                </f7-list>
-            </f7-block>
+                                    </f7-card-footer> -->
+                            </f7-card>
+                        </f7-col>
+                    </template>
+                </f7-row>
+            </template>
         </f7-page-content>
 
 
@@ -387,33 +387,59 @@ export default {
                 logo: (localStorage.getItem('language_id') == 1 ? "static/img/logo-en.png" : "static/img/logo-ar.png"),
                 searchTerm: "",
                 swipeoutSide: (localStorage.getItem('language_id') == 1 ? "right" : "left"),
-                push: localStorage.getItem('push'),
+                push: localStorage.getItem('push') == "false" ? false : true,
                 homeProducts: [],
                 theme: this.$theme
             }
         },
         mounted: function() {
             self = this;
-            if (localStorage.getItem('remember_me_key') != null && localStorage.getItem('loggedIn') == "false") {
-                axios({
+            let rmk = localStorage.getItem('remember_me_key')
+            if ( rmk  !== "null" && localStorage.getItem('loggedIn') == "false") {
+                self.$f7.request({
+                    async: false,
                     method: 'GET',
+                    content: 'application/json',
+                    dataType: 'json',
                     url: api.baseUrl + api.urls.loginRM + '/' + localStorage.getItem('remember_me_key'),
-                    headers: api.headers
-                }).then(function(response) {
-                    if (response.data.data != null) {
-                        let user = JSON.parse(localStorage.getItem('user'))
-                        localStorage.setItem('loggedIn', "true")
-                        let not = self.$f7.notification.create({
-                            icon: '<img class="favico" src="static/img/favico.PNG"/>',
-                            title: self.$t('login.notification.title'),
-                            text: self.$t('login.notification.welcomeback') + user.firstname,
-                            closeButton: true,
-                            closeTimeout: 3000,
-                        });
-                        not.open();
+                    headers: api.headers,
+                    success: function(response, status, xhr) {
+                        if (response.data != null) {
+                            let user = JSON.parse(localStorage.getItem('user'))
+                            localStorage.setItem('loggedIn', "true")
+                            let not = self.$f7.toast.create({
+                                title: self.$t('login.notification.title'),
+                                text: self.$t('login.notification.welcome') + user.firstname,
+                                closeTimeout: 3000,
+                                destroyOnClose: true,
+                                cssClass: 'toast-green',
+                                position: 'top'
+                            });
+                            not.open();
+                            navigator.vibrate(80);
+                        } else {
+                          localStorage.setItem('loggedIn', null)
+                          localStorage.setItem('user', null)
+                          localStorage.setItem('remember_me_key', null)
+                          let not = self.$f7.toast.create({
+                              title: self.$t('login.notification.title'),
+                              text: self.$t('login.notification.notLoggedIn'),
+                              closeTimeout: 3000,
+                              destroyOnClose: true,
+                              cssClass: 'toast-red',
+                              position: 'top'
+                          });
+                          not.open();
+                          navigator.vibrate(80,80,80);
+                        }
                     }
                 });
             }
+
+            store.dispatch("fetchCart");
+            setInterval(function() {
+                store.dispatch("fetchCart");
+            }, 300000)
 
             self.Dom7('.carouselHomePage').removeClass('block')
 
@@ -431,10 +457,29 @@ export default {
                 }
             })
 
-            setInterval(function() {
-                store.dispatch("fetchCart");
-            }, 300000)
-
+            var autocompleteSearchbar = self.$f7.autocomplete.create({
+                openIn: 'dropdown',
+                inputEl: '#search input[type="search"]',
+                //dropdownPlaceholderText: 'Type "Apple"',
+                source: function(query, render) {
+                    var results = [];
+                    if (query.length === 0) {
+                        render(results);
+                        return;
+                    }
+                    // Find matched items
+                    for (var i = 0; i < self.items.length; i++) {
+                        if (self.items[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(self.items[i]);
+                    }
+                    // Render items by passing array with result items
+                    render(results);
+                },
+                on: {
+                    change: function(autocomplete, value) {
+                        self.onSearch();
+                    }
+                }
+            })
 
         },
         filters: {
@@ -536,9 +581,12 @@ export default {
                                 text: self.$t('cart.coupon.delete'),
                                 title: self.$t("cart.coupon.delete.title"),
                                 closeTimeout: 5000,
-                                destroyOnClose: true
+                                destroyOnClose: true,
+                                postion: 'top',
+                                cssClass: 'toast-green'
                             });
                             t.open();
+                            navigator.vibrate(80)
                         });
                     } else if (key == "voucher") {
                         axios({
@@ -552,9 +600,12 @@ export default {
                                 text: self.$t('cart.voucher.delete'),
                                 title: self.$t("cart.voucher.delete.title"),
                                 closeTimeout: 5000,
-                                destroyOnClose: true
+                                destroyOnClose: true,
+                                postion: 'top',
+                                cssClass: 'toast-red'
                             });
                             t.open();
+                            navigator.vibrate(80)
                         });
                     } else {
                         axios({
@@ -571,9 +622,12 @@ export default {
                                 text: self.$t("cart.item.deleted"),
                                 title: self.$t("cart.item.deleted.title"),
                                 closeTimeout: 5000,
-                                destroyOnClose: true
+                                destroyOnClose: true,
+                                postion: 'top',
+                                cssClass: 'toast-green'
                             });
                             t.open();
+                            navigator.vibrate(80)
                         });
                     }
                 },
@@ -630,18 +684,24 @@ export default {
                             text: self.$t("cart.coupon.add.msg"),
                             title: self.$t("cart.coupon.add.title"),
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-green'
                         });
                         t.open();
+                        navigator.vibrate(80)
                     }).catch(function(error) {
                         console.log(error);
                         self.$f7.preloader.hide();
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80, 80, 80])
                     });
                 },
                 addVoucher() {
@@ -661,18 +721,24 @@ export default {
                             text: self.$t("cart.voucher.add.msg"),
                             title: self.$t("cart.voucher.add.title"),
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-green'
                         });
                         t.open();
+                        navigator.vibrate(80)
                     }).catch(function(error) {
                         console.log(error);
                         self.$f7.preloader.hide();
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80, 80, 80])
                     });
                 },
                 rate() {
@@ -718,9 +784,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80, 80, 80])
                     });
                     self.$f7.preloader.hide();;
                 },
@@ -738,9 +807,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80, 80, 80])
                     });
                     self.$f7.preloader.hide();;
                 },
@@ -777,10 +849,13 @@ export default {
                     let val = $$('form#search input').val();
                     console.log(val);
                     let obj = localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch"));
-                    obj.push(val);
+                    if (obj.indexOf(val) === -1) {
+                        obj.push(val)
+                    }
                     localStorage.setItem("recentSearch", JSON.stringify(obj))
                     self.items = JSON.parse(localStorage.getItem("recentSearch").split(","))
-                    $$("#search").blur();
+                    $$("#search input").blur();
+                    self.$f7.searchbar.toggle("#search")
                     self.$f7router.navigate("/result/" + val)
                 },
                 changeLanguage: function(event) {
@@ -841,8 +916,7 @@ export default {
                 pushChange() {
                     var toggle = self.$f7.toggle.get('#push');
                     if (toggle.checked) {
-                        window.pushOn("marketing");
-                        window.pushOn("marketing" + (currentLanguageId ? '_en' : '_ar'));
+                        window.pushOn();
                     } else {
                         window.pushOff();
                     }

@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
     <uses-permission android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
         android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE"
@@ -46,11 +47,6 @@
 
     <uses-permission android:name="com.mercatovip.app.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <!--
- Required so the device vibrates on receiving a push notification.
-         Vibration settings of the device still apply.
-    -->
-    <uses-permission android:name="android.permission.VIBRATE" />
     <!--
  Use to restore notifications the user hasn't interacted with.
          They could be missed notifications if the user reboots their device if this isn't in place.
@@ -92,6 +88,16 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="mercatovip" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="mercatovip.com"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:autoVerify="true" >
                 <action android:name="android.intent.action.VIEW" />

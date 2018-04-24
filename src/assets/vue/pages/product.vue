@@ -217,7 +217,7 @@
                     <div class="stepper stepper-init stepper-big stepper-round stepper-fill color-black">
                         <div class="stepper-button-minus"></div>
                         <div class="stepper-input-wrap full-width text-align-center">
-                            <input type="text" value="1" min="1" max="99" step="1" readonly>
+                            <input type="text" value="1" min="1" :max="product.quantity" step="1" readonly>
                         </div>
                         <div class="stepper-button-plus"></div>
                     </div>
@@ -457,9 +457,15 @@ export default {
                             store.dispatch("fetchWishlist");
                         }
                     }).catch(function(error) {
-                        self.$f7.toast.create({
-                            text: error.response.data.error
+                        var t = self.$f7.toast.create({
+                            text: error.response.data.error,
+                            closeTimeout: 5000,
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
+                        t.open();
+                        navigator.vibrate([80,80,80]);
                     });
                     self.$f7.preloader.hide();
                 },
@@ -474,9 +480,15 @@ export default {
                             store.dispatch("fetchWishlist");
                         }
                     }).catch(function(error) {
-                        self.$f7.toast.create({
-                            text: error.response.data.error
+                        var t = self.$f7.toast.create({
+                            text: error.response.data.error,
+                            closeTimeout: 5000,
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
+                        t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -492,9 +504,12 @@ export default {
                             var t = self.$f7.toast.create({
                                 text: self.$t('product.addToCart.notavailable.msg'),
                                 closeTimeout: 5000,
-                                destroyOnClose: true
+                                destroyOnClose: true,
+                                cssClass: 'toast-red',
+                                position: 'top'
                             });
                             t.open();
+                            navigator.vibrate([80,80,80])
                             self.$f7.preloader.hide();
                             return;
                         }
@@ -504,9 +519,12 @@ export default {
                                   var t = self.$f7.toast.create({
                                     text: self.$t('product.addToCart.notavailable.msg'),
                                     closeTimeout: 5000,
-                                    destroyOnClose: true
+                                    destroyOnClose: true,
+                                    cssClass: 'toast-red',
+                                    position: 'top'
                                 });
                                 t.open();
+                                navigator.vibrate([80,80,80]);
                                 self.$f7.preloader.hide();
                                 return;
                             }
@@ -523,9 +541,13 @@ export default {
                                 var t = self.$f7.toast.create({
                                     text: self.$t('product.addTocart.success'),
                                     closeTimeout: 5000,
-                                    destroyOnClose: true
+                                    destroyOnClose: true,
+                                    //icon: '<i class="fa fa-shopping-cart-plus text-color-white"></i>',
+                                    cssClass: 'toast-green',
+                                    position: 'top'
                                 });
                                 t.open();
+                                navigator.vibrate(100)
                             });
                             // self.$f7.toolbar.show(self.Dom7('#mainToolbar'), true);
                             // setTimeout(function() {
@@ -534,9 +556,15 @@ export default {
                             self.$f7.preloader.hide();
                         }
                     }).catch(function(error) {
-                        self.$f7.toast.create({
-                            text: error.response.data.error
+                        var t = self.$f7.toast.create({
+                            text: error.response.data.error,
+                            closeTimeout: 5000,
+                            destroyOnClose: true,
+                            position: 'top',
+                            cssClass : 'toast-red'
                         });
+                        t.open();
+                        navigator.vibrate([80,80,80])
                         self.$f7.preloader.hide();
                     });
                 },

@@ -9,8 +9,19 @@ const Routes = [
     component: require('./assets/vue/pages/panel-left.vue')
   },
   {
+    path: '/panel-right/',
+    component: require('./assets/vue/pages/notifications.vue')
+  },
+  {
     path: '/checkout/',
-    component: require('./assets/vue/pages/checkout.vue'),
+    //component: require('./assets/vue/pages/checkout.vue'),
+    async(routeTo, routeFrom, resolve, reject) {
+      if (localStorage.getItem('user') !== null) {
+        resolve({ component: require('./assets/vue/pages/checkout.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      }
+    }
   },
   {
     path: '/confirm',
@@ -18,15 +29,33 @@ const Routes = [
   },
   {
     path: '/wishlist',
-    component: require('./assets/vue/pages/wishlist.vue'),
+    async(routeTo, routeFrom, resolve, reject) {
+      if (localStorage.getItem('user') !== null) {
+        resolve ({ component: require('./assets/vue/pages/wishlist.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      }
+    }
   },
   {
     path: '/myorders',
-    component: require('./assets/vue/pages/myorders.vue'),
+    async(routeTo, routeFrom, resolve, reject) {
+      if (localStorage.getItem('user') !== null) {
+        resolve({ component: require('./assets/vue/pages/myorders.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      }
+    }
   },
   {
     path: '/myorders/:order_id',
-    component: require('./assets/vue/pages/order.vue'),
+    async(routeTo, routeFrom, resolve, reject) {
+      if (localStorage.getItem('user') !== null) {
+        resolve({ component: require('./assets/vue/pages/order.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      }
+    }
   },
   {
     path: '/track',
@@ -35,6 +64,14 @@ const Routes = [
   {
     path: '/result/:term',
     component: require('./assets/vue/pages/result.vue')
+  },
+  {
+    path: '/daily_deals',
+    component: require('./assets/vue/pages/daily_deals.vue')
+  },
+  {
+    path: '/vip_deals',
+    component: require('./assets/vue/pages/vip_deals.vue')
   },
   {
     path: '/information',
@@ -67,6 +104,14 @@ const Routes = [
   {
     path: '/thankyou/',
     component: require('./assets/vue/pages/thankyou.vue')
+  },
+  {
+    path: '/notifications/',
+    component: require('./assets/vue/pages/notifications.vue')
+  },
+  {
+    path: '(.*)',
+    url: './assets/vue/pages/404.vue',
   },
 ]
 

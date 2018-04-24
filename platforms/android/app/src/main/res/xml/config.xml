@@ -36,6 +36,7 @@
     </feature>
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
+    <hook src="hooks/msg_icon.js" type="before_prepare" />
     <name>MercatoVIP</name>
     <description>
         Update project!
@@ -53,7 +54,12 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
     <universal-links>
-        <host name="mercatovip.com">
+        <host name="mercatovip.com" scheme="https">
+            <path event="payconfirm" url="/pay/confirm" />
+            <path event="payfail" url="/pay/fail" />
+            <path event="openurl" url="*" />
+        </host>
+        <host name="mercatovip.com" scheme="http">
             <path event="openurl" url="*" />
         </host>
     </universal-links>

@@ -102,7 +102,8 @@ module.exports.metadata =
   "es6-promise-plugin": "4.1.0",
   "cordova-plugin-x-socialsharing": "5.3.1",
   "onesignal-cordova-plugin": "2.3.3",
-  "cordova-universal-links-plugin": "1.2.1"
+  "cordova-universal-links-plugin": "1.2.1",
+  "cordova-plugin-vibration": "3.1.0"
 };
 // BOTTOM OF METADATA
 });

@@ -456,7 +456,6 @@ span.banner-title {
 .product-card-image{
   width: 100%;
   height: auto;
-  max-width: 142px;
 }
 
 .product-card-footer{
@@ -1061,4 +1060,20 @@ white-space: initial;
 
 .pagination-below > .swiper-wrapper{
     margin-bottom: 3em !important
+}
+
+.toast-green{
+  background-color: #4bcc4b !important;
+  color: white !important;
+  padding: 5px;
+}
+
+.toast-red{
+  background-color: red !important;
+  color: white !important;
+  padding: 5px;
+}
+
+.md .searchbar{
+  background: #f5f4f4;
 }

@@ -40,6 +40,9 @@
     },
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
   "dependent_plugins": {

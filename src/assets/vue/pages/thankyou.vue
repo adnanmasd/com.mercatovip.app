@@ -63,9 +63,12 @@ export default {
                     text: self.$t('confirm.success.msg'),
                     title: self.$t('confirm.success.title'),
                     closeTimeout: 5000,
-                    destroyOnClose: true
+                    destroyOnClose: true,
+                    position: 'top',
+                    cssClass : 'toast-green'
                 })
                 t.open();
+                navigator.vibrate(100)
                 self.order_id = response.data.data.order_id
                 store.dispatch("fetchCart");
                 self.$f7.preloader.hide();
@@ -73,9 +76,12 @@ export default {
                 self.$f7.toast.create({
                     text: error.response,
                     closeTimeout: 5000,
-                    destroyOnClose: true
+                    destroyOnClose: true,
+                    position: 'top',
+                    cssClass : 'toast-red'
                 });
                 t.open();
+                navigator.vibrate([80,80,80])
                 self.$f7.preloader.hide();
             })
         },

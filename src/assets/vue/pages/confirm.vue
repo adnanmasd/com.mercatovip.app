@@ -38,7 +38,7 @@
     </f7-block>
 
     <f7-toolbar bottom-md v-if="!creditCardPayment">
-        <f7-button style="width:100%" big raised fill class="bg-green" @click="pay()">{{$t('confirm.pay')}}</f7-button>
+        <f7-button style="width:100%" big raised fill color="green" @click="pay()">{{$t('confirm.pay')}}</f7-button>
     </f7-toolbar>
 </f7-page>
 
@@ -87,9 +87,12 @@ export default {
                 var t = self.$f7.toast.create({
                     text: error.response.data.error,
                     closeTimeout: 5000,
-                    destroyOnClose: true
+                    destroyOnClose: true,
+                    postion: 'top',
+                    cssClass: 'toast-red'
                 });
                 t.open();
+                navigator.vibrate([80,80,80])
                 self.$f7.preloader.hide();
                 self.$f7router.back();
             });

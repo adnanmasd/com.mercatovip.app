@@ -18,6 +18,11 @@
                 </f7-icon>
             </f7-link>
         </f7-nav-right>
+        <f7-subnavbar :inner="false">
+            <f7-searchbar id="search_cat" search-list="#search-list" :placeholder="$t('home.searchbar.placeholder')" :clear-button="true" customSearch v-model="searchTerm">
+            </f7-searchbar>
+
+        </f7-subnavbar>
     </f7-navbar>
     <f7-popup id="filter" v-if="categoryProducts.length > 0" style="overflow-y:auto">
         <f7-navbar :sliding="false" :class="this.$theme.md ? 'color-black' : ''">
@@ -70,7 +75,7 @@
         </f7-list>
     </f7-popup>
     <f7-block v-if="sliderCategory.length">
-        <f7-swiper :params="{loop:false,centeredSlides:true,autoplay:5000,pagination:'.swiper-slow .swiper-pagination'}">
+        <f7-swiper pagination :params="{loop:false,spaceBetween: 10,centeredSlides:true,autoplay:5000}">
             <f7-swiper-slide v-for="row in sliderCategory" class="image-slider">
                 <span v-if="row.name[currentLanguageId]" class="slider-title">{{row.name[currentLanguageId]}}</span>
                 <img @click="navigate(row.link)" :src="getCMSImage(row.image[currentLanguageId].path)" class="slider">
@@ -90,14 +95,14 @@
     </f7-block>
 
 
-    <f7-block-header v-if="category.sub_categories && category.sub_categories.length > 0">{{$t('category.subCategory.exploreMore')}}</f7-block-header>
+    <!-- <f7-block-header v-if="category.sub_categories && category.sub_categories.length > 0">{{$t('category.subCategory.exploreMore')}}</f7-block-header>
     <f7-block>
         <f7-list media-list style="margin: auto">
             <f7-list-item v-for="row in category.sub_categories" :data-page="'category'+category.id" :key="row.id" :link="'/category?category_id=' + row.category_id" :title="row.name | andFilter">
                 <div slot="media" v-html="getImagefromSource(row.image)"></div>
             </f7-list-item>
         </f7-list>
-    </f7-block>
+    </f7-block> -->
 
 
     <f7-block>
@@ -153,7 +158,7 @@
         </f7-block>
     </f7-list>
     <f7-list v-else-if="loading && categoryProducts.length == 0" media-list id="result-list" class="result">
-        <f7-row no-gutter>
+        <f7-row no-gap>
             <f7-col v-for="row in 1,4" width="50">
                 <f7-card class="animated-background">
                     <div class="background-masker header-top"></div>
@@ -166,40 +171,40 @@
         </f7-row>
     </f7-list>
     <f7-list v-else media-list id="result-list" class="result">
-        <f7-row no-gutter>
+        <f7-row no-gap>
             <f7-col v-for="row in categoryProducts" :key="row.id" width="50">
                 <f7-card>
                     <f7-card-header>
-                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
+                        <div @click='navigate("/product?product_id=" + row.id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
                             class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
                     </f7-card-header>
                     <f7-card-content>
-                        <div @click='navigate("/product?product_id=" + row.product_id)' class="color-black">
+                        <div @click='navigate("/product?product_id=" + row.id)' class="color-black">
                             <span class="product-cart-title">{{row.name | andFilter}}</span>
                             <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
                         </div>
                     </f7-card-content>
-                    <f7-card-footer>
+                    <!-- <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
-                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                            <template v-if="!is_favourite(row.product_id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.id)" icon-f7="share"></f7-button>
+                            <template v-if="!is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.id)" icon-f7="heart"></f7-button>
                             </template>
-                            <template v-else-if="is_favourite(row.product_id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                            <template v-else-if="is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.id)" icon-f7="heart_fill" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
                         <f7-segmented style="width:100%" v-if="theme.md">
-                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                            <template v-if="!is_favourite(row.product_id)">
-                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.id)" icon-material="share"></f7-button>
+                            <template v-if="!is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.id)" icon-material="favorite_border"></f7-button>
                             </template>
-                            <template v-else-if="is_favourite(row.product_id)">
-                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                            <template v-else-if="is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.id)" icon-material="favorite" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
-                    </f7-card-footer>
+                    </f7-card-footer> -->
                 </f7-card>
             </f7-col>
         </f7-row>
@@ -222,6 +227,8 @@ var limit = 10;
 export default {
     data() {
             return {
+                items: localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch").split(",")),
+                searchTerm : "",
                 currentLanguageId: (localStorage.getItem('language_id')),
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
@@ -296,6 +303,36 @@ export default {
                 }
             });
 
+            self.Dom7('#search_cat').on('keyup', function(e) {
+                if (e.which == 13) {
+                    self.onSearch(e);
+                }
+            })
+
+            var autocompleteSearchbar = self.$f7.autocomplete.create({
+                openIn: 'dropdown',
+                inputEl: '#search_cat input[type="search"]',
+                //dropdownPlaceholderText: 'Type "Apple"',
+                source: function(query, render) {
+                    var results = [];
+                    if (query.length === 0) {
+                        render(results);
+                        return;
+                    }
+                    // Find matched items
+                    for (var i = 0; i < self.items.length; i++) {
+                        if (self.items[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(self.items[i]);
+                    }
+                    // Render items by passing array with result items
+                    render(results);
+                },
+                on: {
+                    change: function(autocomplete, value) {
+                        self.onSearch();
+                    }
+                }
+            })
+
             var subCatHeaders = api.headers;
             subCatHeaders['X-Oc-Image-Dimension'] = "50x50";
             axios({
@@ -369,9 +406,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -389,9 +429,12 @@ export default {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,
                             closeTimeout: 5000,
-                            destroyOnClose: true
+                            destroyOnClose: true,
+                            postion: 'top',
+                            cssClass: 'toast-red'
                         });
                         t.open();
+                        navigator.vibrate([80,80,80])
                     });
                     self.$f7.preloader.hide();
                 },
@@ -445,6 +488,21 @@ export default {
                 },
                 navigate(link) {
                     this.$f7router.navigate(link);
+                },
+                onSearch: function(event) {
+                    let self = this;
+                    let $$ = self.Dom7;
+                    let val = $$('form#search_cat input').val();
+                    console.log(val);
+                    let obj = localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch"));
+                    if (obj.indexOf(val) === -1) {
+                        obj.push(val)
+                    }
+                    localStorage.setItem("recentSearch", JSON.stringify(obj))
+                    self.items = JSON.parse(localStorage.getItem("recentSearch").split(","))
+                    $$("#search input").blur();
+                    self.$f7.searchbar.toggle("#search_cat")
+                    self.$f7router.navigate("/result/" + val)
                 },
                 onInfinite: function(onFilter = false) {
                     var self = this;

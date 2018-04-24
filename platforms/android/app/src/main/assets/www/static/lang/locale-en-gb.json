@@ -14,7 +14,7 @@
   "home.sideBar.shareapp.title" : "Share with Friends",
   "home.sideBar.rateus.title" : "Rate Us",
   "home.sideBar.callus.title" : "Call Us",
-  "home.searchbar.placeholder" : "Search in Electronics, Clothes, Fashion ...",
+  "home.searchbar.placeholder" : "I'm shopping for ...",
   "home.searchbar.noResult" : "No Result Found",
   "home.bestOffer" : "Best Offers Today",
   "home.seeAll" : "View All",
@@ -202,6 +202,10 @@
   "review.sumbit.success.msg" : "Posted Review Successfully.",
   "review.rating" : "Rating",
   "special.title" : "Special Offers",
+  "daily_deals.result.title" : "Daily Deals",
+  "daily_deals.noResult.message" : "There are currently no products under Daily Deals",
+  "vip_deals.result.title" : "VIP Deals",
+  "vip_deals.noResult.message" : "There are currently no products under VIP Deals",
   "track.title" : "Track Your Shipment",
   "track.details" : "Enter the tracking number to track the shipment statuses from the shipment company",
   "track.tracking.title" : "Tracking #",
@@ -223,6 +227,7 @@
   "thankyou.title" : "Thank you",
   "thankyou.para" : "Your Order has been placed successfully. You can see your orders by visiting My Orders.",
   "login.notification.welcome" : "Welcome ",
+  "login.notification.notLoggedIn" : "You are logged out, please login again",
   "login.notification.title" : "MercatoVIP",
   "login.notification.welcomeback" : "Welcome back "
 }

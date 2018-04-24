@@ -20,6 +20,10 @@
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9c22039958420dcc0af6562bae4f405e\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_stat_onesignal_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\ic_stat_onesignal_default.png"
+    },
+    {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_light.xml.flat",
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\a601565beeed74b010cf52eeb018ec06\\res\\drawable\\common_google_signin_btn_icon_light.xml"
     },
@@ -34,6 +38,10 @@
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_icon_group.xml.flat",
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9c22039958420dcc0af6562bae4f405e\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_stat_onesignal_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_stat_onesignal_default.png"
     },
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -124,6 +132,14 @@
         "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-port-xhdpi\\screen.png"
     },
     {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_stat_onesignal_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_stat_onesignal_default.png"
+    },
+    {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_stat_onesignal_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-mdpi\\ic_stat_onesignal_default.png"
+    },
+    {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxxhdpi_screen.png.flat",
         "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-port-xxxhdpi\\screen.png"
     },
@@ -142,6 +158,10 @@
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9c22039958420dcc0af6562bae4f405e\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_stat_onesignal_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-xhdpi\\ic_stat_onesignal_default.png"
     },
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_focused.xml.flat",
@@ -234,6 +254,10 @@
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
         "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
+    },
+    {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_onesignal_large_icon_default.png.flat",
+        "source": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_onesignal_large_icon_default.png"
     },
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",

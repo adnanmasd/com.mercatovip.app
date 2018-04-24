@@ -14,7 +14,7 @@
   "home.sideBar.shareapp.title" : "شارك مع اصدقائك",
     "home.sideBar.rateus.title" : "قيمنا",
   "home.sideBar.callus.title" : "اتصل بنا",
-  "home.searchbar.placeholder" : "بحث فى الإلكترونيات, أزياء , ملابس ...",
+  "home.searchbar.placeholder" : "أنا أتسوق لـ ...",
   "home.searchbar.noResult" : "لا يوجد النتائج",
   "home.bestOffer" : "أفضل العروض",
   "home.seeAll" : "المزيد",
@@ -202,6 +202,10 @@
   "review.sumbit.success.msg" : "نشر التعليق بنجاح.",
   "review.rating" : "تقييم",
   "special.title" : "عروض خاصة",
+  "daily_deals.result.title" : "صفقة اليوم",
+  "daily_deals.noResult.message" : "لا يوجد حاليا أي منتجات تحت الصفقات اليومية",
+  "vip_deals.result.title" : "صفقة VIP",
+  "vip_deals.noResult.message" : "لا يوجد حاليا أي منتجات تحت الصفقات VIP",
   "track.title" : "تتبع شحنتك",
   "track.details" : "أدخل رقم التعقب لتتبع حالات الشحن من شركة الشحن",
   "track.tracking.title" : "تتبع #",
@@ -223,6 +227,7 @@
   "thankyou.title" : "شكرا",
   "thankyou.para" : "تم وضع طلبك بنجاح.",
   "login.notification.welcome" : "مرحبا ",
+  "login.notification.notLoggedIn" : "تم تسجيل خروج المستخدم ، يرجى تسجيل الدخول مرة أخرى",
   "login.notification.title" : "ميركاتوVIP",
   "login.notification.welcomeback" : "مرحبا "
 }

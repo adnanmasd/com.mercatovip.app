@@ -21,6 +21,7 @@ const store = new Vuex.Store({
     cart : [],
     cart_error : [],
     wishlist : [],
+    notifications : [],
     user : localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
   },
   mutations: {
@@ -68,6 +69,9 @@ const store = new Vuex.Store({
     },
     updateWishlist(state, data){
       state.user.wishlist = data;
+    },
+    updateNotifications(state, data){
+      state.notifications = data
     },
     removeUser(state){
       state.user = null;
@@ -155,6 +159,9 @@ const store = new Vuex.Store({
     removeUser({commit}){
       commit('removeUser');
     },
+    notifications({commit}){
+      commit('updateNotifications' , JSON.parse(localStorage.getItem("notifications")));
+    },
     fetchWishlist({commit}){
       var w_headers = api.headers;
       w_headers['X-Oc-Image-Dimension'] = "400x400";
@@ -203,6 +210,9 @@ const store = new Vuex.Store({
     },
     wishlist : state => {
       return state.user !== null ? state.user.wishlist : null;
+    },
+    notifications : state => {
+      return state.notifications !== null ? state.user.notifications : null;
     },
     user : state => {
       return state.user

@@ -1,9 +1,8 @@
-//paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7
-//4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR
-let base_url = "https://mercatovip.com/api/rest";
 //let base_url = "https://dyourw.com/demo/api/rest";
+let base_url = "https://mercatovip.com/api/rest";
 
 let headers = {
+  //"X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
   "X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
   "X-Oc-Merchant-Language" : localStorage.getItem('language_code'),
   "X-Oc-Session" : localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
@@ -85,6 +84,10 @@ export default {
     "getClasses" : "/product_classes",
     "getSpecials" : "/specials",
     "getSpecialsLimit" : "/specials/limit/{limit}",
+    "getDaily" : "/daily_deals",
+    "getDailyLimit" : "/daily_deals/limit/{limit}/page/{page}",
+    "getVIP" : "/vip_deals",
+    "getVIPLimit" : "/vip_deals/limit/{limit}/page/{page}",
     "returns" : "/returns",
     "getReturnDetail" : "/returns/{id}",
     "reward" : "/reward",

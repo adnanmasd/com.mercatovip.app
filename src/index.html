@@ -25,18 +25,38 @@
           console.log("received url: " + url);
         }
 
+
+        function pushOn(){
+          window.plugins.OneSignal.setSubscription(true);
+          window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+            localStorage.setItem('push',status.subscriptionStatus.subscribed)
+          });
+        }
+
+        function pushOff(){
+          window.plugins.OneSignal.setSubscription(false);
+          window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+            localStorage.setItem('push',status.subscriptionStatus.subscribed)
+          });
+        }
+
         function save_notification(data){
+          let id = data.payload.notificationID;
           var notfctn = {
-              title : data.notification.payload.title,
-              body : data.notification.payload.body,
-              additionalData: data.notification.payload.additionalData
+                time: new Date(),
+                bigPicture: (data.payload.bigPicture !== null ? data.payload.bigPicture : null),
+               title : data.payload.title,
+                body : data.payload.body,
+                additionalData: data.payload.additionalData
           }
           if (localStorage.getItem('notifications') == null){
-            localStorage.setItem('notification', JSON.stringify(notfctn))
+            var temp = {};
+            temp[id] = notfctn;
+            localStorage.setItem('notifications', JSON.stringify(temp))
           } else {
-            temp = JSON.parse(localStorage.getItem('notification'));
-            temp.push(notfctn);
-            localStorage.setItem('notification', JSON.stringify(notfctn))
+            let temp = JSON.parse(localStorage.getItem('notifications'));
+            temp[id] = (notfctn);
+            localStorage.setItem('notifications', JSON.stringify(temp))
           }
         }
 
@@ -45,7 +65,7 @@
           console.log(eventData);
           let url = eventData.url.split("/")
           let $$ = window.Dom7;
-          $$.ajax({
+          window.app.f7.request({
             method : 'GET',
             dataType : 'json',
             headers : {
@@ -76,7 +96,7 @@
                     path = null
               }
               if (path !== null)
-              window.app.f7router.loadPage(path)
+              window.app.f7.router.navigate(path)
             },
             error : function(e,staus,xhr){
               console.log(e);
@@ -100,12 +120,13 @@
               } else if ($$('.photo-browser-in').length > 0) {
                   window.app.f7.photoBrowserClose();
                   return false;
-              } else if (window.app.f7.view[1].router.url == '/'){
+              } else if (window.app.f7.view[2].router.url == '/'){
                 var toastBottom = window.app.f7.toast.create({
                 text: 'Press again to exit',
                 closeTimeout: 2000,
                 });
                 toastBottom.open();
+                navigator.vibrate(20)
                 window.lastTimeBackPress=new Date().getTime();
               } else {
                   window.app.f7.router.back();
@@ -135,29 +156,47 @@
             universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
             var notificationOpenedCallback = function(jsonData) {
               //save_notification(jsonData);
-              window.app.f7.addNotification({
-                title: jsonData.notification.payload.title,
-                message: jsonData.notification.payload.body,
-                onClick: function() {
-                  if (jsonData.notification.payload.additionalData.path == true) {
-                      window.app.f7router.loadPage(jsonData.notification.payload.additionalData.path)
-                  }
-                }
-              });
-              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+              if (jsonData.payload.additionalData.path  !== "") {
+                  window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+              }
+              //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
             };
             var notificationRecievedCallback = function(jsonData) {
               save_notification(jsonData);
-              console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
+              if (jsonData.isAppInFocus){
+              var not = window.app.f7.notification.create({
+                icon : "<img src='static/img/favico.PNG' style='width:20px;height:20px'>",
+                title: jsonData.payload.title,
+                titleRightText: 'now',
+                text: jsonData.payload.body,
+                closeOnClick: true,
+                closeTimeout : 5000,
+                on: {
+                  close: function () {
+                    if (jsonData.payload.additionalData.path !== "") {
+                        window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+                    }
+                  },
+                },
+              });
+              not.open();
+              navigator.vibrate(1000);
+              }
+              //console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
             };
 
             window.plugins.OneSignal
               .startInit("ad630897-aa99-4141-8273-d483016e40a9")
               .handleNotificationOpened(notificationOpenedCallback)
               .handleNotificationReceived(notificationRecievedCallback)
-              .inFocusDisplaying("None")
+              .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
               .iOSSettings(iosSettings)
               .endInit();
+
+              window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+                localStorage.setItem('push',status.subscriptionStatus.subscribed)
+              });
+
         }, false);
 
         document.addEventListener("offline", function onOffline() {

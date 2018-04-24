@@ -51,10 +51,6 @@ axios.get(url).then((response) => {
     alert('could not fetch locale translations');
 });
 
-localStorage.setItem('loggedIn', false);
-axios({method : 'GET', url: api.baseUrl+api.urls.getSession,headers:api.headers}).then(function (response){
-    localStorage.setItem('session_id', response.data.data.session);
-});
 
 setTimeout(function(){
 
@@ -137,6 +133,18 @@ let appinstance = new Vue({
     },
   },
   routes,
+});
+
+localStorage.setItem('loggedIn', false);
+appinstance.$f7.request({
+    async: false,
+    content: "application/json",
+    dataType: "json",
+    method : 'GET',
+    url: api.baseUrl+api.urls.getSession,headers:api.headers,
+    success : function(response,status,xhr) {
+        localStorage.setItem('session_id', response.data.session);
+    }
 });
 
 export default appinstance;
