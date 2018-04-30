@@ -107,7 +107,11 @@ const store = new Vuex.Store({
           axios({
               method: "GET",
               url: api.baseUrl + api.urls.getProductById.replace("{id}", response.data.entries[0].product_ids[i].value),
-              headers: headers
+              headers: headers,
+              transformResponse: function(req) {
+                  var newReq = req.replace(/[\r\n|\n\r]/g, '');
+                  return JSON.parse(newReq)
+              }
           }).then(function(response) {
             if (response.data.data != [])
               commit('addHomePageProducts', response.data.data)

@@ -1,0 +1,54 @@
+{
+  "_from": "cordova-ios-export-compliance@1.0.2",
+  "_id": "cordova-ios-export-compliance@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-E+ReNDuv7J0hu6eZzinDCq/JHcAN/5AqZ/wiQ8LJcyNOdB+ZUutQHrjWakJD5Wtsadv7I0k0lqD+F/IEHkHXbA==",
+  "_location": "/cordova-ios-export-compliance",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-ios-export-compliance@1.0.2",
+    "name": "cordova-ios-export-compliance",
+    "escapedName": "cordova-ios-export-compliance",
+    "rawSpec": "1.0.2",
+    "saveSpec": null,
+    "fetchSpec": "1.0.2"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-ios-export-compliance/-/cordova-ios-export-compliance-1.0.2.tgz",
+  "_shasum": "964519b4208a66a5712a1955c3e3fa721595fb3c",
+  "_spec": "cordova-ios-export-compliance@1.0.2",
+  "_where": "/Users/adnan/Documents/GitHub/com.mercatovip.app",
+  "author": {
+    "name": "Eric McNiece"
+  },
+  "bugs": {
+    "url": "https://github.com/emcniece/cordova-ios-export-compliance/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Set ITSAppUsesNonExemptEncryption for Cordova based iOS apps",
+  "engines": {
+    "cordovaDependencies": {
+      "1.0.0": {
+        "cordova-ios": "<6.1.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/emcniece/cordova-ios-export-compliance#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "ISC",
+  "name": "cordova-ios-export-compliance",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emcniece/cordova-ios-export-compliance.git"
+  },
+  "version": "1.0.2"
+}

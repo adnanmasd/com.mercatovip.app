@@ -1,0 +1,991 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
+		0C2374DAD7E04AE5ACF053EE /* AppDelegate+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = BF206905E615456E927A0D9E /* AppDelegate+CULPlugin.m */; };
+		12740A72E8A547A9B2E3DD47 /* UIWindow+DismissNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DD6718AFA14DFA939D5DBF /* UIWindow+DismissNotification.m */; };
+		1BDD50ED825343468CECDF8F /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A7224CFB8F1A4040906625BD /* CDVViewController+SplashScreen.m */; };
+		1C181FF7175845CB9CCC99E4 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A110CF511EC46918E6A7B17 /* FirebaseInstanceID.framework */; };
+		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
+		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
+		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
+		3687686ADC4E4E2D9C9EB38B /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F190641AA0B648E6AF1F28A4 /* CDVReachability.m */; };
+		3971C7DA9D7C4F77937BCA82 /* CDVInvokedUrlCommand+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BF93C3927242A5BDA570CF /* CDVInvokedUrlCommand+CULPlugin.m */; };
+		408759FEB77E44598BC49622 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C8B337AAE141C380BA70A2 /* Protobuf.framework */; };
+		413267E197E04F60B8AD76D9 /* CDVPluginResult+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0B906687F14D2A9C45995E /* CDVPluginResult+CULPlugin.m */; };
+		45DA2EBA40EB48B88E4A57EE /* CULXmlTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B660B820F64DBA8FC556B8 /* CULXmlTags.m */; };
+		4C6370F990214071B59010D8 /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 852EC4990E4E4778B08CEC04 /* NSBundle+CULPlugin.m */; };
+		57F33ECFDB26421E85ABD67C /* NSString+SSURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 878B89B0602A4FB7AB082AA8 /* NSString+SSURLEncoding.m */; };
+		5937D0B2A77C4C8092488FCD /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA462A6374A494E912D1201 /* FirebaseAuth.framework */; };
+		65D94AE838D44B90AF5DB584 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000A8C23C3F74F8395BA8B46 /* GoogleToolboxForMac.framework */; };
+		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
+		6CA72BCFEEBBA39A48BF0C0E /* libPods-MercatoVIP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F697FF6F3751B91A4AA5AD6A /* libPods-MercatoVIP.a */; };
+		7305D11147A9441EBBA7F06F /* LaunchReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 318C3E0ECBF3460391392D20 /* LaunchReview.m */; };
+		74DAB9B2B2FB496EA87DEBF1 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 768FE6602B294DFCBF291E20 /* SocialSharing.m */; };
+		8448D92C2095C82F0019B60C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1C2D245F134F5A85474529 /* SystemConfiguration.framework */; };
+		8448D92D2095C82F0019B60C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849E51B120920511007AA837 /* UIKit.framework */; };
+		8448D9312095C8510019B60C /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849E51B320920534007AA837 /* OneSignal.framework */; };
+		84D742932095C3B500449185 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D742922095C3B500449185 /* NotificationService.swift */; };
+		84D742972095C3B500449185 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84D742902095C3B400449185 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		862A4051E9014C949B99F1E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE9FA15C2CB44A39F9AF22C /* StoreKit.framework */; };
+		86D4DA4F038646DCAF121435 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCF3ADE30A34B5AAB7CA74E /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		89228A55E0C127463D268FBA /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFB2650370FD08CA11EBBDD /* libPods-OneSignalNotificationServiceExtension.a */; };
+		93F25D039DA04919840006D0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B77AFCA8A4D45BC7AC3E9 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9795381139FD4A04A4E0D87E /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25997D1F39234288BFA46EF3 /* FirebaseAnalytics.framework */; };
+		97E2B4A0D3F94FBA9484BEE8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04962AE0FF43E79312ACC0 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0C4E6BD0B6F49AE978CF307 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B48845A7E124AB38B15FD19 /* FirebaseMessaging.framework */; };
+		A1540A7C46EE4C318C1770BE /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8608FF6E49E4208AB29CDFC /* FirebaseCore.framework */; };
+		A268F1814BBC49C0A6EDA9E4 /* FirebasePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE605F09D0F40DA85B47BE0 /* FirebasePlugin.m */; };
+		B741385079DB41D18C6DBBFE /* MercatoVIP.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F23D6A80D474AB807BB5D /* MercatoVIP.entitlements */; };
+		BB7579E4759E4CC2BC173847 /* AppDelegate+FirebasePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6739FF7EDE6B4E9E9BA097ED /* AppDelegate+FirebasePlugin.m */; };
+		C04E94FB8C9E4CB486185139 /* FirebaseCrash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070235EF0B8C42C3A85D7187 /* FirebaseCrash.framework */; };
+		C63E9D06D3124DF38D7C1D6E /* CULPath.m in Sources */ = {isa = PBXBuildFile; fileRef = E69E38F36D414E01941D58E6 /* CULPath.m */; };
+		C7A5581E5EC04C34876667DF /* CDVVibration.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC627EC03E94D5EBBF32466 /* CDVVibration.m */; };
+		C81F9B56F3A049AC9F6D1151 /* CULConfigXmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 391E964B2E6F426A910E98A7 /* CULConfigXmlParser.m */; };
+		C94C73A68ED0417385F1BDB0 /* CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A83D688BA37742D689E1CA12 /* CULPlugin.m */; };
+		C964D75615E149DC98E54A76 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2168AC62F25A41D99E2874B6 /* CDVInAppBrowser.m */; };
+		D71D38F5F1574775A76DD5A7 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C21972115F42CB8056ED5E /* GTMSessionFetcher.framework */; };
+		D7B8BDDC0726479D9F8119AC /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9666A478304E4BF0B0222B70 /* CDVSplashScreen.m */; };
+		DA1B8653068F4CA8879FD7C0 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B7B54B2764CF491281AAC /* CDVConnection.m */; };
+		DFC110AA35DA436187DE33E0 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5B4C5FF7224F4BA654CFB3 /* FirebaseNanoPB.framework */; };
+		E24CEB5DDECA446781C89DD1 /* CULHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D75BEE9EAAE4D339B4C2D3D /* CULHost.m */; };
+		E266AAB3ED2E46B1950B84CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1C2D245F134F5A85474529 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E95D872F95C84D65858CFF84 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DC84767CEF42B1BA6584F8 /* CoreTelephony.framework */; };
+		ED9E7B78CB3F46C292F60622 /* OneSignalPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 663BC608F61941C6BAA55041 /* OneSignalPush.m */; };
+		F1D59AEA613F4399A35248B6 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204D1E7141E14B1F87CF94B3 /* FirebaseCoreDiagnostics.framework */; };
+		F69172301D6740DBBA895C39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC8EF4B36C774A059CCCCE2A /* GoogleService-Info.plist */; };
+		F9210E673EE046229FCB0258 /* FirebaseRemoteConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEEFE613CB4C33A55DB2E1 /* FirebaseRemoteConfig.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+		301BF550109A68C00062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+		8414E0A52091FAC400319C75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C0C01EB21E3911D50056E6CB;
+			remoteInfo = Cordova;
+		};
+		84D742952095C3B500449185 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84D7428F2095C3B400449185;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8414E0B72091FD5F00319C75 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				84D742972095C3B500449185 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		000A8C23C3F74F8395BA8B46 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
+		01691882B65B49A0AED73030 /* OneSignalPush.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = OneSignalPush.h; path = "onesignal-cordova-plugin/OneSignalPush.h"; sourceTree = "<group>"; };
+		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MercatoVIP/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		070235EF0B8C42C3A85D7187 /* FirebaseCrash.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseCrash.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseCrash.framework"; sourceTree = "<group>"; };
+		0A0B70B42DE92DF07D8D7873 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		0C4D405386704D69AE432F3E /* CDVConnection.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVConnection.h; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; };
+		0CE9FA15C2CB44A39F9AF22C /* StoreKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		15B660B820F64DBA8FC556B8 /* CULXmlTags.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULXmlTags.m; path = "cordova-universal-links-plugin/Parser/CULXmlTags.m"; sourceTree = "<group>"; };
+		15BF93C3927242A5BDA570CF /* CDVInvokedUrlCommand+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVInvokedUrlCommand+CULPlugin.m"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.m"; sourceTree = "<group>"; };
+		161B7B54B2764CF491281AAC /* CDVConnection.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVConnection.m; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; };
+		1C90B6C6BA1F458A88FBCB4B /* NSBundle+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "NSBundle+CULPlugin.h"; path = "cordova-universal-links-plugin/Utils/NSBundle+CULPlugin.h"; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1D45081F536B4248BC737D98 /* AppDelegate+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+CULPlugin.h"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.h"; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* MercatoVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MercatoVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E26D0E675CF43DFA942EDDF /* Firebase.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = "cordova-plugin-firebase/Firebase.h"; sourceTree = "<group>"; };
+		204D1E7141E14B1F87CF94B3 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseCoreDiagnostics.framework"; sourceTree = "<group>"; };
+		2168AC62F25A41D99E2874B6 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowser.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; };
+		25997D1F39234288BFA46EF3 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseAnalytics.framework"; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A110CF511EC46918E6A7B17 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseInstanceID.framework"; sourceTree = "<group>"; };
+		301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
+		302D95EE14D2391D003F00A1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		302D95EF14D2391D003F00A1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		302D95F014D2391D003F00A1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		3047A50F1AB8059700498E2A /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		3047A5101AB8059700498E2A /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
+		318C3E0ECBF3460391392D20 /* LaunchReview.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = LaunchReview.m; path = "cordova-launch-review/LaunchReview.m"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MercatoVIP-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MercatoVIP-Prefix.pch"; sourceTree = "<group>"; };
+		35C65017B3E94C029E4609B8 /* CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULPlugin.h; path = "cordova-universal-links-plugin/CULPlugin.h"; sourceTree = "<group>"; };
+		379B77AFCA8A4D45BC7AC3E9 /* MessageUI.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3909CDD0B5EB433FBD6E72D9 /* CDVReachability.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; };
+		391E964B2E6F426A910E98A7 /* CULConfigXmlParser.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULConfigXmlParser.m; path = "cordova-universal-links-plugin/Parser/CULConfigXmlParser.m"; sourceTree = "<group>"; };
+		3DF533B8241E4769B7911833 /* NSString+SSURLEncoding.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "NSString+SSURLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.h"; sourceTree = "<group>"; };
+		540B4053CDE341A39D2800B1 /* UIWindow+DismissNotification.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "UIWindow+DismissNotification.h"; path = "cordova-launch-review/UIWindow+DismissNotification.h"; sourceTree = "<group>"; };
+		58083B284E8F452EBAC1FC59 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; };
+		606E95B3C20147D198BE0109 /* CULXmlTags.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULXmlTags.h; path = "cordova-universal-links-plugin/Parser/CULXmlTags.h"; sourceTree = "<group>"; };
+		61204AB9333542309E92779E /* CDVSplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
+		663BC608F61941C6BAA55041 /* OneSignalPush.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = OneSignalPush.m; path = "onesignal-cordova-plugin/OneSignalPush.m"; sourceTree = "<group>"; };
+		6739FF7EDE6B4E9E9BA097ED /* AppDelegate+FirebasePlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+FirebasePlugin.m"; path = "cordova-plugin-firebase/AppDelegate+FirebasePlugin.m"; sourceTree = "<group>"; };
+		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = MercatoVIP/CDVLaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		6B48845A7E124AB38B15FD19 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseMessaging.framework"; sourceTree = "<group>"; };
+		6EFB2650370FD08CA11EBBDD /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		703583336CF447BEB96F0954 /* FirebasePlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = FirebasePlugin.h; path = "cordova-plugin-firebase/FirebasePlugin.h"; sourceTree = "<group>"; };
+		768FE6602B294DFCBF291E20 /* SocialSharing.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = SocialSharing.m; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; };
+		7C3F23D6A80D474AB807BB5D /* MercatoVIP.entitlements */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = MercatoVIP.entitlements; sourceTree = "<group>"; };
+		82AF430DA7324E339ABC2AB1 /* CULConfigXmlParser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULConfigXmlParser.h; path = "cordova-universal-links-plugin/Parser/CULConfigXmlParser.h"; sourceTree = "<group>"; };
+		8448D92E2095C8390019B60C /* iOS_SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iOS_SDK; path = Pods/OneSignal/iOS_SDK; sourceTree = "<group>"; };
+		8448D9322095C8900019B60C /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		849E51B120920511007AA837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		849E51B320920534007AA837 /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = Pods/OneSignal/iOS_SDK/OneSignalSDK/Framework/OneSignal.framework; sourceTree = "<group>"; };
+		84D742902095C3B400449185 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D742922095C3B500449185 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		84D742942095C3B500449185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84DC84767CEF42B1BA6584F8 /* CoreTelephony.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		852EC4990E4E4778B08CEC04 /* NSBundle+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+CULPlugin.m"; path = "cordova-universal-links-plugin/Utils/NSBundle+CULPlugin.m"; sourceTree = "<group>"; };
+		878B89B0602A4FB7AB082AA8 /* NSString+SSURLEncoding.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSString+SSURLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.m"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* MercatoVIP-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MercatoVIP-Info.plist"; path = "MercatoVIP/MercatoVIP-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+		8D31EE9C6F4141D0A640C381 /* SocialSharing.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = SocialSharing.h; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; };
+		8D75BEE9EAAE4D339B4C2D3D /* CULHost.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULHost.m; path = "cordova-universal-links-plugin/Model/CULHost.m"; sourceTree = "<group>"; };
+		8EC9152166F847008A011B99 /* CULHost.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULHost.h; path = "cordova-universal-links-plugin/Model/CULHost.h"; sourceTree = "<group>"; };
+		9666A478304E4BF0B0222B70 /* CDVSplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; };
+		A7224CFB8F1A4040906625BD /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; };
+		A83D688BA37742D689E1CA12 /* CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULPlugin.m; path = "cordova-universal-links-plugin/CULPlugin.m"; sourceTree = "<group>"; };
+		AA04962AE0FF43E79312ACC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AF1C2D245F134F5A85474529 /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AF5F54ED1301ED60835B1769 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B1C8B337AAE141C380BA70A2 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/Protobuf.framework"; sourceTree = "<group>"; };
+		B3DD6718AFA14DFA939D5DBF /* UIWindow+DismissNotification.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+DismissNotification.m"; path = "cordova-launch-review/UIWindow+DismissNotification.m"; sourceTree = "<group>"; };
+		B565F76C3FAE4D05A087E868 /* CDVVibration.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVVibration.h; path = "cordova-plugin-vibration/CDVVibration.h"; sourceTree = "<group>"; };
+		BCC627EC03E94D5EBBF32466 /* CDVVibration.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVVibration.m; path = "cordova-plugin-vibration/CDVVibration.m"; sourceTree = "<group>"; };
+		BF206905E615456E927A0D9E /* AppDelegate+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+CULPlugin.m"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.m"; sourceTree = "<group>"; };
+		C6F519B8BA5849A0A3B7D9C4 /* AppDelegate+FirebasePlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+FirebasePlugin.h"; path = "cordova-plugin-firebase/AppDelegate+FirebasePlugin.h"; sourceTree = "<group>"; };
+		C81146FBA2904546977533C8 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowser.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; };
+		CBCF3ADE30A34B5AAB7CA74E /* Social.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		CC2E06F7FEB94FA4A2C37373 /* CULPath.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULPath.h; path = "cordova-universal-links-plugin/Model/CULPath.h"; sourceTree = "<group>"; };
+		CD0B906687F14D2A9C45995E /* CDVPluginResult+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVPluginResult+CULPlugin.m"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.m"; sourceTree = "<group>"; };
+		D3AEEFE613CB4C33A55DB2E1 /* FirebaseRemoteConfig.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseRemoteConfig.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseRemoteConfig.framework"; sourceTree = "<group>"; };
+		D5317F5D89194666814900BC /* CDVPluginResult+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVPluginResult+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.h"; sourceTree = "<group>"; };
+		D8608FF6E49E4208AB29CDFC /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseCore.framework"; sourceTree = "<group>"; };
+		D9C21972115F42CB8056ED5E /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/GTMSessionFetcher.framework"; sourceTree = "<group>"; };
+		DDB77AA89104453AA95E856E /* CDVInvokedUrlCommand+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVInvokedUrlCommand+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.h"; sourceTree = "<group>"; };
+		E69E38F36D414E01941D58E6 /* CULPath.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULPath.m; path = "cordova-universal-links-plugin/Model/CULPath.m"; sourceTree = "<group>"; };
+		EB5B4C5FF7224F4BA654CFB3 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseNanoPB.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseNanoPB.framework"; sourceTree = "<group>"; };
+		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
+		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+		ECA462A6374A494E912D1201 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = "MercatoVIP/Plugins/cordova-plugin-firebase/FirebaseAuth.framework"; sourceTree = "<group>"; };
+		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		EF93C1496FEB41FA82598B73 /* LaunchReview.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = LaunchReview.h; path = "cordova-launch-review/LaunchReview.h"; sourceTree = "<group>"; };
+		F190641AA0B648E6AF1F28A4 /* CDVReachability.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVReachability.m; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; };
+		F697FF6F3751B91A4AA5AD6A /* libPods-MercatoVIP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MercatoVIP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MercatoVIP/config.xml; sourceTree = "<group>"; };
+		FC8EF4B36C774A059CCCCE2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFE605F09D0F40DA85B47BE0 /* FirebasePlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = FirebasePlugin.m; path = "cordova-plugin-firebase/FirebasePlugin.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				862A4051E9014C949B99F1E4 /* StoreKit.framework in Frameworks */,
+				9795381139FD4A04A4E0D87E /* FirebaseAnalytics.framework in Frameworks */,
+				A1540A7C46EE4C318C1770BE /* FirebaseCore.framework in Frameworks */,
+				F1D59AEA613F4399A35248B6 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				1C181FF7175845CB9CCC99E4 /* FirebaseInstanceID.framework in Frameworks */,
+				DFC110AA35DA436187DE33E0 /* FirebaseNanoPB.framework in Frameworks */,
+				65D94AE838D44B90AF5DB584 /* GoogleToolboxForMac.framework in Frameworks */,
+				408759FEB77E44598BC49622 /* Protobuf.framework in Frameworks */,
+				A0C4E6BD0B6F49AE978CF307 /* FirebaseMessaging.framework in Frameworks */,
+				C04E94FB8C9E4CB486185139 /* FirebaseCrash.framework in Frameworks */,
+				F9210E673EE046229FCB0258 /* FirebaseRemoteConfig.framework in Frameworks */,
+				5937D0B2A77C4C8092488FCD /* FirebaseAuth.framework in Frameworks */,
+				D71D38F5F1574775A76DD5A7 /* GTMSessionFetcher.framework in Frameworks */,
+				E266AAB3ED2E46B1950B84CF /* SystemConfiguration.framework in Frameworks */,
+				E95D872F95C84D65858CFF84 /* CoreTelephony.framework in Frameworks */,
+				97E2B4A0D3F94FBA9484BEE8 /* AudioToolbox.framework in Frameworks */,
+				86D4DA4F038646DCAF121435 /* Social.framework in Frameworks */,
+				93F25D039DA04919840006D0 /* MessageUI.framework in Frameworks */,
+				6CA72BCFEEBBA39A48BF0C0E /* libPods-MercatoVIP.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D7428D2095C3B400449185 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8448D9312095C8510019B60C /* OneSignal.framework in Frameworks */,
+				8448D92C2095C82F0019B60C /* SystemConfiguration.framework in Frameworks */,
+				8448D92D2095C82F0019B60C /* UIKit.framework in Frameworks */,
+				89228A55E0C127463D268FBA /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				302D95EE14D2391D003F00A1 /* MainViewController.h */,
+				302D95EF14D2391D003F00A1 /* MainViewController.m */,
+				302D95F014D2391D003F00A1 /* MainViewController.xib */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
+			);
+			name = Classes;
+			path = MercatoVIP/Classes;
+			sourceTree = SOURCE_ROOT;
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* MercatoVIP.app */,
+				84D742902095C3B400449185 /* OneSignalNotificationServiceExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				EB87FDF41871DAF40020F90C /* config.xml */,
+				EB87FDF31871DA8E0020F90C /* www */,
+				EB87FDF11871DA420020F90C /* Staging */,
+				301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				307C750510C5A3420062BCA9 /* Plugins */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				84D742912095C3B500449185 /* OneSignalNotificationServiceExtension */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				DE3245E45F14FE32AF8346F2 /* Pods */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MercatoVIP-Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */,
+			);
+			name = "Other Sources";
+			path = MercatoVIP;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0207DA571B56EA530066E2B4 /* Images.xcassets */,
+				3047A50E1AB8057F00498E2A /* config */,
+				8D1107310486CEB800E47090 /* MercatoVIP-Info.plist */,
+				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
+				FC8EF4B36C774A059CCCCE2A /* GoogleService-Info.plist */,
+				7C3F23D6A80D474AB807BB5D /* MercatoVIP.entitlements */,
+			);
+			name = Resources;
+			path = MercatoVIP/Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8448D92E2095C8390019B60C /* iOS_SDK */,
+				849E51B320920534007AA837 /* OneSignal.framework */,
+				849E51B120920511007AA837 /* UIKit.framework */,
+				0CE9FA15C2CB44A39F9AF22C /* StoreKit.framework */,
+				25997D1F39234288BFA46EF3 /* FirebaseAnalytics.framework */,
+				D8608FF6E49E4208AB29CDFC /* FirebaseCore.framework */,
+				204D1E7141E14B1F87CF94B3 /* FirebaseCoreDiagnostics.framework */,
+				2A110CF511EC46918E6A7B17 /* FirebaseInstanceID.framework */,
+				EB5B4C5FF7224F4BA654CFB3 /* FirebaseNanoPB.framework */,
+				000A8C23C3F74F8395BA8B46 /* GoogleToolboxForMac.framework */,
+				B1C8B337AAE141C380BA70A2 /* Protobuf.framework */,
+				6B48845A7E124AB38B15FD19 /* FirebaseMessaging.framework */,
+				070235EF0B8C42C3A85D7187 /* FirebaseCrash.framework */,
+				D3AEEFE613CB4C33A55DB2E1 /* FirebaseRemoteConfig.framework */,
+				ECA462A6374A494E912D1201 /* FirebaseAuth.framework */,
+				D9C21972115F42CB8056ED5E /* GTMSessionFetcher.framework */,
+				AF1C2D245F134F5A85474529 /* SystemConfiguration.framework */,
+				84DC84767CEF42B1BA6584F8 /* CoreTelephony.framework */,
+				AA04962AE0FF43E79312ACC0 /* AudioToolbox.framework */,
+				CBCF3ADE30A34B5AAB7CA74E /* Social.framework */,
+				379B77AFCA8A4D45BC7AC3E9 /* MessageUI.framework */,
+				F697FF6F3751B91A4AA5AD6A /* libPods-MercatoVIP.a */,
+				6EFB2650370FD08CA11EBBDD /* libPods-OneSignalNotificationServiceExtension.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		301BF52E109A57CC0062928A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				301BF535109A57CC0062928A /* libCordova.a */,
+				8414E0A62091FAC400319C75 /* Cordova.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3047A50E1AB8057F00498E2A /* config */ = {
+			isa = PBXGroup;
+			children = (
+				3047A50F1AB8059700498E2A /* build-debug.xcconfig */,
+				3047A5101AB8059700498E2A /* build-release.xcconfig */,
+				3047A5111AB8059700498E2A /* build.xcconfig */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		307C750510C5A3420062BCA9 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				318C3E0ECBF3460391392D20 /* LaunchReview.m */,
+				B3DD6718AFA14DFA939D5DBF /* UIWindow+DismissNotification.m */,
+				EF93C1496FEB41FA82598B73 /* LaunchReview.h */,
+				540B4053CDE341A39D2800B1 /* UIWindow+DismissNotification.h */,
+				6739FF7EDE6B4E9E9BA097ED /* AppDelegate+FirebasePlugin.m */,
+				FFE605F09D0F40DA85B47BE0 /* FirebasePlugin.m */,
+				C6F519B8BA5849A0A3B7D9C4 /* AppDelegate+FirebasePlugin.h */,
+				703583336CF447BEB96F0954 /* FirebasePlugin.h */,
+				1E26D0E675CF43DFA942EDDF /* Firebase.h */,
+				2168AC62F25A41D99E2874B6 /* CDVInAppBrowser.m */,
+				C81146FBA2904546977533C8 /* CDVInAppBrowser.h */,
+				161B7B54B2764CF491281AAC /* CDVConnection.m */,
+				F190641AA0B648E6AF1F28A4 /* CDVReachability.m */,
+				0C4D405386704D69AE432F3E /* CDVConnection.h */,
+				3909CDD0B5EB433FBD6E72D9 /* CDVReachability.h */,
+				9666A478304E4BF0B0222B70 /* CDVSplashScreen.m */,
+				A7224CFB8F1A4040906625BD /* CDVViewController+SplashScreen.m */,
+				61204AB9333542309E92779E /* CDVSplashScreen.h */,
+				58083B284E8F452EBAC1FC59 /* CDVViewController+SplashScreen.h */,
+				BCC627EC03E94D5EBBF32466 /* CDVVibration.m */,
+				B565F76C3FAE4D05A087E868 /* CDVVibration.h */,
+				878B89B0602A4FB7AB082AA8 /* NSString+SSURLEncoding.m */,
+				768FE6602B294DFCBF291E20 /* SocialSharing.m */,
+				3DF533B8241E4769B7911833 /* NSString+SSURLEncoding.h */,
+				8D31EE9C6F4141D0A640C381 /* SocialSharing.h */,
+				A83D688BA37742D689E1CA12 /* CULPlugin.m */,
+				BF206905E615456E927A0D9E /* AppDelegate+CULPlugin.m */,
+				CD0B906687F14D2A9C45995E /* CDVPluginResult+CULPlugin.m */,
+				15BF93C3927242A5BDA570CF /* CDVInvokedUrlCommand+CULPlugin.m */,
+				8D75BEE9EAAE4D339B4C2D3D /* CULHost.m */,
+				E69E38F36D414E01941D58E6 /* CULPath.m */,
+				15B660B820F64DBA8FC556B8 /* CULXmlTags.m */,
+				391E964B2E6F426A910E98A7 /* CULConfigXmlParser.m */,
+				852EC4990E4E4778B08CEC04 /* NSBundle+CULPlugin.m */,
+				35C65017B3E94C029E4609B8 /* CULPlugin.h */,
+				1D45081F536B4248BC737D98 /* AppDelegate+CULPlugin.h */,
+				D5317F5D89194666814900BC /* CDVPluginResult+CULPlugin.h */,
+				DDB77AA89104453AA95E856E /* CDVInvokedUrlCommand+CULPlugin.h */,
+				8EC9152166F847008A011B99 /* CULHost.h */,
+				CC2E06F7FEB94FA4A2C37373 /* CULPath.h */,
+				606E95B3C20147D198BE0109 /* CULXmlTags.h */,
+				82AF430DA7324E339ABC2AB1 /* CULConfigXmlParser.h */,
+				1C90B6C6BA1F458A88FBCB4B /* NSBundle+CULPlugin.h */,
+				663BC608F61941C6BAA55041 /* OneSignalPush.m */,
+				01691882B65B49A0AED73030 /* OneSignalPush.h */,
+			);
+			name = Plugins;
+			path = MercatoVIP/Plugins;
+			sourceTree = SOURCE_ROOT;
+		};
+		84D742912095C3B500449185 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				8448D9322095C8900019B60C /* OneSignalNotificationServiceExtension.entitlements */,
+				84D742922095C3B500449185 /* NotificationService.swift */,
+				84D742942095C3B500449185 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		DE3245E45F14FE32AF8346F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B70B42DE92DF07D8D7873 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				AF5F54ED1301ED60835B1769 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EB87FDF11871DA420020F90C /* Staging */ = {
+			isa = PBXGroup;
+			children = (
+				F840E1F0165FE0F500CFE078 /* config.xml */,
+				301BF56E109A69640062928A /* www */,
+			);
+			name = Staging;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* MercatoVIP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MercatoVIP" */;
+			buildPhases = (
+				11E7062C071EC9E3F416B9B4 /* [CP] Check Pods Manifest.lock */,
+				304B58A110DAC018002A0835 /* Copy www directory */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				8414E0B72091FD5F00319C75 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				301BF551109A68C00062928A /* PBXTargetDependency */,
+				84D742962095C3B500449185 /* PBXTargetDependency */,
+			);
+			name = MercatoVIP;
+			productName = MercatoVIP;
+			productReference = 1D6058910D05DD3D006BFB54 /* MercatoVIP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84D7428F2095C3B400449185 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84D742982095C3B500449185 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				6F45D514569A219881757996 /* [CP] Check Pods Manifest.lock */,
+				84D7428C2095C3B400449185 /* Sources */,
+				84D7428D2095C3B400449185 /* Frameworks */,
+				84D7428E2095C3B400449185 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 84D742902095C3B400449185 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 920;
+				LastUpgradeCheck = 510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = G5BV79CWFQ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					84D7428F2095C3B400449185 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = G5BV79CWFQ;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MercatoVIP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 301BF52E109A57CC0062928A /* Products */;
+					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib/CordovaLib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* MercatoVIP */,
+				84D7428F2095C3B400449185 /* OneSignalNotificationServiceExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		301BF535109A57CC0062928A /* libCordova.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCordova.a;
+			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8414E0A62091FAC400319C75 /* Cordova.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cordova.framework;
+			remoteRef = 8414E0A52091FAC400319C75 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
+				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
+				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
+				F69172301D6740DBBA895C39 /* GoogleService-Info.plist in Resources */,
+				B741385079DB41D18C6DBBFE /* MercatoVIP.entitlements in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D7428E2095C3B400449185 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11E7062C071EC9E3F416B9B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MercatoVIP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		304B58A110DAC018002A0835 /* Copy www directory */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy www directory";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "NODEJS_PATH=/usr/local/bin; NVM_NODE_PATH=~/.nvm/versions/node/`nvm version 2>/dev/null`/bin; N_NODE_PATH=`find /usr/local/n/versions/node/* -maxdepth 0 -type d 2>/dev/null | tail -1`/bin; XCODE_NODE_PATH=`xcode-select --print-path`/usr/share/xcs/Node/bin; PATH=$NODEJS_PATH:$NVM_NODE_PATH:$N_NODE_PATH:$XCODE_NODE_PATH:$PATH && node cordova/lib/copy-www-build-step.js";
+			showEnvVarsInLog = 0;
+		};
+		6F45D514569A219881757996 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				7305D11147A9441EBBA7F06F /* LaunchReview.m in Sources */,
+				12740A72E8A547A9B2E3DD47 /* UIWindow+DismissNotification.m in Sources */,
+				BB7579E4759E4CC2BC173847 /* AppDelegate+FirebasePlugin.m in Sources */,
+				A268F1814BBC49C0A6EDA9E4 /* FirebasePlugin.m in Sources */,
+				C964D75615E149DC98E54A76 /* CDVInAppBrowser.m in Sources */,
+				DA1B8653068F4CA8879FD7C0 /* CDVConnection.m in Sources */,
+				3687686ADC4E4E2D9C9EB38B /* CDVReachability.m in Sources */,
+				D7B8BDDC0726479D9F8119AC /* CDVSplashScreen.m in Sources */,
+				1BDD50ED825343468CECDF8F /* CDVViewController+SplashScreen.m in Sources */,
+				C7A5581E5EC04C34876667DF /* CDVVibration.m in Sources */,
+				57F33ECFDB26421E85ABD67C /* NSString+SSURLEncoding.m in Sources */,
+				74DAB9B2B2FB496EA87DEBF1 /* SocialSharing.m in Sources */,
+				C94C73A68ED0417385F1BDB0 /* CULPlugin.m in Sources */,
+				0C2374DAD7E04AE5ACF053EE /* AppDelegate+CULPlugin.m in Sources */,
+				413267E197E04F60B8AD76D9 /* CDVPluginResult+CULPlugin.m in Sources */,
+				3971C7DA9D7C4F77937BCA82 /* CDVInvokedUrlCommand+CULPlugin.m in Sources */,
+				E24CEB5DDECA446781C89DD1 /* CULHost.m in Sources */,
+				C63E9D06D3124DF38D7C1D6E /* CULPath.m in Sources */,
+				45DA2EBA40EB48B88E4A57EE /* CULXmlTags.m in Sources */,
+				C81F9B56F3A049AC9F6D1151 /* CULConfigXmlParser.m in Sources */,
+				4C6370F990214071B59010D8 /* NSBundle+CULPlugin.m in Sources */,
+				ED9E7B78CB3F46C292F60622 /* OneSignalPush.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D7428C2095C3B400449185 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D742932095C3B500449185 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		301BF551109A68C00062928A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CordovaLib;
+			targetProxy = 301BF550109A68C00062928A /* PBXContainerItemProxy */;
+		};
+		84D742962095C3B500449185 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84D7428F2095C3B400449185 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 84D742952095C3B500449185 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = G5BV79CWFQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MercatoVIP/MercatoVIP-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "MercatoVIP/MercatoVIP-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_NAME = MercatoVIP;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5101AB8059700498E2A /* build-release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = G5BV79CWFQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+					"\"MercatoVIP/Plugins/cordova-plugin-firebase\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MercatoVIP/MercatoVIP-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "MercatoVIP/MercatoVIP-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_NAME = MercatoVIP;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		84D742992095C3B500449185 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A0B70B42DE92DF07D8D7873 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = G5BV79CWFQ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OneSignal/iOS_SDK/OneSignalSDK/Framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercatovip.app.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84D7429A2095C3B500449185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF5F54ED1301ED60835B1769 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = G5BV79CWFQ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OneSignal/iOS_SDK/OneSignalSDK/Framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercatovip.app.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MercatoVIP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84D742982095C3B500449185 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D742992095C3B500449185 /* Debug */,
+				84D7429A2095C3B500449185 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MercatoVIP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

@@ -66,12 +66,12 @@ const Routes = [
     component: require('./assets/vue/pages/result.vue')
   },
   {
-    path: '/daily_deals',
-    component: require('./assets/vue/pages/daily_deals.vue')
+    path: '/daily_offers',
+    component: require('./assets/vue/pages/daily_offers.vue')
   },
   {
-    path: '/vip_deals',
-    component: require('./assets/vue/pages/vip_deals.vue')
+    path: '/weekly_offers',
+    component: require('./assets/vue/pages/weekly_offers.vue')
   },
   {
     path: '/information',

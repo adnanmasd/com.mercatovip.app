@@ -1,0 +1,3 @@
+CODE_SIGN_IDENTITY = Asrar Balghsoon
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = Asrar Balghsoon
+DEVELOPMENT_TEAM = G5BV79CWFQ

@@ -84,7 +84,7 @@
   "cordova-universal-links-plugin": {
     "source": {
       "type": "registry",
-      "id": "cordova-universal-links-plugin"
+      "id": "https://github.com/flipflopapp/cordova-universal-links-plugin.git"
     },
     "is_top_level": true,
     "variables": {}
@@ -93,6 +93,22 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-vibration"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-ios-export-compliance": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-ios-export-compliance@1.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-ios-plugin-no-export-compliance": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-ios-plugin-no-export-compliance"
     },
     "is_top_level": true,
     "variables": {}

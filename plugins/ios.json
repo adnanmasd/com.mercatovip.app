@@ -1,0 +1,50 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-launch-review": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-customurlscheme": {
+      "URL_SCHEME": "mercatovip",
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "MercatoVIP"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "MercatoVIP"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "MercatoVIP"
+    }
+  }
+}

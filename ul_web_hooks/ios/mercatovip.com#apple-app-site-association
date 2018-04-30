@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "G5BV79CWFQ.com.mercatovip.app",
+        "paths": [
+          "*",
+          "/"
+        ]
+      }
+    ]
+  }
+}
