@@ -16,10 +16,11 @@ const Routes = [
     path: '/checkout/',
     //component: require('./assets/vue/pages/checkout.vue'),
     async(routeTo, routeFrom, resolve, reject) {
-      if (localStorage.getItem('user') !== null) {
-        resolve({ component: require('./assets/vue/pages/checkout.vue') })
-      } else {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/checkout.vue') })
       }
     }
   },
@@ -30,30 +31,33 @@ const Routes = [
   {
     path: '/wishlist',
     async(routeTo, routeFrom, resolve, reject) {
-      if (localStorage.getItem('user') !== null) {
-        resolve ({ component: require('./assets/vue/pages/wishlist.vue') })
-      } else {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve ({ component: require('./assets/vue/pages/wishlist.vue') })
       }
     }
   },
   {
     path: '/myorders',
     async(routeTo, routeFrom, resolve, reject) {
-      if (localStorage.getItem('user') !== null) {
-        resolve({ component: require('./assets/vue/pages/myorders.vue') })
-      } else {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/myorders.vue') })
       }
     }
   },
   {
     path: '/myorders/:order_id',
     async(routeTo, routeFrom, resolve, reject) {
-      if (localStorage.getItem('user') !== null) {
-        resolve({ component: require('./assets/vue/pages/order.vue') })
-      } else {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/order.vue') })
       }
     }
   },

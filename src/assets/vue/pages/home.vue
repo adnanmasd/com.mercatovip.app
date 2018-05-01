@@ -5,14 +5,14 @@
 <f7-page name="home" tabs hide-toolbar-on-scroll :page-content="false">
     <f7-navbar :class="this.$theme.md ? 'color-white text-color-black': ''">
         <f7-nav-left>
-            <f7-link panel-open="left" icon="fa fa-bars">
+            <f7-link :panel-open="sideBarPos" icon="fa fa-bars">
             </f7-link>
         </f7-nav-left>
         <f7-nav-title class="nav-center-margin">
             <img :src="logo" class="logo" />
         </f7-nav-title>
         <f7-nav-right>
-            <f7-link panel-open="right" icon="fa fa-bell">
+            <f7-link :panel-open="sideBarPos2" icon="fa fa-bell">
             </f7-link>
         </f7-nav-right>
         <f7-subnavbar :inner="false">
@@ -383,7 +383,8 @@ export default {
                 currentLanguageId: (localStorage.getItem('language_id')),
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
-                sideBarPos: (localStorage.getItem('language_id') == 1 ? "left" : "right"),
+                sideBarPos: (localStorage.getItem('language_id') === '1' ? "left" : "right"),
+                sideBarPos2: (localStorage.getItem('language_id') === '1' ? "right" : "left"),
                 logo: (localStorage.getItem('language_id') == 1 ? "static/img/logo-en.png" : "static/img/logo-ar.png"),
                 searchTerm: "",
                 swipeoutSide: (localStorage.getItem('language_id') == 1 ? "right" : "left"),

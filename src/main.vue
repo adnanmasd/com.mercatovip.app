@@ -92,9 +92,9 @@ export default {
                 firstVisit: localStorage.getItem('firstVisit'),
                 currentLanguageId: (localStorage.getItem('language_id')),
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
-                direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
-                sideBarPos: (localStorage.getItem('language_id') == 1 ? "left" : "right"),
-                sideBar2Pos: (localStorage.getItem('language_id') == 1 ? "right" : "left"),
+                direction: (localStorage.getItem('language_id') == '1' ? "ltr" : "rtl"),
+                sideBarPos: (localStorage.getItem('language_id') === '1' ? "left" : "right"),
+                sideBar2Pos: (localStorage.getItem('language_id') === '1' ? "right" : "left"),
                 logo: (localStorage.getItem('language_id') == 1 ? "static/img/logo-en.png" : "static/img/logo-ar.png"),
                 searchTerm: "",
                 swipeoutSide: (localStorage.getItem('language_id') == 1 ? "right" : "left")

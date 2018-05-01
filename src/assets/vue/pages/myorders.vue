@@ -107,6 +107,17 @@ export default {
                             self.$f7.infiniteScroll.destroy();
                         }
                         self.$f7.preloader.hide();
+                    }).catch (function(error){
+                    self.$f7.preloader.hide();
+                      var t = self.$f7.toast.create({
+                        text: error.response.data.error,
+                        closeTimeout: 5000,
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass : 'toast-red'
+                    });
+                    t.open();
+                    navigator.vibrate([80,80,80])
                     });
                 }, 500);
             }

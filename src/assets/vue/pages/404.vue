@@ -2,7 +2,7 @@
 
 <template>
 
-<f7-page name="thankyou" no-tabbar>
+<f7-page name="404" no-tabbar>
     <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
         <f7-nav-left sliding>
             <f7-link class="back" icon-only>
@@ -10,7 +10,7 @@
             </f7-link>
         </f7-nav-left>
         <f7-nav-title sliding>
-            {{$t('thankyou.title')}}
+            404
         </f7-nav-title>
         <f7-nav-right sliding>
             <f7-link icon-only>
@@ -19,7 +19,7 @@
     </f7-navbar>
 
     <f7-block>
-        <h3>Order # {{order_id}}</h3> {{$t('thankyou.para')}}
+        Page Not Found
     </f7-block>
 
 </f7-page>

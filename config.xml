@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="com.mercatovip.app" id="com.mercatovip.app" version="2.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="com.mercatovip.app" id="com.mercatovip.app" version="2.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="android-minSdkVersion" value="16" />
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
@@ -25,14 +25,13 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <platform name="android">
-        <prefereance name="AndroidLaunchMode" value="singleInstance" />
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="res/icons/android/ldpi.png"/>
-        <icon density="mdpi" src="res/icons/android/mdpi.png"/>
-        <icon density="hdpi" src="res/icons/android/hdpi.png"/>
-        <icon density="xhdpi" src="res/icons/android/xhdpi.png"/>
-        <icon density="xxhdpi" src="res/icons/android/xxhdpi.png"/>
-        <icon density="xxxhdpi" src="res/icons/android/xxxhdpi.png"/>
+        <icon density="ldpi" src="res/icons/android/ldpi.png" />
+        <icon density="mdpi" src="res/icons/android/mdpi.png" />
+        <icon density="hdpi" src="res/icons/android/hdpi.png" />
+        <icon density="xhdpi" src="res/icons/android/xhdpi.png" />
+        <icon density="xxhdpi" src="res/icons/android/xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/icons/android/xxxhdpi.png" />
         <splash density="land-ldpi" src="res/screens/android/drawable-land-ldpi-screen.png" />
         <splash density="land-mdpi" src="res/screens/android/drawable-land-mdpi-screen.png" />
         <splash density="land-hdpi" src="res/screens/android/drawable-land-hdpi-screen.png" />
