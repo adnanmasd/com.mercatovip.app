@@ -152,6 +152,9 @@ export default {
                         });
                         t.open();
                         navigator.vibrate([80,80,80])
+                        localStorage.removeItem("user");
+                        localStorage.removeItem("remember_me_key");
+                        localStorage.removeItem("loggedIn");
                     });
                     self.$f7.preloader.hide();
                 },

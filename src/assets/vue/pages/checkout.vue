@@ -213,8 +213,19 @@
             </div>
             <f7-list form id="payment_method_form">
                 <f7-list-item group-title :title="$t('checkout.payment.method')"></f7-list-item>
-                <f7-list-item radio name="payment_method" v-if="row.code === 'GOP_COD' || row.code === 'free_checkout'" v-for="row,index in payment_methods" :value="row.code" checked :title='(row.code == "gate2play") ? ("<img src=" + "static/img/payment.png" + ">") : row.title'></f7-list-item>
-                <f7-list-item name="payment_method" v-else title='Please procceed with your order on web'></f7-list-item>
+                <f7-list-item radio name="payment_method" v-for="row,index in payment_methods" :value="row.code" checked>
+                  <div slot="before-title">
+                    <template v-if='(row.code == "payfort_fort")'>
+                      <div class="item-title" v-html='"<img src=" + "static/img/payment.png" + ">"'>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <div class="item-title">
+                        {{row.title}}
+                      </div>
+                    </template>
+                </div>
+                </f7-list-item>
                 <!-- <f7-list-item checkbox name="agree" value="1" :title="$t('checkout.agree.text')"></f7-list-item> -->
 
             </f7-list>
@@ -328,10 +339,9 @@ export default {
                                 self.shipping_address = e.data
                                 self.a = self.shipping_address.address_id;
                                 self.address_type_selected = self.shipping_address.address_id;
-                                self.$f7.preloader.hide();
                             }
-
                         })
+                        self.$f7.preloader.hide();
                         // payment Address
                         // axios({
                         //     method: "GET",

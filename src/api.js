@@ -1,9 +1,11 @@
-//let base_url = "https://dyourw.com/demo/api/rest";
-let base_url = "https://mercatovip.com/api/rest";
+let base_url = "https://dyourw.com/demo/api/rest";
+//let base_url = "https://mercatovip.com/api/rest";
+let payment_link = "http://dyourw.com/demo/index.php?route=rest/payfort_fort"
+//let payment_link = "http://mercatovip.com/index.php?route=rest/payfort_fort"
 
 let headers = {
-  //"X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
-  "X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+  "X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
+  //"X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
   "X-Oc-Merchant-Language" : localStorage.getItem('language_code'),
   "X-Oc-Session" : localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
   "Content-Type" : "application/json",
@@ -12,6 +14,7 @@ let headers = {
 
 export default {
   "baseUrl" : base_url,
+  "payment_link" : payment_link,
   "headers" : headers,
   "urls" : {
     "getSession" : "/session",

@@ -37,8 +37,8 @@
         </f7-card>
     </f7-block>
 
-    <f7-toolbar bottom-md v-if="!creditCardPayment">
-        <f7-button style="width:100%" big raised fill color="green" @click="pay()">{{$t('confirm.pay')}}</f7-button>
+    <f7-toolbar bottom-md>
+        <f7-button style="width:100%" big raised fill color="green" @click="pay()">{{cashOnDelivery ? $t('confirm.place') : $t('confirm.pay')}}</f7-button>
     </f7-toolbar>
 </f7-page>
 
@@ -59,7 +59,7 @@ export default {
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
                 order: [],
-                creditCardPayment: this.$f7route.query.payment == 'gate2play',
+                cashOnDelivery: this.$f7route.query.payment == 'GOP_COD' || this.$f7route.query.payment == 'free_checkout',
                 payment_brands: payment.brands.join(" "),
                 postBack: "https://mercatovip.com/pay/confirm"
             }
@@ -92,7 +92,7 @@ export default {
                     cssClass: 'toast-red'
                 });
                 t.open();
-                navigator.vibrate([80,80,80])
+                navigator.vibrate([80, 80, 80])
                 self.$f7.preloader.hide();
                 self.$f7router.back();
             });
@@ -106,7 +106,50 @@ export default {
         },
         methods: {
             pay() {
-                    self.$f7router.reloadPage("/thankyou");
+                    let self = this;
+                    if (self.cashOnDelivery) {
+                        self.$f7router.navigate("/thankyou?order_id="+self.order.order_id);
+                    } else {
+                        var payment_method = (self.$f7route.query.payment == 'payfort_fort') ? 'PAYFORT_FORT_PAYMENT_METHOD_CC' : 'PAYFORT_FORT_PAYMENT_METHOD_SADAD'
+                        var pageContentUrl = api.payment_link + "&payment_method=" + payment_method + "&order_id=" + this.order.order_id;
+
+                        var popup = window.open(pageContentUrl, "_blank", "hidden=no,location=yes,toolbar=yes,clearsessioncache=yes,clearcache=yes")
+                        popup.addEventListener("loadstop", function(e) {
+                            self.$f7.preloader.show();
+                            console.log(e);
+                            popup.show();
+                            if (e.url.search('rest/payfort_fort/responseOnline') !== -1) {
+                              console.log(e.url);
+                              popup.close();
+                              let query = self.$f7.utils.parseUrlQuery(e.url);
+                              if (query.status == 14) {
+                                //add order history
+                                var t = self.$f7.toast.create({
+                                  text: query.response_message,
+                                  closeTimeout: 3000,
+                                  destroyOnClose: true,
+                                  position: 'top',
+                                  cssClass: 'toast-green'
+                                });
+                                t.open();
+                                navigator.vibrate([100]);
+                                self.$f7router.navigate("/thankyou?order_id="+self.order.order_id);
+                              } else {
+                                //view the error
+                                var t = self.$f7.toast.create({
+                                  text: query.response_message + " (Status: " + query.status + ")",
+                                  closeTimeout: 5000,
+                                  destroyOnClose: true,
+                                  position: 'top',
+                                  cssClass: 'toast-red'
+                                });
+                                t.open();
+                                navigator.vibrate([80, 80, 80]);
+                              }
+                            }
+                            self.$f7.preloader.hide();
+                        });
+                    }
                 },
                 getProductInfo(quantity, price_per_item, total, options) {
                     return total + "<br/> " + this.$t('confirm.product.quantity.title') + quantity

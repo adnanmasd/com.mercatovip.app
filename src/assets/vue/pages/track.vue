@@ -25,10 +25,10 @@
         <f7-list form id="track">
             <f7-list-item>
                 <f7-label>{{$t('track.tracking.title')}}</f7-label>
-                <f7-input name="track" type="text" :placeholder="$t('track.tracking.title.placeholder')" v-model="tracking_no" />
+                <f7-input name="track" type="text" @input="tracking_no = $event.target.value" :placeholder="$t('track.tracking.title.placeholder')" :value="tracking_no" />
             </f7-list-item>
             <br/>
-            <f7-button big round bg="green" color="white" class="external" @click="track()">{{$t('track.tracking.button')}}</f7-button>
+            <f7-button big round fill color="green" class="external" @click="track()">{{$t('track.tracking.button')}}</f7-button>
         </f7-list>
     </f7-block>
 </f7-page>

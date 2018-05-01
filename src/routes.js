@@ -29,6 +29,10 @@ const Routes = [
     component: require('./assets/vue/pages/confirm.vue'),
   },
   {
+    path: '/thankyou',
+    component: require('./assets/vue/pages/thankyou.vue'),
+  },
+  {
     path: '/wishlist',
     async(routeTo, routeFrom, resolve, reject) {
       let user = localStorage.getItem('user')
