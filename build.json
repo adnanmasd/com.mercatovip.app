@@ -1,18 +1,18 @@
 {
     "android": {
         "debug": {
-            "keystore": "../android.keystore",
-            "storePassword": "android",
-            "alias": "mykey1",
-            "password" : "password",
-            "keystoreType": ""
+            "keystore": "./keystore/store.jks",
+            "storePassword": "4321@com@Mercato",
+            "alias": "APPDEBUG",
+            "password" : "4321@com@Mercato",
+            "keystoreType": "jks"
         },
         "release": {
-            "keystore": "../android.keystore",
-            "storePassword": "",
-            "alias": "mykey2",
-            "password" : "password",
-            "keystoreType": ""
+            "keystore": "./keystore/store.jks",
+            "storePassword": "4321@com@Mercato",
+            "alias": "APPMercato",
+            "password" : "4321@com@Mercato",
+            "keystoreType": "jks"
         }
     },
     "ios": {
