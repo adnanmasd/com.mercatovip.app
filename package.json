@@ -47,7 +47,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "cordova-android": "^7.1.0",
+    "cordova-android": "^7.0.0",
     "cordova-browser": "^5.0.3",
     "cordova-ios": "^4.5.4",
     "cordova-ios-export-compliance": "^1.0.2",
@@ -86,14 +86,14 @@
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "mercatovip"
       },
-      "cordova-plugin-firebase": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-x-socialsharing": {},
       "onesignal-cordova-plugin": {},
       "cordova-universal-links-plugin": {},
-      "cordova-plugin-vibration": {}
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "browser",

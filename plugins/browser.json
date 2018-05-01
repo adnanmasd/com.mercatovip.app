@@ -7,44 +7,53 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-ios-export-compliance": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-ios-plugin-no-export-compliance": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
     "cordova-launch-review": {
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "mercatovip",
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-x-socialsharing": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   }
 }

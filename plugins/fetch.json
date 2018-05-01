@@ -25,14 +25,6 @@
       "URL_SCHEME": "mercatovip"
     }
   },
-  "cordova-plugin-firebase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-firebase@0.1.24"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-inappbrowser": {
     "source": {
       "type": "registry",
@@ -117,6 +109,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-device"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-firebase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase@0.1.24"
     },
     "is_top_level": true,
     "variables": {}

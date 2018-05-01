@@ -14,9 +14,6 @@
       "URL_SCHEME": "mercatovip",
       "PACKAGE_NAME": "MercatoVIP"
     },
-    "cordova-plugin-firebase": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "MercatoVIP"
     },
@@ -40,6 +37,9 @@
     },
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
   "dependent_plugins": {

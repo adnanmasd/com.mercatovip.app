@@ -13,10 +13,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"FirebasePlugin\"><param name=\"ios-package\" value=\"FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
               "count": 1
             },
@@ -42,6 +38,10 @@
             },
             {
               "xml": "<feature name=\"OneSignalPush\"><param name=\"ios-package\" value=\"OneSignalPush\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"FirebasePlugin\"><param name=\"ios-package\" value=\"FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             }
           ]
@@ -119,9 +119,6 @@
       "URL_SCHEME": "mercatovip",
       "PACKAGE_NAME": "MercatoVIP"
     },
-    "cordova-plugin-firebase": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "MercatoVIP"
     },
@@ -148,6 +145,9 @@
     },
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "MercatoVIP"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
   "dependent_plugins": {},
@@ -166,14 +166,6 @@
       "pluginId": "cordova-plugin-customurlscheme",
       "clobbers": [
         "window.plugins.launchmyapp"
-      ]
-    },
-    {
-      "id": "cordova-plugin-firebase.FirebasePlugin",
-      "file": "plugins/cordova-plugin-firebase/www/firebase.js",
-      "pluginId": "cordova-plugin-firebase",
-      "clobbers": [
-        "FirebasePlugin"
       ]
     },
     {
@@ -247,12 +239,19 @@
       "clobbers": [
         "OneSignal"
       ]
+    },
+    {
+      "id": "cordova-plugin-firebase.FirebasePlugin",
+      "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+      "pluginId": "cordova-plugin-firebase",
+      "clobbers": [
+        "FirebasePlugin"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-launch-review": "3.1.0",
     "cordova-plugin-customurlscheme": "4.3.0",
-    "cordova-plugin-firebase": "0.1.25",
     "cordova-plugin-inappbrowser": "2.0.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -261,6 +260,7 @@
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
     "cordova-universal-links-plugin": "1.2.1",
-    "onesignal-cordova-plugin": "2.3.3"
+    "onesignal-cordova-plugin": "2.3.3",
+    "cordova-plugin-firebase": "0.1.24"
   }
 }

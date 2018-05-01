@@ -23,6 +23,12 @@
       "ANDROID_PATHPREFIX": "/",
       "PACKAGE_NAME": "com.mercatovip.app"
     },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
@@ -45,9 +51,6 @@
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "com.mercatovip.app"
-    },
-    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   },

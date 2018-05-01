@@ -22,10 +22,6 @@
     <feature name="LaunchReview">
         <param name="ios-package" value="LaunchReview" />
     </feature>
-    <feature name="FirebasePlugin">
-        <param name="ios-package" value="FirebasePlugin" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
@@ -131,4 +127,8 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
+    <feature name="FirebasePlugin">
+        <param name="ios-package" value="FirebasePlugin" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>

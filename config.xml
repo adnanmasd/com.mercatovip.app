@@ -96,7 +96,6 @@
     <plugin name="cordova-plugin-customurlscheme" spec="git+https://github.com/EddyVerbruggen/Custom-URL-scheme.git">
         <variable name="URL_SCHEME" value="mercatovip" />
     </plugin>
-    <plugin name="cordova-plugin-firebase" spec="0.1.24" />
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
@@ -104,6 +103,7 @@
     <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
     <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
     <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
+    <plugin name="cordova-plugin-firebase" spec="^0.1.24" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
 </widget>
