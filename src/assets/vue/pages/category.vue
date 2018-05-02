@@ -95,14 +95,14 @@
     </f7-block>
 
 
-    <!-- <f7-block-header v-if="category.sub_categories && category.sub_categories.length > 0">{{$t('category.subCategory.exploreMore')}}</f7-block-header>
+    <f7-block-header v-if="category.sub_categories && category.sub_categories.length > 0">{{$t('category.subCategory.exploreMore')}}</f7-block-header>
     <f7-block>
         <f7-list media-list style="margin: auto">
             <f7-list-item v-for="row in category.sub_categories" :data-page="'category'+category.id" :key="row.id" :link="'/category?category_id=' + row.category_id" :title="row.name | andFilter">
                 <div slot="media" v-html="getImagefromSource(row.image)"></div>
             </f7-list-item>
         </f7-list>
-    </f7-block> -->
+    </f7-block>
 
 
     <f7-block>
@@ -291,7 +291,7 @@ export default {
                     },
                 }
             }).then(function(response) {
-                //self.dataCategory = response.data.entries;
+                self.dataCategory = response.data.entries;
                 var i;
                 for (i in response.data.entries) {
                     if (response.data.entries[i].type == 'slider') {
