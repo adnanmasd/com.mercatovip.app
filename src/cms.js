@@ -5,6 +5,7 @@ export default {
   collectionPath : '/api/collections/get',
   sliderHome : '/Slider',
   sliderCategory : '/SliderCategory',
+  dummyCategory : '/DummyCategory',
   bannerHome : '/BannerHome',
   specialBannersHome : '/SpecialBannersHome',
   homePageProducts : '/HomePageProducts',

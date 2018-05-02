@@ -90,6 +90,10 @@ const Routes = [
     component: require('./assets/vue/pages/category.vue'),
   },
   {
+    path: '/dummyCategory',
+    component: require('./assets/vue/pages/category_dummy.vue'),
+  },
+  {
     path: '/special',
     component: require('./assets/vue/pages/special.vue'),
   },

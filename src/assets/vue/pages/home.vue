@@ -177,7 +177,7 @@
 
             <template v-if="homePageProducts.length == 0" media-list id="home-products-list" class="result">
                 <f7-row no-gap>
-                    <f7-col v-for="row in 1,4" width="50">
+                    <f7-col v-for="row in 1,2" width="50">
                         <f7-card class="animated-background">
                             <div class="background-masker header-top"></div>
                             <div class="background-masker header-left"></div>
@@ -583,7 +583,7 @@ export default {
                                 title: self.$t("cart.coupon.delete.title"),
                                 closeTimeout: 5000,
                                 destroyOnClose: true,
-                                postion: 'top',
+                                position: 'top',
                                 cssClass: 'toast-green'
                             });
                             t.open();
@@ -602,7 +602,7 @@ export default {
                                 title: self.$t("cart.voucher.delete.title"),
                                 closeTimeout: 5000,
                                 destroyOnClose: true,
-                                postion: 'top',
+                                position: 'top',
                                 cssClass: 'toast-red'
                             });
                             t.open();
@@ -624,7 +624,7 @@ export default {
                                 title: self.$t("cart.item.deleted.title"),
                                 closeTimeout: 5000,
                                 destroyOnClose: true,
-                                postion: 'top',
+                                position: 'top',
                                 cssClass: 'toast-green'
                             });
                             t.open();
@@ -686,7 +686,7 @@ export default {
                             title: self.$t("cart.coupon.add.title"),
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-green'
                         });
                         t.open();
@@ -698,7 +698,7 @@ export default {
                             text: error.response.data.error,
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-red'
                         });
                         t.open();
@@ -723,7 +723,7 @@ export default {
                             title: self.$t("cart.voucher.add.title"),
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-green'
                         });
                         t.open();
@@ -735,7 +735,7 @@ export default {
                             text: error.response.data.error,
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-red'
                         });
                         t.open();
@@ -786,7 +786,7 @@ export default {
                             text: error.response.data.error,
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-red'
                         });
                         t.open();
@@ -809,7 +809,7 @@ export default {
                             text: error.response.data.error,
                             closeTimeout: 5000,
                             destroyOnClose: true,
-                            postion: 'top',
+                            position: 'top',
                             cssClass: 'toast-red'
                         });
                         t.open();

@@ -1,4 +1,4 @@
-var fs = require('fs');
+/*var fs = require('fs');
 var path = require('path');
 
 module.exports = function(ctx) {
@@ -8,3 +8,4 @@ module.exports = function(ctx) {
 
   fs.writeFileSync(pathToManifest, manifestContent, 'utf8');
 };
+*/

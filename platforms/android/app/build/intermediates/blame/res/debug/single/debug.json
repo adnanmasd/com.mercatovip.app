@@ -32,12 +32,12 @@
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9c22039958420dcc0af6562bae4f405e\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
-        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
-        "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\58d63e925a525654f3769d2bf1f0478c\\res\\layout\\notification_template_big_media.xml"
-    },
-    {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_icon_group.xml.flat",
         "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9c22039958420dcc0af6562bae4f405e\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\58d63e925a525654f3769d2bf1f0478c\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_stat_onesignal_default.png.flat",

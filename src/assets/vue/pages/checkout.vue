@@ -112,8 +112,10 @@
                     </f7-list-item>
                 </template>
             </f7-list>
-            <f7-button style="width:100%" big raised fill color="green" @click="address_hide()">
-                {{$t('checkout.continue')}}</f7-button>
+            <f7-block>
+                <f7-button style="width:100%" big raised fill color="green" @click="address_hide()">
+                    {{$t('checkout.continue')}}</f7-button>
+            </f7-block>
         </f7-page-content>
 
         <f7-page-content tab id="shipping" @tab:show="shipping_show()">
@@ -212,6 +214,7 @@
             <f7-list form id="payment_method_form">
                 <f7-list-item group-title :title="$t('checkout.payment.method')"></f7-list-item>
                 <f7-list-item radio name="payment_method" v-if="row.code === 'GOP_COD' || row.code === 'free_checkout'" v-for="row,index in payment_methods" :value="row.code" checked :title='(row.code == "gate2play") ? ("<img src=" + "static/img/payment.png" + ">") : row.title'></f7-list-item>
+                <f7-list-item name="payment_method" v-else title='Please procceed with your order on web'></f7-list-item>
                 <!-- <f7-list-item checkbox name="agree" value="1" :title="$t('checkout.agree.text')"></f7-list-item> -->
 
             </f7-list>
@@ -288,15 +291,15 @@ export default {
             let default_shipping_address = {};
             //countries
             self.$f7.request({
-              async: false,
-              dataType: 'json',
-              contentType: "application/json",
+                async: false,
+                dataType: 'json',
+                contentType: "application/json",
                 method: "GET",
                 headers: api.headers,
                 url: api.baseUrl + api.urls.getAllCountries,
-                success: function(e,status,xhr){
-                  self.countries = e.data
-                  self.$f7.preloader.hide();
+                success: function(e, status, xhr) {
+                    self.countries = e.data
+                    self.$f7.preloader.hide();
                 }
             });
             self.$f7.tab.show("#address", true);
@@ -314,18 +317,18 @@ export default {
                     self.$f7.preloader.show();
                     //shipping Address
                     self.$f7.request({
-                            async : false,
+                            async: false,
                             dataType: 'json',
                             contentType: "application/json",
                             method: "GET",
                             crossDomain: true,
                             url: api.baseUrl + api.urls.shippingAddress,
                             headers: api.headers,
-                            success : function (e,status,xhr){
-                              self.shipping_address = e.data
-                              self.a = self.shipping_address.address_id;
-                              self.address_type_selected = self.shipping_address.address_id;
-                              self.$f7.preloader.hide();
+                            success: function(e, status, xhr) {
+                                self.shipping_address = e.data
+                                self.a = self.shipping_address.address_id;
+                                self.address_type_selected = self.shipping_address.address_id;
+                                self.$f7.preloader.hide();
                             }
 
                         })
@@ -439,154 +442,154 @@ export default {
                                 self.$f7.preloader.hide();
                             }
                         })
-                      }
-                        self.$f7.tab.show('#shipping')
-                    },
-                    shipping_show() {
-                            console.log('shipping');
-                            self.$f7.preloader.show();
-                            //shipping methods
+                    }
+                    self.$f7.tab.show('#shipping')
+                },
+                shipping_show() {
+                    console.log('shipping');
+                    self.$f7.preloader.show();
+                    //shipping methods
 
-                            self.$f7.request({
-                                async: false,
-                                dataType: 'json',
-                                contentType: "application/json",
-                                method: "GET",
-                                url: api.baseUrl + api.urls.shippingMethods,
-                                headers: api.headers,
-                                success : function(e,status,xhr){
-                                  self.shipping_methods = e.data.shipping_methods
-                                  self.$f7.preloader.hide();
-                                }
-                            })
+                    self.$f7.request({
+                        async: false,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        method: "GET",
+                        url: api.baseUrl + api.urls.shippingMethods,
+                        headers: api.headers,
+                        success: function(e, status, xhr) {
+                            self.shipping_methods = e.data.shipping_methods
+                            self.$f7.preloader.hide();
+                        }
+                    })
+                },
+                shipping_hide() {
+                    console.log("shipping hide");
+                    let self = this;
+                    let formData = self.$f7.form.convertToData("#shipping_method_form")
+                        //shipping Methods
+                    self.$f7.request({
+                        method: "POST",
+                        async: false,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url: api.baseUrl + api.urls.shippingMethods,
+                        headers: api.headers,
+                        data: JSON.stringify({
+                            "shipping_method": formData.shipping_method,
+                            "comment": formData.comments
+                        }),
+                        success: function(e, status, xhr) {
+                            self.$f7.tab.show("#payment");
                         },
-                        shipping_hide() {
-                            console.log("shipping hide");
-                            let self = this;
-                            let formData = self.$f7.form.convertToData("#shipping_method_form")
-                                //shipping Methods
-                            self.$f7.request({
-                                method: "POST",
-                                async: false,
-                                dataType: 'json',
-                                contentType: "application/json",
-                                url: api.baseUrl + api.urls.shippingMethods,
-                                headers: api.headers,
-                                data: JSON.stringify({
-                                    "shipping_method": formData.shipping_method,
-                                    "comment": formData.comments
-                                }),
-                                success : function(e,status,xhr){
-                                    self.$f7.tab.show("#payment");
-                                },
-                                error : function (e,xhr, status){
-                                  let er = JSON.parse(e.response);
-                                  var t = self.$f7.toast.create({
-                                    text: er.error,
-                                    closeTimeout: 5000,
-                                    destroyOnClose: true,
-                                    postion: 'top',
-                                    cssClass: 'toast-red'
-                                  });
-                                  t.open();
-                                  navigator.vibrate([80, 80, 80])
-                                  self.$f7.tab.show("#shipping");
-                                }
-                            })
-                        },
-                        payment_show() {
-                            console.log('payment');
-                            self.$f7.preloader.show();
-                            //payment Methods
-                            self.$f7.request({
-                                method: "GET",
-                                async: false,
-                                dataType: 'json',
-                                contentType: "application/json",
-                                url: api.baseUrl + api.urls.paymentMethods,
-                                headers: api.headers,
-                                beforeOpen: function(req,status) {
-                                    //var newReq = req.replace(/[\r\n]/g, '');
-                                    //return JSON.parse(newReq)
-                                },
-                                success : function(e,status,xhr){
-                                  self.payment_methods = e.data.payment_methods
-                                  self.$f7.preloader.hide();
-                                }
-                            })
-                        },
-                        payment_hide() {
-                            console.log("payment hide");
-                            //payment Methods
-                            let self = this;
-                            self.$f7.preloader.show();
-                            let formData = self.$f7.form.convertToData("#payment_method_form")
-                            self.$f7.request({
-                                method: "POST",
-                                async: false,
-                                dataType: 'json',
-                                contentType: "application/json",
-                                url: api.baseUrl + api.urls.paymentMethods,
-                                headers: api.headers,
-                                data: JSON.stringify({
-                                    "payment_method": formData.payment_method,
-                                    "agree": true,
-                                    "comment": ""
-                                }),
-                                success : function(e,status,xhr){
-                                  self.payment_method = formData.payment_method
-                                  self.$f7.preloader.hide();
-                                  setTimeout(function() {
-                                    self.$f7router.navigate("/confirm?payment=" + self.payment_method)
-                                  }, 500)
-                                },
-                                error : function (e,status,xhr){
-                                  let er = JSON.parse(e.response);
-                                  var t = self.$f7.toast.create({
-                                    text: er.error,
-                                    closeTimeout: 5000,
-                                    destroyOnClose: true,
-                                    postion: 'top',
-                                    cssClass: 'toast-red'
-                                  });
-                                  t.open();
-                                  navigator.vibrate([80, 80, 80])
-                                  self.$f7.tab.show("#payment");
-                                  self.$f7.preloader.hide();
-                                }
-                            })
-                        },
-                        updateZone() {
-                            let self = this;
-                            self.$f7.preloader.show();
-                            let $$ = self.Dom7
-                            let country_id = self.address.country;
-                            self.$f7.request({
-                              async: false,
-                              dataType: 'json',
-                              contentType: "application/json",
-                                method: "GET",
-                                headers: api.headers,
-                                url: api.baseUrl + api.urls.getAllZonesByCountry.replace("{id}", country_id),
-                                success: function(e,status,xhr){
-                                  self.zones = e.data
-                                  self.$f7.preloader.hide();
-                                }
+                        error: function(e, xhr, status) {
+                            let er = JSON.parse(e.response);
+                            var t = self.$f7.toast.create({
+                                text: er.error,
+                                closeTimeout: 5000,
+                                destroyOnClose: true,
+                                postion: 'top',
+                                cssClass: 'toast-red'
                             });
+                            t.open();
+                            navigator.vibrate([80, 80, 80])
+                            self.$f7.tab.show("#shipping");
+                        }
+                    })
+                },
+                payment_show() {
+                    console.log('payment');
+                    self.$f7.preloader.show();
+                    //payment Methods
+                    self.$f7.request({
+                        method: "GET",
+                        async: false,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url: api.baseUrl + api.urls.paymentMethods,
+                        headers: api.headers,
+                        beforeOpen: function(req, status) {
+                            //var newReq = req.replace(/[\r\n]/g, '');
+                            //return JSON.parse(newReq)
                         },
-                        updateCity() {
-                            let self = this;
-                            self.$f7.preloader.show();
-                            let $$ = self.Dom7
-                            let zone_id = self.address.region;
-                            for (let j in self.zones.zone) {
-                                if (self.zones.zone[j].zone_id == zone_id)
-                                    self.cities = self.zones.zone[j].cities;
-                                self.$f7.preloader.hide();
-                            }
+                        success: function(e, status, xhr) {
+                            self.payment_methods = e.data.payment_methods
+                            self.$f7.preloader.hide();
+                        }
+                    })
+                },
+                payment_hide() {
+                    console.log("payment hide");
+                    //payment Methods
+                    let self = this;
+                    self.$f7.preloader.show();
+                    let formData = self.$f7.form.convertToData("#payment_method_form")
+                    self.$f7.request({
+                        method: "POST",
+                        async: false,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url: api.baseUrl + api.urls.paymentMethods,
+                        headers: api.headers,
+                        data: JSON.stringify({
+                            "payment_method": formData.payment_method,
+                            "agree": true,
+                            "comment": ""
+                        }),
+                        success: function(e, status, xhr) {
+                            self.payment_method = formData.payment_method
+                            self.$f7.preloader.hide();
+                            setTimeout(function() {
+                                self.$f7router.navigate("/confirm?payment=" + self.payment_method)
+                            }, 500)
                         },
-                }
-
+                        error: function(e, status, xhr) {
+                            let er = JSON.parse(e.response);
+                            var t = self.$f7.toast.create({
+                                text: er.error,
+                                closeTimeout: 5000,
+                                destroyOnClose: true,
+                                postion: 'top',
+                                cssClass: 'toast-red'
+                            });
+                            t.open();
+                            navigator.vibrate([80, 80, 80])
+                            self.$f7.tab.show("#payment");
+                            self.$f7.preloader.hide();
+                        }
+                    })
+                },
+                updateZone() {
+                    let self = this;
+                    self.$f7.preloader.show();
+                    let $$ = self.Dom7
+                    let country_id = self.address.country;
+                    self.$f7.request({
+                        async: false,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        method: "GET",
+                        headers: api.headers,
+                        url: api.baseUrl + api.urls.getAllZonesByCountry.replace("{id}", country_id),
+                        success: function(e, status, xhr) {
+                            self.zones = e.data
+                            self.$f7.preloader.hide();
+                        }
+                    });
+                },
+                updateCity() {
+                    let self = this;
+                    self.$f7.preloader.show();
+                    let $$ = self.Dom7
+                    let zone_id = self.address.region;
+                    for (let j in self.zones.zone) {
+                        if (self.zones.zone[j].zone_id == zone_id)
+                            self.cities = self.zones.zone[j].cities;
+                        self.$f7.preloader.hide();
+                    }
+                },
         }
+
+}
 
 </script>

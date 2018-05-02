@@ -38,9 +38,9 @@
                 </f7-list-item>
                 <f7-block>
                     <f7-button big raised fill color="green" v-on:click="login">{{$t('loginRegister.signin.button.text')}}</f7-button>
-                    <f7-block>
+                    <!-- <f7-block>
                         <div class="text-align-center">{{$t('loginRegister.or.text')}}</div>
-                    </f7-block>
+                    </f7-block> -->
                     <f7-block class="text-align-center">
                         {{$t('loginRegister.signup.msg')}}
                         <f7-link class="registerLink" tab-link="#register">{{$t('loginRegister.signup.title')}}</f7-link>
@@ -88,7 +88,7 @@
                 </f7-list-item>
                 <f7-list-item>
                     <f7-label>{{$t('loginRegister.register.mobile')}}</f7-label>
-                    <f7-input required validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.email')"></f7-input>
+                    <f7-input required validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.mobile')"></f7-input>
                 </f7-list-item>
 
                 <f7-list-item :title="$t('loginRegister.register.address.info')" group-title></f7-list-item>

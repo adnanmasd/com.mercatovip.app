@@ -7,7 +7,7 @@
         <ul>
           <li class="list-group-title">Notifications</li>
             <li v-for="not,key in notifications">
-                <a v-if="not.additionalData != '' && not.additionalData.path != ''" @click="readNotification(key)" class="item-link item-content">
+                <a v-if="not.additionalData != ''" @click="readNotification(key)" class="item-link item-content">
                     <div class="item-inner">
                         <div class="item-title-row">
                             <div class="item-title"><strong>{{not.title}}</strong></div>
@@ -87,7 +87,7 @@ export default {
             }
           },
           getDate(date){
-            return date;
+            return ""; //date;
           }
         }
 };
