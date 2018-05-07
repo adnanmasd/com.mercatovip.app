@@ -125,7 +125,7 @@
   "loginRegister.register.email" : "E-mail",
   "loginRegister.register.password" : "Password",
   "loginRegister.register.confirm" : "Confirm Password",
-  "loginRegister.register.mobile" : "Mobile",
+  "loginRegister.register.mobile" : "Mobile (Optional)",
   "loginRegister.register.mobile.placeholder" : "5XXXXXXXX",
   "loginRegister.register.address.info" : "Address Info",
   "loginRegister.register.address.1" : "Address 1",
