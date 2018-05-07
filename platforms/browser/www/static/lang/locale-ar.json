@@ -125,7 +125,7 @@
   "loginRegister.register.email" : "البريد الإلكتروني",
   "loginRegister.register.password" : "كلمه السر",
   "loginRegister.register.confirm" : "تأكيد كلمة السر",
-  "loginRegister.register.mobile" : "رقم الجوال",
+  "loginRegister.register.mobile" : "(إختياري ) رقم الجوال",
   "loginRegister.register.mobile.placeholder" : "5XXXXXXXX",
   "loginRegister.register.address.info" : "معلومات العنوان",
   "loginRegister.register.address.1" : "العنوان 1",

@@ -119,6 +119,14 @@ module.exports = [
         "clobbers": [
             "OneSignal"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "pluginId": "cordova-plugin-firebase",
+        "clobbers": [
+            "FirebasePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -137,7 +145,8 @@ module.exports.metadata =
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
     "cordova-universal-links-plugin": "1.2.1",
-    "onesignal-cordova-plugin": "2.3.3"
+    "onesignal-cordova-plugin": "2.3.3",
+    "cordova-plugin-firebase": "1.0.4"
 }
 // BOTTOM OF METADATA
 });

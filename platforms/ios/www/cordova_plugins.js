@@ -111,7 +111,7 @@ module.exports.metadata =
   "cordova-plugin-x-socialsharing": "5.3.1",
   "cordova-universal-links-plugin": "1.2.1",
   "onesignal-cordova-plugin": "2.3.3",
-  "cordova-plugin-firebase": "0.1.24"
+  "cordova-plugin-firebase": "1.0.4"
 };
 // BOTTOM OF METADATA
 });
