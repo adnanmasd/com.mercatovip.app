@@ -28,7 +28,7 @@
   "cordova-plugin-firebase": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-firebase@0.1.25"
+      "id": "cordova-plugin-firebase@0.1.24"
     },
     "is_top_level": true,
     "variables": {}
@@ -109,6 +109,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-ios-plugin-no-export-compliance"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device"
     },
     "is_top_level": true,
     "variables": {}

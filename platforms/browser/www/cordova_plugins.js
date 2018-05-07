@@ -113,6 +113,20 @@ module.exports = [
         "merges": [
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "id": "cordova-plugin-device.DeviceProxy",
+        "pluginId": "cordova-plugin-device",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -129,7 +143,8 @@ module.exports.metadata =
     "cordova-plugin-x-socialsharing": "5.3.1",
     "onesignal-cordova-plugin": "2.3.3",
     "cordova-universal-links-plugin": "1.2.1",
-    "cordova-plugin-vibration": "3.1.0"
+    "cordova-plugin-vibration": "3.1.0",
+    "cordova-plugin-device": "2.0.2"
 }
 // BOTTOM OF METADATA
 });

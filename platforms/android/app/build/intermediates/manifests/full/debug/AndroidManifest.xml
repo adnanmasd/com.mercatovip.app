@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mercatovip.app"
     android:hardwareAccelerated="true"
-    android:versionCode="20004"
-    android:versionName="2.0.4" >
+    android:versionCode="20005"
+    android:versionName="2.0.5" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -20,10 +20,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
     <uses-permission android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
         android:name="com.mercatovip.app.permission.RECEIVE_ADM_MESSAGE"

@@ -9,14 +9,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
-        "id": "cordova-plugin-firebase.FirebasePlugin",
-        "pluginId": "cordova-plugin-firebase",
-        "clobbers": [
-            "FirebasePlugin"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser.inappbrowser",
         "pluginId": "cordova-plugin-inappbrowser",
@@ -113,6 +105,20 @@ module.exports = [
         "merges": [
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "id": "cordova-plugin-device.DeviceProxy",
+        "pluginId": "cordova-plugin-device",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -120,7 +126,6 @@ module.exports.metadata =
 {
     "cordova-launch-review": "3.1.0",
     "cordova-plugin-customurlscheme": "4.3.0",
-    "cordova-plugin-firebase": "0.1.25",
     "cordova-plugin-inappbrowser": "2.0.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -129,7 +134,8 @@ module.exports.metadata =
     "cordova-plugin-x-socialsharing": "5.3.1",
     "onesignal-cordova-plugin": "2.3.3",
     "cordova-universal-links-plugin": "1.2.1",
-    "cordova-plugin-vibration": "3.1.0"
+    "cordova-plugin-vibration": "3.1.0",
+    "cordova-plugin-device": "2.0.2"
 }
 // BOTTOM OF METADATA
 });

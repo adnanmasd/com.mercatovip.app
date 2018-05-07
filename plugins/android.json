@@ -7,6 +7,12 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-ios-export-compliance": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-ios-plugin-no-export-compliance": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-launch-review": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
@@ -15,9 +21,6 @@
       "ANDROID_SCHEME": " ",
       "ANDROID_HOST": " ",
       "ANDROID_PATHPREFIX": "/",
-      "PACKAGE_NAME": "com.mercatovip.app"
-    },
-    "cordova-plugin-firebase": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-inappbrowser": {
@@ -29,19 +32,22 @@
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
-    "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "com.mercatovip.app"
-    },
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
-    "cordova-plugin-vibration": {
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   },

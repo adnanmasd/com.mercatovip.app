@@ -64,6 +64,21 @@
                     </f7-link>
                 </f7-nav-right>
             </f7-navbar>
+            <div class="sheet-modal my-sheet">
+                <div class="toolbar">
+                    <div class="toolbar-inner">
+                        <div class="left"></div>
+                        <div class="right"><a class="link icon-only sheet-close" href="#"><f7-icon icon="fa fa-times"></f7-icon></a></div>
+                    </div>
+                </div>
+                <div class="sheet-modal-inner">
+                    <div class="block">
+                        <h4>{{$t('loginRegister.verify.title')}} {{maskedPhone}}</h4>
+                        <f7-input type="number" validate :value="otp" pattern="[0-9]*" @input="otp = $event.target.value" ></f7-input>
+                        <f7-button fill big raised @click="verify" color="green">{{$t('loginRegister.verfiy.verify')}}</f7-button>
+                    </div>
+                </div>
+            </div>
             <h1 class="text-align-center">{{$t('loginRegister.signup.title')}}</h1>
             <f7-list form inset style="margin: 0">
                 <f7-list-item>
@@ -88,7 +103,14 @@
                 </f7-list-item>
                 <f7-list-item>
                     <f7-label>{{$t('loginRegister.register.mobile')}}</f7-label>
-                    <f7-input required validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.mobile')"></f7-input>
+                    <f7-row>
+                      <f7-col width="20">
+                        +966
+                      </f7-col>
+                      <f7-col width="80">
+                        <f7-input required validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.mobile.placeholder')"></f7-input>
+                      </f7-col>
+                    </f7-row>
                 </f7-list-item>
 
                 <f7-list-item :title="$t('loginRegister.register.address.info')" group-title></f7-list-item>
@@ -136,7 +158,7 @@
                 </f7-list-item>
             </f7-list>
             <f7-block>
-                <f7-button big raised fill color="blue" @click="register()">{{$t('loginRegister.register.button.txt')}}</f7-button>
+                <f7-button big raised fill color="blue" @click="sendOTP()">{{$t('loginRegister.register.button.txt')}}</f7-button>
             </f7-block>
             <br/>
         </f7-page-content>
@@ -161,7 +183,9 @@ export default {
                 z: "",
                 countries: [],
                 zones: [],
-                cities: []
+                cities: [],
+                otp : "",
+                maskedPhone : "",
             }
         },
         mounted: function() {
@@ -221,11 +245,11 @@ export default {
                         store.dispatch("saveUser", response.data.data)
                         store.dispatch('fetchCart')
                         let not = self.$f7.toast.create({
-                          title: self.$t('login.notification.title'),
+                            title: self.$t('login.notification.title'),
                             text: self.$t('login.notification.welcome') + response.data.data.firstname,
                             closeTimeout: 3000,
                             destroyOnClose: true,
-                            cssClass : 'toast-green',
+                            cssClass: 'toast-green',
                             position: 'top'
                         });
                         not.open();
@@ -238,12 +262,37 @@ export default {
                             closeTimeout: 5000,
                             destroyOnClose: true,
                             position: 'top',
-                            cssClass : 'toast-red'
+                            cssClass: 'toast-red'
                         });
                         t.open();
-                        navigator.vibrate([80,80,80])
+                        navigator.vibrate([80, 80, 80])
                         self.$f7.preloader.hide();
                     });
+                },
+                sendOTP: function(){
+                  let self = this;
+                  self.$f7.preloader.show();
+                  let registerObj = self.$f7.form.convertToData("#register");
+                  let mobileNumber = "+966"+registerObj.telephone;
+                  self.maskedPhone = "+966XXXXX" + mobileNumber.substring(mobileNumber.length -4, mobileNumber.length)
+                  window.verifyPhoneNumber("+966"+registerObj.telephone);
+                  self.$f7.sheet.open(".my-sheet", true);
+                },
+                verfiy: function(){
+                  if (window.signInWithPhone){
+                    self.$f7.sheet.close(".my-sheet", true);
+                    this.register();
+                  } else {
+                    var t = self.$f7.toast.create({
+                        text: self.$t('numberNotVerified'),
+                        closeTimeout: 5000,
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass: 'toast-red'
+                    });
+                    t.open();
+                    navigator.vibrate([80, 80, 80])
+                  }
                 },
                 register: function(event) {
                     let self = this;
@@ -287,10 +336,10 @@ export default {
                             closeTimeout: 5000,
                             destroyOnClose: true,
                             position: 'top',
-                            cssClass : 'toast-red'
+                            cssClass: 'toast-red'
                         });
                         t.open();
-                        navigator.vibrate([80,80,80])
+                        navigator.vibrate([80, 80, 80])
                         self.$f7.preloader.hide();
                     });
                 }
