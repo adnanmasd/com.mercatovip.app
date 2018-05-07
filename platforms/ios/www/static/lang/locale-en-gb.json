@@ -106,7 +106,8 @@
   "confirm.title" : "Confirm",
   "confirm.items.title" : "Item(s)",
   "confirm.total.title" : "Total",
-  "confirm.pay" : "Confirm",
+  "confirm.pay" : "Procced to Payment",
+  "confimt.place" : "Place Order Now",
   "confirm.success.msg" : "Your Order has been places successfully. Thank you for using MercatoVIP",
   "confirm.success.title" : "Success",
   "confirm.product.quantity.title" : "Quantity x ",
@@ -124,7 +125,8 @@
   "loginRegister.register.email" : "E-mail",
   "loginRegister.register.password" : "Password",
   "loginRegister.register.confirm" : "Confirm Password",
-  "loginRegister.register.mobile" : "Mobile",
+  "loginRegister.register.mobile" : "Mobile (Optional)",
+  "loginRegister.register.mobile.placeholder" : "5XXXXXXXX",
   "loginRegister.register.address.info" : "Address Info",
   "loginRegister.register.address.1" : "Address 1",
   "loginRegister.register.address.2" : "Address 2",
@@ -226,8 +228,11 @@
   "share.product.url" : "https://mercatovip.com/en/",
   "thankyou.title" : "Thank you",
   "thankyou.para" : "Your Order has been placed successfully. You can see your orders by visiting My Orders.",
+  "thankyou.orders": "Goto Home",
   "login.notification.welcome" : "Welcome ",
   "login.notification.notLoggedIn" : "You are logged out, please login again",
   "login.notification.title" : "MercatoVIP",
-  "login.notification.welcomeback" : "Welcome back "
+  "login.notification.welcomeback" : "Welcome back ",
+  "loginRegister.verify.title" : "Please enter the code sent to your mobile number: ",
+  "loginRegister.verfiy.verify" : "Confirm"
 }
