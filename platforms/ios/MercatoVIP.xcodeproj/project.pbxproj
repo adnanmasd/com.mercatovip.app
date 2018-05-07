@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		0C2374DAD7E04AE5ACF053EE /* AppDelegate+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = BF206905E615456E927A0D9E /* AppDelegate+CULPlugin.m */; };
@@ -728,7 +729,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = G5BV79CWFQ;
@@ -796,7 +797,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -876,7 +877,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -936,7 +937,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -980,7 +981,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -1009,7 +1010,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "MercatoVIP/Resources/MercatoVIP.entitlements";
+				CODE_SIGN_ENTITLEMENTS = MercatoVIP/Resources/MercatoVIP.entitlements;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
