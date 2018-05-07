@@ -75,7 +75,7 @@
                     <div class="block">
                         <h4>{{$t('loginRegister.verify.title')}} {{maskedPhone}}</h4>
                         <f7-input type="number" validate :value="otp" pattern="[0-9]*" @input="otp = $event.target.value" ></f7-input>
-                        <f7-button fill big raised @click="verify" color="green">{{$t('loginRegister.verfiy.verify')}}</f7-button>
+                        <f7-button fill big raised @click="verify()" color="green">{{$t('loginRegister.verfiy.verify')}}</f7-button>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         +966
                       </f7-col>
                       <f7-col width="80">
-                        <f7-input required validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.mobile.placeholder')"></f7-input>
+                        <f7-input validate name="telephone" type="tel" :placeholder="$t('loginRegister.register.mobile.placeholder')"></f7-input>
                       </f7-col>
                     </f7-row>
                 </f7-list-item>
@@ -158,7 +158,7 @@
                 </f7-list-item>
             </f7-list>
             <f7-block>
-                <f7-button big raised fill color="blue" @click="sendOTP()">{{$t('loginRegister.register.button.txt')}}</f7-button>
+                <f7-button big raised fill color="blue" @click="register()">{{$t('loginRegister.register.button.txt')}}</f7-button>
             </f7-block>
             <br/>
         </f7-page-content>
@@ -277,8 +277,9 @@ export default {
                   self.maskedPhone = "+966XXXXX" + mobileNumber.substring(mobileNumber.length -4, mobileNumber.length)
                   window.verifyPhoneNumber("+966"+registerObj.telephone);
                   self.$f7.sheet.open(".my-sheet", true);
+                  self.$f7.preloader.hide();
                 },
-                verfiy: function(){
+                verify: function(){
                   if (window.signInWithPhone){
                     self.$f7.sheet.close(".my-sheet", true);
                     this.register();
@@ -308,7 +309,7 @@ export default {
                             "email": registerObj.email,
                             "password": registerObj.password,
                             "confirm": registerObj.confirm,
-                            "telephone": registerObj.telephone,
+                            "telephone": registerObj.telephone ? registerObj.telephone : "+966000000000",
                             "fax": registerObj.fax,
                             "company_id": registerObj.company_id,
                             "company": registerObj.company,
