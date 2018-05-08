@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mercatovip.app"
     android:hardwareAccelerated="true"
-    android:versionCode="20006"
-    android:versionName="2.0.6" >
+    android:versionCode="20007"
+    android:versionName="2.0.7" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -40,7 +40,8 @@
     <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
     <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" /> <!-- for apex -->
     <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
-    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- Create a unique permission for your app and use it so only your app can receive your OneSignal messages. -->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- Create a unique permission for your app and use it so only your app can receive your OneSignal messages. -->
     <permission
         android:name="com.mercatovip.app.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -173,6 +174,12 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <provider
+            android:name="com.google.firebase.perf.provider.FirebasePerfProvider"
+            android:authorities="com.mercatovip.app.firebaseperfprovider"
+            android:exported="false"
+            android:initOrder="101" />
 
         <meta-data
             android:name="onesignal_app_id"

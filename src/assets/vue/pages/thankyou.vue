@@ -56,6 +56,38 @@ export default {
         mounted: function() {
             self = this;
             self.order_id = self.$f7route.query.order_id
+            self.$f7.preloader.show();
+            axios({
+                method: "PUT",
+                url: api.baseUrl + api.urls.confirmOrder,
+                headers: api.headers
+            }).then(function(response) {
+                console.log(resposne);
+                var t = self.$f7.toast.create({
+                    text: self.$t('confirm.success.msg'),
+                    title: self.$t('confirm.success.title'),
+                    closeTimeout: 5000,
+                    destroyOnClose: true,
+                    position: 'top',
+                    cssClass : 'toast-green'
+                })
+                t.open();
+                navigator.vibrate(100)
+                self.order_id = response.data.data.order_id
+                store.dispatch("fetchCart");
+                self.$f7.preloader.hide();
+            }).catch(function(error) {
+                self.$f7.toast.create({
+                    text: error.response,
+                    closeTimeout: 5000,
+                    destroyOnClose: true,
+                    position: 'top',
+                    cssClass : 'toast-red'
+                });
+                t.open();
+                navigator.vibrate([80,80,80])
+                self.$f7.preloader.hide();
+            })
         },
 }
 
