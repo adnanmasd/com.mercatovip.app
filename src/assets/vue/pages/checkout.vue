@@ -550,7 +550,7 @@ export default {
                             self.payment_method = formData.payment_method
                             self.$f7.preloader.hide();
                             setTimeout(function() {
-                                self.$f7router.navigate("/confirm?payment=" + self.payment_method,{reloadCurrent: true})
+                                self.$f7router.navigate("/confirm?payment=" + self.payment_method)
                             }, 500)
                         },
                         error: function(e, status, xhr) {

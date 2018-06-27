@@ -88,11 +88,11 @@ public final class R {
         public static final int common_open_on_phone = 0x7f0b0011;
         public static final int common_signin_button_text = 0x7f0b0012;
         public static final int common_signin_button_text_long = 0x7f0b0013;
-        public static final int fcm_fallback_notification_channel_label = 0x7f0b0016;
-        public static final int gcm_fallback_notification_channel_label = 0x7f0b0017;
-        public static final int tagmanager_preview_dialog_button = 0x7f0b001c;
-        public static final int tagmanager_preview_dialog_message = 0x7f0b001d;
-        public static final int tagmanager_preview_dialog_title = 0x7f0b001e;
+        public static final int fcm_fallback_notification_channel_label = 0x7f0b0014;
+        public static final int gcm_fallback_notification_channel_label = 0x7f0b0015;
+        public static final int tagmanager_preview_dialog_button = 0x7f0b001a;
+        public static final int tagmanager_preview_dialog_message = 0x7f0b001b;
+        public static final int tagmanager_preview_dialog_title = 0x7f0b001c;
     }
     public static final class styleable {
         public static final int[] LoadingImageView = { 0x7f010001, 0x7f01000c, 0x7f01000d };
