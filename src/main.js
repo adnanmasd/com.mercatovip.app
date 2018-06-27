@@ -43,14 +43,28 @@ if (Vue.i18n.localeExists(locale)) {
 }
 
 // load the specified locale from the server
-axios.get(url).then((response) => {
-  Vue.i18n.add(locale, response.data);
-  Vue.i18n.set(locale);
-
-  }).catch((error) => {
+fetch(url).then(function(response) {
+  response.json().then(function(data){
+    Vue.i18n.add(locale, data);
+    Vue.i18n.set(locale);
+  })
+}).catch(function(error) {
     alert('could not fetch locale translations');
 });
 
+localStorage.setItem('loggedIn', false);
+sessionStorage.removeItem('session_id');
+Framework7.request({
+      async: false,
+      dataType : "json",
+      contentType: "application/json",
+      method: "GET",
+      url: api.baseUrl + api.urls.getSession,
+      headers: api.headers(null),
+      success : function(e, status, xhr) {
+        sessionStorage.setItem('session_id', e.data.session)
+      }
+});
 
 setTimeout(function(){
 
@@ -61,44 +75,6 @@ Vue.use(Framework7Vue, Framework7);
 
 var firstVisit = true;
 !localStorage.getItem('firstVisit') ? localStorage.setItem('firstVisit', true) : '';
-
-/* Init App
-const app = new Vue({
-  el: '#app',
-  template: '<app/>',
-  // Init Framework7 by passing parameters here
-  framework7: {
-    root: '#app',
-    dynamicNavbar: true,
-    pushState:true,
-    domCache: true,
-    swipePanel: localStorage.getItem('language_id') == 1 ? 'left' : 'right',
-    hideNavbarOnPageScroll : true,
-    allowDuplicateUrls : true,
-    notificationTitle : localStorage.getItem('language_id') == 1 ? 'MercatoVIP' : 'ميركاتوVIP',
-    routes : Routes,
-    preroute: function (view, options) {
-      let loggedIn = localStorage.getItem("user") == null;
-      if (options.url && options.url.includes('/wishlist') && loggedIn) {
-        view.router.load({url: '/login?url='+ encodeURIComponent('/wishlist')});
-      }
-      if (options.url && options.url.includes('/checkout') && loggedIn) {
-        view.router.load({url: '/login?url='+ encodeURIComponent('/checkout')});
-      }
-      if (options.url && options.url.includes('/myorders') && loggedIn) {
-        view.router.load({url: '/login?url='+ encodeURIComponent('/myorders')});
-      }
-      if (options.url && options.url.includes('/review') && loggedIn) {
-        view.router.load({url: '/login?url='+ encodeURIComponent('/review')});
-      }
-      return true;
-    },
-  },
-  // Register App Component
-  components: {
-    app: App
-  },
-})*/
 
 let appinstance = new Vue({
   // Root Element
@@ -133,18 +109,6 @@ let appinstance = new Vue({
     },
   },
   routes,
-});
-
-localStorage.setItem('loggedIn', false);
-appinstance.$f7.request({
-    async: false,
-    content: "application/json",
-    dataType: "json",
-    method : 'GET',
-    url: api.baseUrl+api.urls.getSession,headers:api.headers,
-    success : function(response,status,xhr) {
-        localStorage.setItem('session_id', response.data.session);
-    }
 });
 
 export default appinstance;

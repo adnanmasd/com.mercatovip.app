@@ -396,21 +396,23 @@ export default {
         mounted: function() {
             self = this;
             let rmk = localStorage.getItem('remember_me_key')
-            if ( rmk  !== "null" && localStorage.getItem('loggedIn') == "false") {
+            console.log(rmk);
+            if ( rmk  != null) {
                 self.$f7.request({
                     async: false,
                     method: 'GET',
                     content: 'application/json',
                     dataType: 'json',
                     url: api.baseUrl + api.urls.loginRM + '/' + localStorage.getItem('remember_me_key'),
-                    headers: api.headers,
+                    headers: api.headers(sessionStorage.getItem('session_id')),
                     success: function(response, status, xhr) {
                         if (response.data != null) {
                             let user = JSON.parse(localStorage.getItem('user'))
                             localStorage.setItem('loggedIn', "true")
+                            //localStorage.setItem('session_id', response.data.session)
                             let not = self.$f7.toast.create({
                                 title: self.$t('login.notification.title'),
-                                text: self.$t('login.notification.welcome') + user.firstname,
+                                text: self.$t('login.notification.welcomeBack') + user.firstname,
                                 closeTimeout: 3000,
                                 destroyOnClose: true,
                                 cssClass: 'toast-green',
@@ -574,7 +576,7 @@ export default {
                         axios({
                             method: "DELETE",
                             url: api.baseUrl + api.urls.coupon,
-                            headers: api.headers,
+                            headers: api.headers(sessionStorage.getItem('session_id')),
                         }).then(function(response) {
                             store.dispatch("fetchCart");
                             self.$f7.preloader.hide();
@@ -593,7 +595,7 @@ export default {
                         axios({
                             method: "DELETE",
                             url: api.baseUrl + api.urls.voucher,
-                            headers: api.headers,
+                            headers: api.headers(sessionStorage.getItem('session_id')),
                         }).then(function(response) {
                             store.dispatch("fetchCart");
                             self.$f7.preloader.hide();
@@ -612,7 +614,7 @@ export default {
                         axios({
                             method: "DELETE",
                             url: api.baseUrl + api.urls.cart,
-                            headers: api.headers,
+                            headers: api.headers(sessionStorage.getItem('session_id')),
                             data: {
                                 "key": key
                             }
@@ -638,7 +640,7 @@ export default {
                         axios({
                             method: "DELETE",
                             url: api.baseUrl + api.urls.emptyCart,
-                            headers: api.headers,
+                            headers: api.headers(sessionStorage.getItem('session_id')),
                         }).then(function(response) {
                             store.dispatch("fetchCart");
                         });
@@ -654,7 +656,7 @@ export default {
                         axios({
                             method: "PUT",
                             url: api.baseUrl + api.urls.cart,
-                            headers: api.headers,
+                            headers: api.headers(sessionStorage.getItem('session_id')),
                             data: {
                                 "key": product_key,
                                 "quantity": value
@@ -674,7 +676,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.coupon,
-                        headers: api.headers,
+                        headers: api.headers(sessionStorage.getItem('session_id')),
                         data: {
                             "coupon": code
                         }
@@ -711,7 +713,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.voucher,
-                        headers: api.headers,
+                        headers: api.headers(sessionStorage.getItem('session_id')),
                         data: {
                             "voucher": code
                         }
@@ -757,7 +759,7 @@ export default {
                     axios({
                         method: "GET",
                         url: api.baseUrl + api.urls.producturl.replace("{id}", pid),
-                        headers: api.headers
+                        headers: api.headers(sessionStorage.getItem('session_id'))
                     }).then(function(response) {
                         console.log(response);
                         window.plugins.socialsharing.share(self.$t('share.product.msg'), pname, /*pimage*/ null, self.$t('share.product.url') + response.data.data.keyword)
@@ -776,7 +778,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                        headers: api.headers,
+                        headers: api.headers(sessionStorage.getItem('session_id')),
                     }).then(function(response) {
                         if (response.status == 200) {
                             store.dispatch("fetchWishlist");
@@ -799,7 +801,7 @@ export default {
                     axios({
                         method: "DELETE",
                         url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                        headers: api.headers,
+                        headers: api.headers(sessionStorage.getItem('session_id')),
                     }).then(function(response) {
                         if (response.status == 200) {
                             store.dispatch("fetchWishlist");

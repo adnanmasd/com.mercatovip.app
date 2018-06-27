@@ -1,0 +1,245 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><title>MercatoVIP Mobile APP</title><script>if (localStorage.getItem('language_id') == 2) {
+      document.write("<link href='static/css/framework7.rtl.css' rel='stylesheet'>");
+    } else {
+      document.write("<link href='static/css/framework7.css' rel='stylesheet'>");
+    }</script><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet><link href=styles.css rel=stylesheet></head><body class=font-dubai-regular><script src=cordova.js></script><div id=app></div><script>function handleOpenURL(url) {
+      console.log("received url: " + url);
+      goToUrl(url);
+    }
+
+    function pushOn() {
+      window.plugins.OneSignal.setSubscription(true);
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
+    }
+
+    function pushOff() {
+      window.plugins.OneSignal.setSubscription(false);
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
+    }
+
+    function verifyPhoneNumber(phoneNumber) {
+      window.FirebasePlugin.verifyPhoneNumber(phoneNumber, 120, function(credential) {
+        console.log(credential);
+        localStorage.setItem("OTP", credential);
+      }, function(error) {
+        var not = window.app.f7.notification.create({
+          text: error,
+          closeTimeout: 5000,
+          cssClass: 'toast-red'
+        });
+        not.open();
+        navigator.vibrate(80, 80, 80);
+      });
+    }
+
+    function signInWithPhone(code) {
+      creadentialObj = localStorage.getItem('credential')
+      localStorage.removeItem('credential');
+      if (device.platform == "Android") {
+        var verificationId = creadentialObj.verificationId;
+      } else {
+        var verificationId = creadentialObj
+      }
+      var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+      if (creadential.instantVerification) {
+        firebase.auth().signInWithCustomToken(customTokenFromYourServer);
+        return true;
+      } else {
+        // sign in with the credential
+        firebase.auth().signInWithCredential(credential);
+        // OR link to an account
+        firebase.auth().currentUser.linkWithCredential(credential)
+        return true;
+      }
+      return false;
+    }
+
+    function logEvent(key, obj) {
+      window.FirebasePlugin.logEvent(key, obj);
+    }
+
+    function setScreenName(name) {
+      window.FirebasePlugin.setScreenName(name);
+    }
+
+    function save_notification(data) {
+      let id = data.payload.notificationID;
+      var notfctn = {
+        time: new Date(),
+        bigPicture: (data.payload.bigPicture !== null ? data.payload.bigPicture : null),
+        title: data.payload.title,
+        body: data.payload.body,
+        additionalData: data.payload.additionalData
+      }
+      if (localStorage.getItem('notifications') == null) {
+        var temp = {};
+        temp[id] = notfctn;
+        localStorage.setItem('notifications', JSON.stringify(temp))
+      } else {
+        let temp = JSON.parse(localStorage.getItem('notifications'));
+        temp[id] = (notfctn);
+        localStorage.setItem('notifications', JSON.stringify(temp))
+      }
+    }
+
+    function didLaunchAppFromLink(eventData) {
+      console.log('Did launch app from the link: ' + eventData.url);
+      console.log(eventData);
+      goToUrl(eventData.url);
+    }
+
+    function goToUrl(eurl) {
+      let url = eurl.split("/")
+      let $$ = window.Dom7;
+      window.app.f7.request({
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+          "X-Oc-Merchant-Id": "4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+          "X-Oc-Merchant-Language": localStorage.getItem('language_code'),
+          "X-Oc-Session": localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        url: "https://mercatovip.com/api/rest/seourl/" + url[url.length - 1],
+        success: function(e, status, xhr) {
+          let tg = e.data.query.split('=');
+          let path = "";
+          switch (tg[0]) {
+            case 'product_id':
+              path = "/product?product_id=" + tg[1]
+              break;
+            case 'category_id':
+              path = "/category?category_id=" + tg[1]
+              break;
+            case 'manufacturer_id':
+              path = "/manufacturer?manufacturer_id=" + tg[1]
+              break;
+            case 'information_id':
+              path = "/information?information_id=" + tg[1]
+              break;
+            default:
+              path = null
+          }
+          if (path !== null)
+            window.app.f7.router.navigate(path)
+        },
+        error: function(e, staus, xhr) {
+          console.log(e);
+        }
+      })
+    }
+
+    function onBackKeyDown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $$ = window.app.f7.$;
+      if (new Date().getTime() - window.lastTimeBackPress < window.timePeriodToExit) {
+        navigator.app.exitApp();
+      }
+      else if($$('.preloader-modal').length == 0) {
+        if ($$('.modal-in').length > 0) {
+          window.app.f7.popup.close();
+          return false;
+        } else if ($$('html').hasClass('with-panel-left-reveal') || $$('body').hasClass('with-panel-right-reveal')) {
+          window.app.f7.panel.close();
+          return false;
+        } else if ($$('.photo-browser-in').length > 0) {
+          window.app.f7.photoBrowserClose();
+          return false;
+        } else if (window.app.f7.view[2].router.url == '/') {
+          var toastBottom = window.app.f7.toast.create({
+            text: 'Press again to exit',
+            closeTimeout: 2000,
+          });
+          toastBottom.open();
+          navigator.vibrate(20)
+          window.lastTimeBackPress = new Date().getTime();
+        } else {
+          window.app.f7.router.back();
+        }
+        return true;
+      }
+    };
+
+    document.addEventListener('deviceready', function(evt) {
+      //console.log(window.$theme);
+      window.backButton = 0;
+      window.lastTimeBackPress = 0;
+      window.timePeriodToExit = 2000;
+      document.addEventListener("backbutton", onBackKeyDown, false);
+
+      var iosSettings = {};
+      iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+      iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+      window.open = cordova.InAppBrowser.open;
+
+      var networkState = navigator.connection.type;
+      if (networkState == "Connection.NONE") {
+        localStorage.setItem("connection", "false");
+      } else {
+        localStorage.setItem("connection", "true");
+      }
+      universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
+      var notificationOpenedCallback = function(jsonData) {
+        //save_notification(jsonData);
+        if (jsonData.payload.additionalData.path !== "") {
+          window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+        }
+        //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+      var notificationRecievedCallback = function(jsonData) {
+        save_notification(jsonData);
+        if (jsonData.isAppInFocus) {
+          var not = window.app.f7.notification.create({
+            icon: "<img src='static/img/favico.PNG' style='width:20px;height:20px'>",
+            title: jsonData.payload.title,
+            titleRightText: 'now',
+            text: jsonData.payload.body,
+            closeOnClick: true,
+            closeTimeout: 5000,
+            on: {
+              close: function() {
+                if (jsonData.payload.additionalData.path !== "") {
+                  window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+                }
+              },
+            },
+          });
+          not.open();
+          navigator.vibrate(1000);
+        }
+        //console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
+      };
+
+      window.plugins.OneSignal
+        .startInit("ad630897-aa99-4141-8273-d483016e40a9")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .handleNotificationReceived(notificationRecievedCallback)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+        .iOSSettings(iosSettings)
+        .endInit();
+
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
+
+    }, false);
+
+    document.addEventListener("offline", function onOffline() {
+      localStorage.setItem("connection", "false");
+      window.app.f7.dialog.alert("No Internet Connection!", "Warning", function() {
+        location.reload();
+      });
+    }, false);
+
+    document.addEventListener("online", function onOnline() {
+      if (localStorage.getItem("connection") == "false") {
+        localStorage.setItem("connection", "true");
+        location.reload();
+      }
+    }, false);</script><script src=b80622e53cb8a7d1e14e.main.js></script></body></html>

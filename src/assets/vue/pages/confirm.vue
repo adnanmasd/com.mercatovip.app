@@ -78,7 +78,7 @@ export default {
             axios({
                 method: "POST",
                 url: api.baseUrl + api.urls.confirmOrder,
-                headers: api.headers
+                headers: api.headers(sessionStorage.getItem('session_id'))
             }).then(function(response) {
                 self.order = response.data.data
                 console.log(self.order);

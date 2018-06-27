@@ -134,7 +134,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.logout,
-                        headers: api.headers,
+                        headers: api.headers(sessionStorage.getItem('session_id')),
                         data: {
                             "remember_me_key": localStorage.getItem('remember_me_key')
                         }

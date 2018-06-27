@@ -56,7 +56,7 @@ export default {
             axios({
                 method: "PUT",
                 url: api.baseUrl + api.urls.confirmOrder,
-                headers: api.headers
+                headers: api.headers(sessionStorage.getItem('session_id'))
             }).then(function(response) {
                 console.log(resposne);
                 var t = self.$f7.toast.create({
