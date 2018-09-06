@@ -49,12 +49,12 @@
     "babel-preset-env": "^1.6.1",
     "cordova-android": "^7.0.0",
     "cordova-browser": "^5.0.3",
-    "cordova-ios": "^4.5.4",
-    "cordova-ios-export-compliance": "^1.0.2",
-    "cordova-ios-plugin-no-export-compliance": "0.0.5",
+    "cordova-ios": "^4.5.5",
+    "cordova-ios-export-compliance": "~1.0.2",
+    "cordova-ios-plugin-no-export-compliance": "~0.0.5",
     "cordova-launch-review": "^3.1.0",
     "cordova-plugin-customurlscheme": "git+https://github.com/EddyVerbruggen/Custom-URL-scheme.git",
-    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-device": "~2.0.2",
     "cordova-plugin-firebase": "^1.0.4",
     "cordova-plugin-inappbrowser": "^2.0.2",
     "cordova-plugin-network-information": "^2.0.1",
@@ -93,11 +93,15 @@
       "onesignal-cordova-plugin": {},
       "cordova-universal-links-plugin": {},
       "cordova-plugin-vibration": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-firebase": {},
+      "cordova-ios-export-compliance": {},
+      "cordova-ios-plugin-no-export-compliance": {},
+      "cordova-plugin-device": {}
     },
     "platforms": [
       "browser",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

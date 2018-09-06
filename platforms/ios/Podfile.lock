@@ -2,15 +2,15 @@ PODS:
   - OneSignal (2.8.2)
 
 DEPENDENCIES:
-  - OneSignal (< 3.0, >= 2.5.2)
+  - OneSignal (< 3.0, >= 2.6.2)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - OneSignal
 
 SPEC CHECKSUMS:
   OneSignal: ab5c509192ca8390bdd3570a6261e6decf4c79c1
 
-PODFILE CHECKSUM: cfe95a8f7444d5a4f2862abe30f5f3031d47f90f
+PODFILE CHECKSUM: b4051ed4c5f238bf0b9d3bb1143427757cc54458
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
