@@ -233,8 +233,14 @@
 
     <f7-card>
         <f7-card-header>{{$t('product.soldBy')}}</f7-card-header>
-        <f7-card-content> <strong>MercatoVIP-Shop</strong>
-            <br/>
+        <f7-card-content> <strong>{{product.seller_nickname}}</strong>
+        <div class="float-right">
+            <div class='rating'>
+                    <f7-icon v-if="sellerRating > 0" v-for="n in sellerRating" f7="star_fill" class="md-14 orange"></f7-icon>
+                    <f7-icon v-for="n in remainingRatingSeller" f7="star" class="md-14"></f7-icon>
+                </div>
+                <!--span class="review-number">{{reviews}} {{$t('product.reviews.title')}}</span-->
+        </div>
             <!--f7-icon material="thumb_up" class="md-16 green"></f7-icon> 95% positive rating<-->
         </f7-card-content>
     </f7-card>
@@ -317,6 +323,8 @@ export default {
                 reviews: 0,
                 quantity: 1,
                 remainingRating: 5,
+                remainingRatingSeller: 5,
+                sellerRating : 0,
                 quantitiesAvailable: [],
                 cart_item: {
                     "product_id": "",
@@ -342,8 +350,15 @@ export default {
             self = this;
             self.$f7.preloader.show();
             let product_id = this.$f7route.query.product_id
+
+            let obj = localStorage.getItem("recentView") == null ? [] : JSON.parse(localStorage.getItem("recentView"));
+            if (obj.indexOf(product_id) === -1) {
+                obj.push(product_id);
+            }
+            localStorage.setItem("recentView", JSON.stringify(obj));
+
             var productHeaders = api.headers(sessionStorage.getItem('session_id'));
-            productHeaders['X-Oc-Image-Dimension'] = "760x800";
+            productHeaders['X-Oc-Image-Dimension'] = "768x802";
             await axios({
                 method: "GET",
                 url: api.baseUrl + api.urls.getProductById.replace('{id}', product_id),
@@ -371,6 +386,8 @@ export default {
                     }
                     self.reviews = self.product.reviews.review_total
                     self.remainingRating = 5 - self.product.rating
+                    self.remainingRatingSeller = 5 - self.product.seller_rating
+                    self.sellerRating = self.product.seller_rating
                     self.original_price = self.product.price_formated
                     self.original_special = self.product.special_formated
                     self.product_price = self.product.price_formated

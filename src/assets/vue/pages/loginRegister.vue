@@ -33,6 +33,7 @@
                         </f7-col>
                         <f7-col width="30">
                             <!--  Forgot Password ? -->
+                            <f7-button href="/forgot/">{{$t('loginRegister.forgot.password')}}</f7-button>
                         </f7-col>
                     </f7-row>
                 </f7-list-item>

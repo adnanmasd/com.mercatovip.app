@@ -43,14 +43,14 @@ if (Vue.i18n.localeExists(locale)) {
 }
 
 // load the specified locale from the server
-fetch(url).then(function(response) {
-  response.json().then(function(data){
-    Vue.i18n.add(locale, data);
-    Vue.i18n.set(locale);
-  })
-}).catch(function(error) {
+axios.get(url).then((response) => {
+  Vue.i18n.add(locale, response.data);
+  Vue.i18n.set(locale);
+
+  }).catch((error) => {
     alert('could not fetch locale translations');
 });
+
 
 localStorage.setItem('loggedIn', false);
 sessionStorage.removeItem('session_id');
@@ -87,7 +87,7 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.0.6',
+    version : '2.0.7',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,

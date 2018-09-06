@@ -39,7 +39,6 @@ export default {
                 currentLanguageId: (localStorage.getItem('language_id')),
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
-                order_id: ""
             }
         },
         computed: {
@@ -52,39 +51,8 @@ export default {
         },
         mounted: function() {
             self = this;
-            self.$f7.preloader.show();
-            axios({
-                method: "PUT",
-                url: api.baseUrl + api.urls.confirmOrder,
-                headers: api.headers(sessionStorage.getItem('session_id'))
-            }).then(function(response) {
-                console.log(resposne);
-                var t = self.$f7.toast.create({
-                    text: self.$t('confirm.success.msg'),
-                    title: self.$t('confirm.success.title'),
-                    closeTimeout: 5000,
-                    destroyOnClose: true,
-                    position: 'top',
-                    cssClass : 'toast-green'
-                })
-                t.open();
-                navigator.vibrate(100)
-                self.order_id = response.data.data.order_id
-                store.dispatch("fetchCart");
-                self.$f7.preloader.hide();
-            }).catch(function(error) {
-                self.$f7.toast.create({
-                    text: error.response,
-                    closeTimeout: 5000,
-                    destroyOnClose: true,
-                    position: 'top',
-                    cssClass : 'toast-red'
-                });
-                t.open();
-                navigator.vibrate([80,80,80])
-                self.$f7.preloader.hide();
-            })
-        },
+            
+        }
 }
 
 </script>

@@ -56,7 +56,6 @@ export default {
         mounted: function() {
             self = this;
             self.order_id = self.$f7route.query.order_id
-<<<<<<< HEAD
             self.$f7.preloader.show();
             axios({
                 method: "PUT",
@@ -89,8 +88,6 @@ export default {
                 navigator.vibrate([80,80,80])
                 self.$f7.preloader.hide();
             })
-=======
->>>>>>> parent of bff3093... Bug Fix Checkout
         },
 }
 

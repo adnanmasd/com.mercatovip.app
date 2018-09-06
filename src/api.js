@@ -1,12 +1,14 @@
-let base_url = "https://dyourw.com/demo/api/rest";
-//let base_url = "https://mercatovip.com/api/rest";
-let payment_link = "http://dyourw.com/demo/index.php?route=rest/payfort_fort"
-//let payment_link = "http://mercatovip.com/index.php?route=rest/payfort_fort"
+let base_url = "https://dyourw.com/demo";
+//let base_url = "https://mercatovip.com";
+//let base_url = "http://localhost/oc";
+//let payment_link = "http://dyourw.com/demo/index.php?route=rest/payfort_fort"
+let payment_link = "http://mercatovip.com/index.php?route=rest/payfort_fort"
 
-let headers = function (session_id) {
+let headers = function(session_id){
   return {
     "X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
     //"X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+    //"X-Oc-Merchant-Id" :	"XgH8HFdp6yoT2g5U8eskjDBKk50BREpL",
     "X-Oc-Merchant-Language" : localStorage.getItem('language_code'),
     "X-Oc-Session" : session_id,
     "Content-Type" : "application/json",
@@ -15,9 +17,10 @@ let headers = function (session_id) {
 }
 
 export default {
-  "baseUrl" : base_url,
+  "baseUrl" : base_url + '/api/rest',
   "payment_link" : payment_link,
   "headers" : headers,
+  "suggestion" : base_url + "/index.php?route=feed/rest_api/searchSuggestion&k={keyword}",
   "urls" : {
     "getSession" : "/session",
     "loginRM" : "/login_rm",
@@ -106,5 +109,4 @@ export default {
     "wishlist" : "/wishlist/{id}",
     "producturl" : "/producturl/{id}"
   }
-
 }

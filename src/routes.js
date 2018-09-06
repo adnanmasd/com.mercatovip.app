@@ -44,6 +44,83 @@ const Routes = [
     }
   },
   {
+    path: '/profile',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/profile.vue') })
+      }
+    }
+  },
+  {
+    path: '/address',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/address.vue') })
+      }
+    }
+  },
+  {
+    path: '/address_new',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/address_new.vue') })
+      }
+    }
+  },
+  {
+    path: '/address/:addressId',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/address_form.vue') })
+      }
+    }
+  },
+  {
+    path: '/wallet',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/wallet.vue') })
+      }
+    }
+  },
+  {
+    path: '/returns',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/returns.vue') })
+      }
+    }
+  },
+  {
+    path: '/returns/:return_id',
+    async(routeTo, routeFrom, resolve, reject) {
+      let user = localStorage.getItem('user')
+      if (user == null || user == "null") {
+        resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
+      } else {
+        resolve({ component: require('./assets/vue/pages/return.vue') })
+      }
+    }
+  },
+  {
     path: '/myorders',
     async(routeTo, routeFrom, resolve, reject) {
       let user = localStorage.getItem('user')
@@ -120,6 +197,14 @@ const Routes = [
   {
     path: '/notifications/',
     component: require('./assets/vue/pages/notifications.vue')
+  },
+  {
+    path: '/allCategories/',
+    component: require('./assets/vue/pages/allCategories.vue')
+  },
+  {
+    path: '/forgot/',
+    component: require('./assets/vue/pages/forgot.vue')
   },
   {
     path: '(.*)',

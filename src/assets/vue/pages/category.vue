@@ -105,7 +105,7 @@
     </f7-block>
 
 
-    <f7-block>
+    <!--f7-block>
         <form id="sorting" class="full-width list-block" v-if="categoryProducts.length > 0">
             <f7-list form>
                 <f7-list-item>
@@ -145,7 +145,7 @@
                 </f7-list-item>
             </f7-list>
         </form>
-    </f7-block>
+    </f7-block-->
 
     <f7-block v-if="filterAttributes.length > 0 || filterOptions.length > 0 || filterManufacturer.length > 0">
         <f7-chip :text="$t('category.filter.removeAll')" media-bg-color="black" deleteable @delete="onChipDelete"></f7-chip>
@@ -517,8 +517,8 @@ export default {
                             url: api.baseUrl + api.urls.customSearch.replace('{limit}', limit).replace('{page}', ++page),
                             headers: productsHeaders,
                             data: {
-                                "order": self.order,
-                                "sort": self.sort,
+                                "order": 'DESC',
+                                "sort": 'date_added',
                                 "filters": self.filters
                             },
                             transformResponse: function(req) {
