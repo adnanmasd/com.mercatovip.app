@@ -1,7 +1,4 @@
-
-
 <template>
-
 <f7-page :name="'category'+category.id" infinite @infinite="onInfinite" no-tabbar>
     <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
         <f7-nav-left sliding>
@@ -74,26 +71,8 @@
             </template>
         </f7-list>
     </f7-popup>
-    <f7-block v-if="sliderCategory.length">
-        <f7-swiper pagination :params="{loop:false,spaceBetween: 10,centeredSlides:true,autoplay:5000}">
-            <f7-swiper-slide v-for="row in sliderCategory" class="image-slider">
-                <span v-if="row.name[currentLanguageId]" class="slider-title">{{row.name[currentLanguageId]}}</span>
-                <img @click="navigate(row.link)" :src="getCMSImage(row.image[currentLanguageId].path)" class="slider">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-            </f7-swiper-slide>
-        </f7-swiper>
-    </f7-block>
-    <f7-block v-if="bannerCategory.length">
-        <f7-row class="full-width">
-            <f7-col v-for="row in bannerCategory" width="50">
-                <f7-link :href="row.link_id">
-                    <span class="banner-title">{{row.name[currentLanguageId]}}</span>
-                    <img :src="getCMSImage(row.image[currentLanguageId].path)" class="banner lazy swiper-lazy">
-                </f7-link>
-            </f7-col>
-        </f7-row>
-    </f7-block>
-
+    
+    
 
     <f7-block-header v-if="category.sub_categories && category.sub_categories.length > 0">{{$t('category.subCategory.exploreMore')}}</f7-block-header>
     <f7-block>
@@ -103,7 +82,6 @@
             </f7-list-item>
         </f7-list>
     </f7-block>
-
 
     <!--f7-block>
         <form id="sorting" class="full-width list-block" v-if="categoryProducts.length > 0">
@@ -176,7 +154,7 @@
                 <f7-card>
                     <f7-card-header>
                         <div @click='navigate("/product?product_id=" + row.id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
-                            class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
+                                class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
                     </f7-card-header>
                     <f7-card-content>
                         <div @click='navigate("/product?product_id=" + row.id)' class="color-black">
@@ -210,11 +188,9 @@
         </f7-row>
     </f7-list>
 </f7-page>
-
 </template>
 
 <script>
-
 import axios from 'axios'
 import api from 'api.js'
 import cms from 'cms.js'
@@ -226,347 +202,325 @@ var limit = 10;
 
 export default {
     data() {
-            return {
-                items: localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch").split(",")),
-                searchTerm : "",
-                currentLanguageId: (localStorage.getItem('language_id')),
-                currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
-                direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
-                dataCategory: [],
-                sliderCategory: [],
-                bannerCategory: [],
-                category: [],
-                categoryProducts: [],
-                today: new Date(),
-                filters: [{
-                    "field": "category",
-                    "operand": "IN",
-                    "value": this.$f7route.query.category_id
-                }],
-                sort: "sort_order",
-                order: "ASC",
-                filterData: {
-                    "price": [],
-                    "attributes": [],
-                    "options": [],
-                    "manufacturers": []
-                },
-                minPrice: "",
-                maxPrice: "",
-                filterAttributes: [],
-                filterOptions: [],
-                filterManufacturer: [],
-                loading: true,
-                noResult: false,
-                theme: this.$theme
-            }
-        },
-        computed: {
-            cart: {
-                get: function() {
-                    return store.state.cart
-                }
+        return {
+            items: localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch").split(",")),
+            searchTerm: "",
+            currentLanguageId: (localStorage.getItem('language_id')),
+            currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
+            direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
+            dataCategory: [],
+            categoryContent: [],
+            category: [],
+            categoryProducts: [],
+            today: new Date(),
+            filters: [{
+                "field": "category",
+                "operand": "IN",
+                "value": this.$f7route.query.category_id
+            }],
+            sort: "sort_order",
+            order: "ASC",
+            filterData: {
+                "price": [],
+                "attributes": [],
+                "options": [],
+                "manufacturers": []
             },
-        },
-        filters: {
-            andFilter(val) {
-                if (val)
-                    return val.replace(/&amp;/g, '&');
+            minPrice: "",
+            maxPrice: "",
+            filterAttributes: [],
+            filterOptions: [],
+            filterManufacturer: [],
+            loading: true,
+            noResult: false,
+            theme: this.$theme
+        }
+    },
+    computed: {
+        cart: {
+            get: function () {
+                return store.state.cart
             }
         },
-        mounted() {
-            this.$f7.preloader.show();
-            let self = this;
-            page = 0;
-            var category_id = self.$f7route.query.category_id
-            axios({
-                method: "POST",
-                url: cms.baseUrl + cms.collectionPath + cms.sliderCategory + cms.tokenVar,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    filter: {
-                        'category_id': category_id
-                    },
-                }
-            }).then(function(response) {
-                self.dataCategory = response.data.entries;
-                var i;
-                for (i in response.data.entries) {
-                    if (response.data.entries[i].type == 'slider') {
-                        self.sliderCategory.push(response.data.entries[i])
-                    }
-                    if (response.data.entries[i].type == 'banner') {
-                        self.bannerCategory.push(response.data.entries[i])
-                    }
-                }
-            });
+    },
+    filters: {
+        andFilter(val) {
+            if (val)
+                return val.replace(/&amp;/g, '&');
+        }
+    },
+    mounted() {
+        this.$f7.preloader.show();
+        let self = this;
+        page = 0;
+        var category_id = self.$f7route.query.category_id
+        axios.get(cms.baseUrl + cms.getReigion('category'+category_id) + cms.tokenVar).then(function (response) {
+            self.categoryContent = response.data.item;
+        });
 
-            self.Dom7('#search_cat').on('keyup', function(e) {
-                if (e.which == 13) {
-                    self.onSearch(e);
-                }
-            })
+        self.Dom7('#search_cat').on('keyup', function (e) {
+            if (e.which == 13) {
+                self.onSearch(e);
+            }
+        })
 
-            var autocompleteSearchbar = self.$f7.autocomplete.create({
-                openIn: 'dropdown',
-                inputEl: '#search_cat input[type="search"]',
-                //dropdownPlaceholderText: 'Type "Apple"',
-                source: function(query, render) {
-                    var results = [];
-                    if (query.length === 0) {
-                        render(results);
-                        return;
-                    }
-                    // Find matched items
-                    for (var i = 0; i < self.items.length; i++) {
-                        if (self.items[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(self.items[i]);
-                    }
-                    // Render items by passing array with result items
+        var autocompleteSearchbar = self.$f7.autocomplete.create({
+            openIn: 'dropdown',
+            inputEl: '#search_cat input[type="search"]',
+            //dropdownPlaceholderText: 'Type "Apple"',
+            source: function (query, render) {
+                var results = [];
+                if (query.length === 0) {
                     render(results);
-                },
-                on: {
-                    change: function(autocomplete, value) {
-                        self.onSearch();
-                    }
+                    return;
                 }
-            })
+                // Find matched items
+                for (var i = 0; i < self.items.length; i++) {
+                    if (self.items[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(self.items[i]);
+                }
+                // Render items by passing array with result items
+                render(results);
+            },
+            on: {
+                change: function (autocomplete, value) {
+                    self.onSearch();
+                }
+            }
+        })
 
-            var subCatHeaders = api.headers(sessionStorage.getItem('session_id'));
-            subCatHeaders['X-Oc-Image-Dimension'] = "50x50";
+        var subCatHeaders = api.headers(sessionStorage.getItem('session_id'));
+        subCatHeaders['X-Oc-Image-Dimension'] = "50x50";
+        axios({
+            method: "GET",
+            url: api.baseUrl + api.urls.getCategoryById.replace('{id}', category_id),
+            headers: subCatHeaders
+        }).then(function (response) {
+            self.category = response.data.data;
+        });
+        self.onInfinite();
+    },
+    methods: {
+        display_mode(type, key) {
+            if (this.filterData.settings.length > 0) {
+                return (this.filterData.settings[type][key] == 'off')
+            } else {
+                return false;
+            }
+        },
+        onRangeChange(e) {
+            //console.log(e);
+            this.Dom7('#minPriceLabel').text(e[0]);
+            this.Dom7('#maxPriceLabel').text(e[1]);
+        },
+        shareProduct(pname, pimage, pid) {
+            let self = this;
             axios({
                 method: "GET",
-                url: api.baseUrl + api.urls.getCategoryById.replace('{id}', category_id),
-                headers: subCatHeaders
-            }).then(function(response) {
-                self.category = response.data.data;
+                url: api.baseUrl + api.urls.producturl.replace("{id}", pid),
+                headers: api.headers(sessionStorage.getItem('session_id'))
+            }).then(function (response) {
+                window.plugins.socialsharing.share(self.$t('share.product.msg'), pname, pimage, self.$t('share.product.url') + response.data.data.keyword)
             });
-            self.onInfinite();
         },
-        methods: {
-            display_mode(type, key) {
-                    if (this.filterData.settings.length > 0) {
-                        return (this.filterData.settings[type][key] == 'off')
-                    } else {
-                        return false;
-                    }
-                },
-                onRangeChange(e) {
-                    //console.log(e);
-                    this.Dom7('#minPriceLabel').text(e[0]);
-                    this.Dom7('#maxPriceLabel').text(e[1]);
-                },
-                shareProduct(pname, pimage, pid) {
-                    let self = this;
-                    axios({
-                        method: "GET",
-                        url: api.baseUrl + api.urls.producturl.replace("{id}", pid),
-                        headers: api.headers(sessionStorage.getItem('session_id'))
-                    }).then(function(response) {
-                        window.plugins.socialsharing.share(self.$t('share.product.msg'), pname, pimage, self.$t('share.product.url') + response.data.data.keyword)
-                    });
-                },
-                onChipDelete() {
-                    let self = this;
-                    let chip = self.Dom7(this).parents('.chip');
-                    this.filters = [{
-                        "field": "category",
-                        "operand": "IN",
-                        "value": self.category.id
-                    }]
-                    this.$f7.infiniteScroll.destroy();
-                    chip.remove();
-                    //this.update();
-                    location.reload();
-                },
-                andFilter(val) {
-                    if (val)
-                        return val.replace(/&amp;/g, '&');
-                },
-                is_favourite(pid) {
-                    let wishlist = store.state.user ? store.state.user.wishlist : []
-                    for (let j in wishlist) {
-                        if (wishlist[j].product_id == pid)
-                            return true
-                    }
-                    return false
-                },
-                addToWishlist(product_id) {
-                    self.$f7.preloader.show();
-                    axios({
-                        method: "POST",
-                        url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                        headers: api.headers(sessionStorage.getItem('session_id')),
-                    }).then(function(response) {
-                        if (response.status == 200) {
-                            store.dispatch("fetchWishlist");
-                        }
-                    }).catch(function(error) {
-                        var t = self.$f7.toast.create({
-                            text: error.response.data.error,
-                            closeTimeout: 5000,
-                            destroyOnClose: true,
-                            postion: 'top',
-                            cssClass: 'toast-red'
-                        });
-                        t.open();
-                        navigator.vibrate([80,80,80])
-                    });
-                    self.$f7.preloader.hide();
-                },
-                removeFromWishlist(product_id) {
-                    self.$f7.preloader.show();
-                    axios({
-                        method: "DELETE",
-                        url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                        headers: api.headers(sessionStorage.getItem('session_id')),
-                    }).then(function(response) {
-                        if (response.status == 200) {
-                            store.dispatch("fetchWishlist");
-                        }
-                    }).catch(function(error) {
-                        var t = self.$f7.toast.create({
-                            text: error.response.data.error,
-                            closeTimeout: 5000,
-                            destroyOnClose: true,
-                            postion: 'top',
-                            cssClass: 'toast-red'
-                        });
-                        t.open();
-                        navigator.vibrate([80,80,80])
-                    });
-                    self.$f7.preloader.hide();
-                },
-                is_new(date) {
-                    var d = Date.parse(date);
-                    var t = new Date();
-                    return Math.round((t - d) / (1000 * 60 * 60 * 24)) <= 30
-                },
-                getDiscount(discount, price) {
-                    let val = 1 - (discount / price);
-                    return Math.floor(val * 100);
-                },
-                getImagefromSource(src) {
-                    return "<img src='" + src + "'/>";
-                },
-                getCMSImage(name) {
-                    if (name.indexOf("http") == -1) {
-                        return "http://mercatovip.com/app/" + name;
-                    } else {
-                        return name;
-                    }
-                },
-                update() {
-                    this.categoryProducts = [];
-                    page = 0;
-                    this.onInfinite(true);
-                },
-                filter() {
-                    let self = this;
-                    self.$f7.preloader.show();
-                    let data = self.$f7.form.convertToData("#filter");
-                    self.filters = [{
-                        "field": "category",
-                        "operand": "IN",
-                        "value": self.category.id
-                    }]
-                    for (let v in data) {
-                        if (data[v].length > 0) {
-                            let obj = {
-                                "field": v,
-                                "operand": "=",
-                                "logical_operand": "AND",
-                                "value": data[v]
-                            }
-                            self.filters.push(obj);
-                        }
-                    }
-                    //this.categoryProducts.splice(0,this.categoryProducts.length);
-                    page = 0;
-                    self.onInfinite(true);
-                },
-                navigate(link) {
-                    this.$f7router.navigate(link);
-                },
-                onSearch: function(event) {
-                    let self = this;
-                    let $$ = self.Dom7;
-                    let val = $$('form#search_cat input').val();
-                    console.log(val);
-                    let obj = localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch"));
-                    if (obj.indexOf(val) === -1) {
-                        obj.push(val)
-                    }
-                    localStorage.setItem("recentSearch", JSON.stringify(obj))
-                    self.items = JSON.parse(localStorage.getItem("recentSearch").split(","))
-                    $$("#search input").blur();
-                    self.$f7.searchbar.toggle("#search_cat")
-                    self.$f7router.navigate("/result/" + val)
-                },
-                onInfinite: function(onFilter = false) {
-                    var self = this;
-                    clearTimeout(timeout);
-                    timeout = setTimeout(function() {
-                        var productsHeaders = api.headers(sessionStorage.getItem('session_id'));
-                        productsHeaders['X-Oc-Image-Dimension'] = "455x475";
-                        self.loading = true;
-                        self.noResult = false;
-                        axios({
-                            method: "POST",
-                            url: api.baseUrl + api.urls.customSearch.replace('{limit}', limit).replace('{page}', ++page),
-                            headers: productsHeaders,
-                            data: {
-                                "order": 'DESC',
-                                "sort": 'date_added',
-                                "filters": self.filters
-                            },
-                            transformResponse: function(req) {
-                                return JSON.parse(req.replace(/[\n\r]/g, ' '))
-                            },
-                        }).then(function(response) {
-                            if (response.status == 200 && response.data.data.length == 0) {
-                                self.$f7.infiniteScroll.destroy();
-                                self.Dom7('.infinite-scroll-preloader').remove();
-                                self.noResult = true;
-                            }
-                            if (response.status !== 202 && response.data.data.products && response.data.data.products.length > 0) {
-                                if ((onFilter && page <= 1) || self.categoryProducts.length == 0)
-                                    self.categoryProducts = response.data.data.products
-                                else {
-                                    for (var i = 0; i < response.data.data.products.length; i++) {
-                                        self.categoryProducts.push(response.data.data.products[i])
-                                    }
-                                }
-                                if (page <= 1) {
-                                    self.filterData.attributes = response.data.data.attributes
-                                    self.filterData.manufacturers = response.data.data.manufacturers
-                                    self.filterData.options = response.data.data.options
-                                    self.filterData.price = response.data.data.price
-                                    self.filterData.settings = response.data.data.settings
-                                    self.minPrice = Math.floor(response.data.data.price.min)
-                                    self.maxPrice = Math.floor(response.data.data.price.max)
-                                }
-                                self.$f7.preloader.hide();
-                                self.loading = false;
-                                return;
-                            }
-                        }).catch(function(error) {
-                            self.$f7.infiniteScroll.destroy();
-                            self.Dom7('.infinite-scroll-preloader').remove();
-                            self.categoryProducts = [];
-                            self.filterData.attributes = []
-                            self.filterData.manufacturers = []
-                            self.filterData.options = []
-                            self.filterData.price = []
-                            self.filterData.settings = []
-                            self.minPrice = Math.floor(0)
-                            self.maxPrice = Math.floor(0)
-                            self.loading = false;
-                        });
-                    }, 500);
-                },
+        onChipDelete() {
+            let self = this;
+            let chip = self.Dom7(this).parents('.chip');
+            this.filters = [{
+                "field": "category",
+                "operand": "IN",
+                "value": self.category.id
+            }]
+            this.$f7.infiniteScroll.destroy();
+            chip.remove();
+            //this.update();
+            location.reload();
         },
+        andFilter(val) {
+            if (val)
+                return val.replace(/&amp;/g, '&');
+        },
+        is_favourite(pid) {
+            let wishlist = store.state.user ? store.state.user.wishlist : []
+            for (let j in wishlist) {
+                if (wishlist[j].product_id == pid)
+                    return true
+            }
+            return false
+        },
+        addToWishlist(product_id) {
+            self.$f7.preloader.show();
+            axios({
+                method: "POST",
+                url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
+                headers: api.headers(sessionStorage.getItem('session_id')),
+            }).then(function (response) {
+                if (response.status == 200) {
+                    store.dispatch("fetchWishlist");
+                }
+            }).catch(function (error) {
+                var t = self.$f7.toast.create({
+                    text: error.response.data.error,
+                    closeTimeout: 5000,
+                    destroyOnClose: true,
+                    postion: 'top',
+                    cssClass: 'toast-red'
+                });
+                t.open();
+                navigator.vibrate([80, 80, 80])
+            });
+            self.$f7.preloader.hide();
+        },
+        removeFromWishlist(product_id) {
+            self.$f7.preloader.show();
+            axios({
+                method: "DELETE",
+                url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
+                headers: api.headers(sessionStorage.getItem('session_id')),
+            }).then(function (response) {
+                if (response.status == 200) {
+                    store.dispatch("fetchWishlist");
+                }
+            }).catch(function (error) {
+                var t = self.$f7.toast.create({
+                    text: error.response.data.error,
+                    closeTimeout: 5000,
+                    destroyOnClose: true,
+                    postion: 'top',
+                    cssClass: 'toast-red'
+                });
+                t.open();
+                navigator.vibrate([80, 80, 80])
+            });
+            self.$f7.preloader.hide();
+        },
+        is_new(date) {
+            var d = Date.parse(date);
+            var t = new Date();
+            return Math.round((t - d) / (1000 * 60 * 60 * 24)) <= 30
+        },
+        getDiscount(discount, price) {
+            let val = 1 - (discount / price);
+            return Math.floor(val * 100);
+        },
+        getImagefromSource(src) {
+            return "<img src='" + src + "'/>";
+        },
+        getCMSImage(name) {
+            if (name.indexOf("http") == -1) {
+                return "http://mercatovip.com/app/" + name;
+            } else {
+                return name;
+            }
+        },
+        update() {
+            this.categoryProducts = [];
+            page = 0;
+            this.onInfinite(true);
+        },
+        filter() {
+            let self = this;
+            self.$f7.preloader.show();
+            let data = self.$f7.form.convertToData("#filter");
+            self.filters = [{
+                "field": "category",
+                "operand": "IN",
+                "value": self.category.id
+            }]
+            for (let v in data) {
+                if (data[v].length > 0) {
+                    let obj = {
+                        "field": v,
+                        "operand": "=",
+                        "logical_operand": "AND",
+                        "value": data[v]
+                    }
+                    self.filters.push(obj);
+                }
+            }
+            //this.categoryProducts.splice(0,this.categoryProducts.length);
+            page = 0;
+            self.onInfinite(true);
+        },
+        navigate(link) {
+            this.$f7router.navigate(link);
+        },
+        onSearch: function (event) {
+            let self = this;
+            let $ = self.Dom7;
+            let val = $('form#search_cat input').val();
+            console.log(val);
+            let obj = localStorage.getItem("recentSearch") == null ? [] : JSON.parse(localStorage.getItem("recentSearch"));
+            if (obj.indexOf(val) === -1) {
+                obj.push(val)
+            }
+            localStorage.setItem("recentSearch", JSON.stringify(obj))
+            self.items = JSON.parse(localStorage.getItem("recentSearch").split(","))
+            $("#search input").blur();
+            self.$f7.searchbar.toggle("#search_cat")
+            self.$f7router.navigate("/result/" + val)
+        },
+        onInfinite: function (onFilter = false) {
+            var self = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                var productsHeaders = api.headers(sessionStorage.getItem('session_id'));
+                productsHeaders['X-Oc-Image-Dimension'] = "455x475";
+                self.loading = true;
+                self.noResult = false;
+                axios({
+                    method: "POST",
+                    url: api.baseUrl + api.urls.customSearch.replace('{limit}', limit).replace('{page}', ++page),
+                    headers: productsHeaders,
+                    data: {
+                        "order": 'DESC',
+                        "sort": 'date_added',
+                        "filters": self.filters
+                    },
+                    transformResponse: function (req) {
+                        return JSON.parse(req.replace(/[\n\r]/g, ' '))
+                    },
+                }).then(function (response) {
+                    if (response.status == 200 && response.data.data.length == 0) {
+                        self.$f7.infiniteScroll.destroy();
+                        self.Dom7('.infinite-scroll-preloader').remove();
+                        self.noResult = true;
+                    }
+                    if (response.status !== 202 && response.data.data.products && response.data.data.products.length > 0) {
+                        if ((onFilter && page <= 1) || self.categoryProducts.length == 0)
+                            self.categoryProducts = response.data.data.products
+                        else {
+                            for (var i = 0; i < response.data.data.products.length; i++) {
+                                self.categoryProducts.push(response.data.data.products[i])
+                            }
+                        }
+                        if (page <= 1) {
+                            self.filterData.attributes = response.data.data.attributes
+                            self.filterData.manufacturers = response.data.data.manufacturers
+                            self.filterData.options = response.data.data.options
+                            self.filterData.price = response.data.data.price
+                            self.filterData.settings = response.data.data.settings
+                            self.minPrice = Math.floor(response.data.data.price.min)
+                            self.maxPrice = Math.floor(response.data.data.price.max)
+                        }
+                        self.$f7.preloader.hide();
+                        self.loading = false;
+                        return;
+                    }
+                }).catch(function (error) {
+                    self.$f7.infiniteScroll.destroy();
+                    self.Dom7('.infinite-scroll-preloader').remove();
+                    self.categoryProducts = [];
+                    self.filterData.attributes = []
+                    self.filterData.manufacturers = []
+                    self.filterData.options = []
+                    self.filterData.price = []
+                    self.filterData.settings = []
+                    self.minPrice = Math.floor(0)
+                    self.maxPrice = Math.floor(0)
+                    self.loading = false;
+                });
+            }, 500);
+        },
+    },
 }
-
 </script>

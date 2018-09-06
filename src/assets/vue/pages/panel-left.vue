@@ -122,7 +122,11 @@ export default {
         }
     },
     computed: {
-
+        user: {
+            get: function () {
+                return store.state.user;
+            }
+        }
     },
     methods: {
         getSubCategories() {

@@ -1,13 +1,13 @@
-let base_url = "https://dyourw.com/demo";
-//let base_url = "https://mercatovip.com";
+//let base_url = "https://dyourw.com/demo";
+let base_url = "https://mercatovip.com";
 //let base_url = "http://localhost/oc";
 //let payment_link = "http://dyourw.com/demo/index.php?route=rest/payfort_fort"
 let payment_link = "http://mercatovip.com/index.php?route=rest/payfort_fort"
 
 let headers = function(session_id){
   return {
-    "X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
-    //"X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+    //"X-Oc-Merchant-Id" :	"paFHpZOVS70j4UTfWsEGB5CtXTjnIjc7",
+    "X-Oc-Merchant-Id" :	"4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
     //"X-Oc-Merchant-Id" :	"XgH8HFdp6yoT2g5U8eskjDBKk50BREpL",
     "X-Oc-Merchant-Language" : localStorage.getItem('language_code'),
     "X-Oc-Session" : session_id,
