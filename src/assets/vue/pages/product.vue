@@ -231,7 +231,7 @@
         <!--f7-button v-if="added_to_cart" @click="removeFromCart()" big raised class="bg-red" color="white">REMOVE FROM CART</f7-button-->
     </f7-block>
 
-    <f7-card>
+    <f7-card v-if="product.seller_nickname != null">
         <f7-card-header>{{$t('product.soldBy')}}</f7-card-header>
         <f7-card-content> <strong>{{product.seller_nickname}}</strong>
         <div class="float-right">

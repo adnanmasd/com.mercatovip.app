@@ -346,22 +346,9 @@ export default {
         };
     },
     mounted: function () {
-
+        self = this;
         store.dispatch('fetchHomeData');
 
-        self.Dom7(document).on('click', '.shareapp', function (e) {
-            self.shareapp();
-        });
-
-        self.Dom7(document).on('click', '.rate', function (e) {
-            self.rate();
-        });
-
-        setInterval(function () {
-            store.dispatch("fetchCart");
-        }, 300000)
-
-        self = this;
         let rmk = localStorage.getItem("remember_me_key");
         console.log(rmk);
         if (rmk != null) {
@@ -416,6 +403,8 @@ export default {
             store.dispatch("fetchCart");
         }, 300000);
 
+        console.log(self);
+        
         self.Dom7(".carouselHomePage").removeClass("block");
 
         self.Dom7(document).on("click", ".shareapp", function (e) {
@@ -427,7 +416,9 @@ export default {
         });
 
         self.Dom7("#search").on("keyup", function (e) {
+            console.log("here");
             if (e.which == 13) {
+
                 self.onSearch(e);
             }
         });

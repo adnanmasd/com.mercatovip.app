@@ -47,7 +47,7 @@
             </div>
         </f7-list-item>
         <br/>
-        <f7-button @click="addReview()" big round color="white" class="bg-green">{{$t('review.submit')}}</f7-button>
+        <f7-button @click="addReview()" big round fill color="green">{{$t('review.submit')}}</f7-button>
     </f7-list>
 
 </f7-page>
