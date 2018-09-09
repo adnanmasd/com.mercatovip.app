@@ -27,11 +27,11 @@
                 </f7-list-item>
                 <f7-list-item>
                     <f7-row>
-                        <f7-col width="70">
+                        <f7-col width="60">
                             <f7-label>{{$t('loginRegister.signin.password')}}</f7-label>
                             <f7-input name="password" type="password" :placeholder="$t('loginRegister.signin.password')"></f7-input>
                         </f7-col>
-                        <f7-col width="30">
+                        <f7-col width="40">
                             <!--  Forgot Password ? -->
                             <f7-button href="/forgot/">{{$t('loginRegister.forgot.password')}}</f7-button>
                         </f7-col>
@@ -114,7 +114,7 @@
                     </f7-row>
                 </f7-list-item>
 
-                <f7-list-item :title="$t('loginRegister.register.address.info')" group-title></f7-list-item>
+                <!--f7-list-item :title="$t('loginRegister.register.address.info')" group-title></f7-list-item>
                 <f7-list-item>
                     <f7-label>{{$t('loginRegister.register.address.1')}}</f7-label>
                     <f7-input required validate name="address1" type="text" :placeholder="$t('loginRegister.register.address.1')"></f7-input>
@@ -151,7 +151,7 @@
                         <option value="">{{$t('loginRegister.register.selectone')}}</option>
                         <option v-for="row in cities" :value="row.city_id">{{row.name}}</option>
                     </f7-input>
-                </f7-list-item>
+                </f7-list-item-->
                 <f7-list-item :title="$t('loginRegister.register.tac.info')" group-title></f7-list-item>
                 <f7-list-item required validate checkbox name="agree" value="1" :title="$t('loginRegister.register.tac.title')"></f7-list-item>
                 <f7-list-item>
@@ -159,7 +159,7 @@
                 </f7-list-item>
             </f7-list>
             <f7-block>
-                <f7-button big raised fill color="blue" @click="sendOTP()">{{$t('loginRegister.register.button.txt')}}</f7-button>
+                <f7-button big raised fill color="blue" @click="register()">{{$t('loginRegister.register.button.txt')}}</f7-button>
             </f7-block>
             <br/>
         </f7-page-content>
@@ -328,10 +328,10 @@ export default {
                         store.dispatch("saveUser", response.data.data)
                         store.dispatch('fetchCart')
                         self.$f7.preloader.hide();
-                        if (self.$f7route.options.query)
-                            self.$f7router.reloadPage(self.$f7route.options.query.url)
+                        if (self.$f7route.query.url)
+                            self.$f7router.navigate(self.$f7route.query.url,{reloadCurrent  :true})
                         else
-                            self.$f7router.back()
+                            self.$f7router.back("/");
                     }).catch(function(error) {
                         var t = self.$f7.toast.create({
                             text: error.response.data.error,

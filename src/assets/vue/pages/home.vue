@@ -8,15 +8,15 @@
         <f7-nav-title class="nav-center-margin">
             <img :src="logo" class="logo" />
         </f7-nav-title>
-        <f7-nav-right>
-            <f7-link :panel-open="sideBarPos2" icon="fa fa-bell">
-            </f7-link>
-        </f7-nav-right>
-        <f7-subnavbar :inner="false">
-            <f7-searchbar id="search" search-list="#search-list" :placeholder="$t('home.searchbar.placeholder')" :clear-button="true" customSearch v-model="searchTerm">
-            </f7-searchbar>
+            <f7-nav-right>
+                <f7-link icon-only >
+                </f7-link>
+            </f7-nav-right>
+            <f7-subnavbar :inner="false">
+                <f7-searchbar id="search" search-list="#search-list" :placeholder="$t('home.searchbar.placeholder')" :clear-button="true" customSearch v-model="searchTerm">
+                </f7-searchbar>
 
-        </f7-subnavbar>
+            </f7-subnavbar>
     </f7-navbar>
     <f7-toolbar tabbar labels id="mainToolbar" :class="this.$theme.md ? 'color-black' : ''" bottom-md>
         <f7-link tab-link="#hometab" class="tab-link-active" icon="fa fa-home">
@@ -55,7 +55,7 @@
 
                     <template v-if="row2['_link'] == 'Banners'">
                         <f7-block-title v-if="row2.name_as_heading && row2.show_name">{{row2.name[currentLanguageId]}}</f7-block-title>
-                        <f7-block :style="row2.full_width ? 'padding : 0' : ''">
+                        <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
                             <f7-row :class="row2['full_width'] ? row2['full_width'] : ''">
                                 <f7-col :width="row2['width']">
                                     <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
@@ -66,8 +66,8 @@
                     </template>
 
                     <template v-if="row2['_link'] == 'CarouselBanner'">
-                        <f7-block :style="row2.full_width ? 'padding : 0' : ''">
-                            <f7-swiper class="pagination-below" pagination :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                        <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
+                            <f7-swiper class="pagination-below" :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
                                 <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
                                     <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
                                     <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
@@ -79,13 +79,11 @@
 
                     <template v-if="row2['_link'] == 'CarouselProducts'">
                         <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
-                        <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage">
+                        <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
                             <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
                                 <template v-for="id in row2.product_id">
-                                    <f7-swiper-slide>
-                                        <product-card :product_id="id.value">
-                                        </product-card>
-                                    </f7-swiper-slide>
+                                    <product-card :product_id="id.value">
+                                    </product-card>
                                 </template>
                             </f7-swiper>
                         </f7-block>
@@ -94,7 +92,7 @@
                     <template v-if="row2['_link'] == 'CarouselCategory'">
                         <template v-for="cat in row2['category_id']">
                             <f7-block-title v-if="cat.value['txt' + currentLanguageId]">{{cat.value['txt' + currentLanguageId]}}<span class="pull-right"><f7-link class="color-blue" :href="cat.value.link">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
-                            <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage">
+                            <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
                                 <category-carousel :category_id="cat.value.id"></category-carousel>
                             </f7-block>
                         </template>
@@ -111,10 +109,8 @@
                 <f7-block style="padding : 0" class="carouselHomePage">
                     <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
                         <template v-for="id in recentView">
-                            <f7-swiper-slide>
-                                <product-card :product_id="id">
-                                </product-card>
-                            </f7-swiper-slide>
+                            <product-card :product_id="id">
+                            </product-card>
                         </template>
                     </f7-swiper>
                 </f7-block>
@@ -177,7 +173,8 @@
                         <f7-list-item v-if="cart.coupon == ''">
                             <f7-row class="full-width">
                                 <f7-col width="70">
-                                    <f7-input name="coupon" type="text" :placeholder="$t('cart.coupon.placeholder')" /></f7-col>
+                                    <f7-input name="coupon" type="text" :placeholder="$t('cart.coupon.placeholder')" />
+                                </f7-col>
                                 <f7-col width="30">
                                     <f7-button big raised fill color="green" @click="addCoupon">{{$t('cart.coupon.add')}}</f7-button>
                                 </f7-col>
@@ -186,7 +183,8 @@
                         <f7-list-item v-if="cart.voucher == ''">
                             <f7-row class="full-width">
                                 <f7-col width="70">
-                                    <f7-input name="voucher" type="text" :placeholder="$t('cart.voucher.placeholder')" /></f7-col>
+                                    <f7-input name="voucher" type="text" :placeholder="$t('cart.voucher.placeholder')" />
+                                </f7-col>
                                 <f7-col width="30">
                                     <f7-button big raised fill color="green" @click="addVoucher">{{$t('cart.voucher.add')}}</f7-button>
                                 </f7-col>
@@ -404,7 +402,7 @@ export default {
         }, 300000);
 
         console.log(self);
-        
+
         self.Dom7(".carouselHomePage").removeClass("block");
 
         self.Dom7(document).on("click", ".shareapp", function (e) {
@@ -624,6 +622,7 @@ export default {
                 self.$t("cart.item.update.quantity.msg"),
                 self.$t("cart.item.update.quantity.title"),
                 function (value) {
+                    if (value > 0){
                     self.$f7.preloader.show();
                     axios({
                         method: "PUT",
@@ -643,6 +642,7 @@ export default {
                         self.Dom7("li.swipeout-opened"),
                         function () {}
                     );
+                }
                 }
             );
         },

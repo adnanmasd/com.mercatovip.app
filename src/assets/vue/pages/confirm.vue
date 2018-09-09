@@ -22,6 +22,7 @@
         <f7-list-item group-title :title="$t('confirm.items.title')"></f7-list-item>
         <f7-list-item :id="row.key" v-for="row in order.products" :title="row.name | andFilter">
             <div slot="inner" v-html="getProductInfo(row.quantity,row.price,row.total,row.option)"></div>
+            <div slot="media" v-html="getImagefromSource(row.image)"></div>
         </f7-list-item>
     </f7-list>
 
@@ -153,6 +154,9 @@ export default {
                 },
                 getProductInfo(quantity, price_per_item, total, options) {
                     return total + "<br/> " + this.$t('confirm.product.quantity.title') + quantity
+                },
+                getImagefromSource(src) {
+                    return "<img src='" + src + "'" + " width='80'/>";
                 },
         }
 

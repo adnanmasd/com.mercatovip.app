@@ -71,7 +71,7 @@ export default {
         methods: {
             addReview() {
                 self.$f7.preloader.show();
-                let formData = window.f7.form.convertToData('#review');
+                let formData = self.$f7.form.convertToData('#review');
                 axios({
                     method: "POST",
                     url: api.baseUrl + api.urls.createProductReviews.replace("{id}", self.$f7route.query.product_id),
@@ -83,7 +83,7 @@ export default {
                     }
                 }).then(function(response) {
                     var t = self.$f7.toast.create({
-                        text: self.$t('review.submit.success.msg'),
+                        text: self.$t('review.sumbit.success.msg'),
                         closeTimeout: 5000,
                         destroyOnClose: true,
                         position: 'top',

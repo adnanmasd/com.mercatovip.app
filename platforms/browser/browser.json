@@ -34,6 +34,9 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
@@ -60,9 +63,6 @@
     },
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-firebase": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {},
@@ -88,6 +88,14 @@
       "id": "cordova-plugin-device.DeviceProxy",
       "pluginId": "cordova-plugin-device",
       "runs": true
+    },
+    {
+      "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+      "id": "cordova-plugin-firebase.FirebasePlugin",
+      "pluginId": "cordova-plugin-firebase",
+      "clobbers": [
+        "FirebasePlugin"
+      ]
     },
     {
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
@@ -186,14 +194,6 @@
       "clobbers": [
         "OneSignal"
       ]
-    },
-    {
-      "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
-      "id": "cordova-plugin-firebase.FirebasePlugin",
-      "pluginId": "cordova-plugin-firebase",
-      "clobbers": [
-        "FirebasePlugin"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -202,6 +202,7 @@
     "cordova-launch-review": "3.1.0",
     "cordova-plugin-customurlscheme": "4.3.0",
     "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-firebase": "1.0.4",
     "cordova-plugin-inappbrowser": "2.0.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -210,7 +211,6 @@
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
     "cordova-universal-links-plugin": "1.2.1",
-    "onesignal-cordova-plugin": "2.3.3",
-    "cordova-plugin-firebase": "1.0.4"
+    "onesignal-cordova-plugin": "2.3.3"
   }
 }
