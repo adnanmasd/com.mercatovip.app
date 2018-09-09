@@ -5,11 +5,47 @@
   },
   "config_munge": {
     "files": {
+      "*-Info.plist": {
+        "parents": {
+          "ITSAppUsesNonExemptEncryption": [
+            {
+              "xml": "<false />",
+              "count": 2
+            }
+          ],
+          "UIBackgroundModes": [
+            {
+              "xml": "<array><string>remote-notification</string></array>",
+              "count": 2
+            }
+          ],
+          "CFBundleURLTypes": [
+            {
+              "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>mercatovip</string></array></dict></array>",
+              "count": 1
+            }
+          ],
+          "NSPhotoLibraryAddUsageDescription": [
+            {
+              "xml": "<string>This app requires photo library access to function properly.</string>",
+              "count": 1
+            }
+          ]
+        }
+      },
       "config.xml": {
         "parents": {
           "/*": [
             {
               "xml": "<feature name=\"LaunchReview\"><param name=\"ios-package\" value=\"LaunchReview\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"FirebasePlugin\"><param name=\"ios-package\" value=\"FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {
@@ -38,32 +74,6 @@
             },
             {
               "xml": "<feature name=\"OneSignalPush\"><param name=\"ios-package\" value=\"OneSignalPush\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"FirebasePlugin\"><param name=\"ios-package\" value=\"FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "*-Info.plist": {
-        "parents": {
-          "CFBundleURLTypes": [
-            {
-              "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>mercatovip</string></array></dict></array>",
-              "count": 1
-            }
-          ],
-          "NSPhotoLibraryAddUsageDescription": [
-            {
-              "xml": "<string>This app requires photo library access to function properly.</string>",
-              "count": 1
-            }
-          ],
-          "UIBackgroundModes": [
-            {
-              "xml": "<array><string>remote-notification</string></array>",
               "count": 1
             }
           ]
@@ -112,41 +122,50 @@
     }
   },
   "installed_plugins": {
+    "cordova-ios-export-compliance": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-ios-plugin-no-export-compliance": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-launch-review": {
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "mercatovip",
-      "PACKAGE_NAME": "MercatoVIP"
+      "PACKAGE_NAME": "com.mercatovip.app"
     },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "es6-promise-plugin": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-plugin-x-socialsharing": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "cordova-universal-links-plugin": {
-      "PACKAGE_NAME": "MercatoVIP"
-    },
-    "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "MercatoVIP"
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
@@ -166,6 +185,22 @@
       "pluginId": "cordova-plugin-customurlscheme",
       "clobbers": [
         "window.plugins.launchmyapp"
+      ]
+    },
+    {
+      "id": "cordova-plugin-device.device",
+      "file": "plugins/cordova-plugin-device/www/device.js",
+      "pluginId": "cordova-plugin-device",
+      "clobbers": [
+        "device"
+      ]
+    },
+    {
+      "id": "cordova-plugin-firebase.FirebasePlugin",
+      "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+      "pluginId": "cordova-plugin-firebase",
+      "clobbers": [
+        "FirebasePlugin"
       ]
     },
     {
@@ -239,19 +274,15 @@
       "clobbers": [
         "OneSignal"
       ]
-    },
-    {
-      "id": "cordova-plugin-firebase.FirebasePlugin",
-      "file": "plugins/cordova-plugin-firebase/www/firebase.js",
-      "pluginId": "cordova-plugin-firebase",
-      "clobbers": [
-        "FirebasePlugin"
-      ]
     }
   ],
   "plugin_metadata": {
+    "cordova-ios-export-compliance": "1.0.2",
+    "cordova-ios-plugin-no-export-compliance": "0.0.5",
     "cordova-launch-review": "3.1.0",
     "cordova-plugin-customurlscheme": "4.3.0",
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-firebase": "1.0.4",
     "cordova-plugin-inappbrowser": "2.0.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -260,7 +291,6 @@
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
     "cordova-universal-links-plugin": "1.2.1",
-    "onesignal-cordova-plugin": "2.3.3",
-    "cordova-plugin-firebase": "1.0.4"
+    "onesignal-cordova-plugin": "2.3.3"
   }
 }
