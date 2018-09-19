@@ -1,12 +1,15 @@
 <template>
-    <f7-card v-if="loaded == false" class="animated-background">
+    <f7-swiper-slide v-if="loaded == false">
+    <f7-card class="animated-background">
         <div class="background-masker header-top"></div>
         <div class="background-masker header-left"></div>
         <div class="background-masker header-right"></div>
         <div class="background-masker header-bottom"></div>
         <div class="background-masker content-top"></div>
     </f7-card>
-    <f7-card v-else>
+    </f7-swiper-slide>
+    <f7-swiper-slide v-else-if="loaded == true && is_p == true">
+    <f7-card>
         <f7-card-header>
             <div @click='navigate("/product?product_id=" + p.product_id)'><img :src="p.image" class="product-card-image"><span v-if="p.special" class="tag left-tag">{{getDiscount(p.special,p.price)}}%</span><span v-if="is_new(p.date_added)" class="tag right-tag">NEW</span></div>
         </f7-card-header>
@@ -38,6 +41,7 @@
                 </f7-segmented>
             </f7-card-footer> -->
     </f7-card>
+    </f7-swiper-slide>
     
 </template>
 
@@ -58,6 +62,7 @@ export default {
     data() {
         return {
             p: [],
+            is_p : false,
             loaded: false
         }
     },
@@ -74,9 +79,14 @@ export default {
                 return JSON.parse(newReq)
             }
         }).then(function (response) {
-            if (response.data.data != [])
+            if (response.data.data != []){
                 self.p = response.data.data
                 self.loaded = true;
+                self.is_p = true;
+            }
+        }).catch(function(error) {
+            self.loaded=true;
+            self.p = [];
         });
     },
     methods: {

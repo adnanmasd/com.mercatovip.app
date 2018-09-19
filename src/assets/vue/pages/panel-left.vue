@@ -43,7 +43,7 @@
                                                 <li class="accordion-item">
                                                     <a link-view="#main-view" :href="'/category?category_id='+ row3.category_id" class="panel-close item-content item-link">
                                                         <div class="item-inner">
-                                                            <div class="item-title"><a>&ensp;&ensp;&ensp;{{row3.name | andFilter}}</a></div>
+                                                            <div class="item-title"><a>{{row3.name | andFilter}}</a></div>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -55,7 +55,7 @@
                                     <li class="accordion-item">
                                         <a link-view="#main-view" :href="'/category?category_id='+ row2.category_id" class="panel-close item-content item-link">
                                             <div class="item-inner">
-                                                <div class="item-title"><a>&ensp;&ensp;{{row2.name | andFilter}}</a></div>
+                                                <div class="item-title"><a>{{row2.name | andFilter}}</a></div>
                                             </div>
                                         </a>
                                     </li>

@@ -207,6 +207,10 @@ const Routes = [
     component: require('./assets/vue/pages/forgot.vue')
   },
   {
+    path: '/setPassword/',
+    component: require('./assets/vue/pages/setPassword.vue')
+  },
+  {
     path: '(.*)',
     url: './assets/vue/pages/404.vue',
   },
