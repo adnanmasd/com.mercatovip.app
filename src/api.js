@@ -29,6 +29,7 @@ export default {
     "getAccountDetails" : "/account",
     "changePass" : "/account/password",
     "forgottenPass" : "/forgotten",
+    "reset" : "/reset?code={code}",
     "login" : "/login",
     "logout" : "/logout",
     "register" : "/register",

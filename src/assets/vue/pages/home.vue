@@ -622,6 +622,7 @@ export default {
                 self.$t("cart.item.update.quantity.msg"),
                 self.$t("cart.item.update.quantity.title"),
                 function (value) {
+                    if (value > 0){
                     self.$f7.preloader.show();
                     axios({
                         method: "PUT",
@@ -641,6 +642,7 @@ export default {
                         self.Dom7("li.swipeout-opened"),
                         function () {}
                     );
+                }
                 }
             );
         },

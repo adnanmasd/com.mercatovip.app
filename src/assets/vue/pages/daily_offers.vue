@@ -52,11 +52,11 @@
                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
                         </div>
                     </f7-card-content>
-                    <!-- <f7-card-footer>
+                    <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
-                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
+                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share" icon-color="black"></f7-button>
                             <template v-if="!is_favourite(row.id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart" icon-color="red"></f7-button>
                             </template>
                             <template v-else-if="is_favourite(row.id)">
                                 <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
@@ -71,7 +71,7 @@
                                 <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
-                    </f7-card-footer> -->
+                    </f7-card-footer>
                 </f7-card>
             </f7-col>
         </f7-row>
@@ -170,6 +170,7 @@ export default {
                     return false
                 },
                 addToWishlist(product_id) {
+                     let self = this;
                     self.$f7.preloader.show();
                     axios({
                         method: "POST",
@@ -193,6 +194,7 @@ export default {
                     self.$f7.preloader.hide();
                 },
                 removeFromWishlist(product_id) {
+                     let self = this;
                     self.$f7.preloader.show();
                     axios({
                         method: "DELETE",

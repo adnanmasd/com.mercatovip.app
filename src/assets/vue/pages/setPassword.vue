@@ -100,7 +100,7 @@ export default {
                 not.open();
                 navigator.vibrate(100)
                 self.$f7.preloader.hide();
-                self.$f7router.back()
+                self.$f7router.navigate("/login",{reloadCurrent:true})
             }).catch(function (error) {
                 var t = self.$f7.toast.create({
                     text: error.response.data.error,

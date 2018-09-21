@@ -48,7 +48,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "cordova-android": "^7.0.0",
-    "cordova-browser": "^5.0.3",
+    "cordova-browser": "^5.0.4",
     "cordova-ios": "^4.5.5",
     "cordova-ios-export-compliance": "~1.0.2",
     "cordova-ios-plugin-no-export-compliance": "~0.0.5",
@@ -99,9 +99,9 @@
       "cordova-plugin-device": {}
     },
     "platforms": [
-      "browser",
+      "ios",
       "android",
-      "ios"
+      "browser"
     ]
   }
 }
