@@ -162,7 +162,123 @@
         console.log('Can\'t connect to http://' + ipPort + '/');
     }
 
+<<<<<<< HEAD
 </script>
 
 
 <script src="cordova.js"></script></body></html>
+=======
+    function onBackKeyDown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $$ = window.app.f7.$;
+      if (new Date().getTime() - window.lastTimeBackPress < window.timePeriodToExit) {
+        navigator.app.exitApp();
+      }
+      else if($$('.preloader-modal').length == 0) {
+        if ($$('.modal-in').length > 0) {
+          window.app.f7.popup.close();
+          return false;
+        } else if ($$('html').hasClass('with-panel-left-reveal') || $$('body').hasClass('with-panel-right-reveal')) {
+          window.app.f7.panel.close();
+          return false;
+        } else if ($$('.photo-browser-in').length > 0) {
+          window.app.f7.photoBrowserClose();
+          return false;
+        } else if (window.app.f7.view[2].router.url == '/') {
+          var toastBottom = window.app.f7.toast.create({
+            text: 'Press again to exit',
+            closeTimeout: 2000,
+          });
+          toastBottom.open();
+          navigator.vibrate(20)
+          window.lastTimeBackPress = new Date().getTime();
+        } else {
+          window.app.f7.router.back();
+        }
+        return true;
+      }
+    };
+
+    document.addEventListener('deviceready', function(evt) {
+      //console.log(window.$theme);
+      window.backButton = 0;
+      window.lastTimeBackPress = 0;
+      window.timePeriodToExit = 2000;
+      document.addEventListener("backbutton", onBackKeyDown, false);
+
+      var iosSettings = {};
+      iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+      iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+      window.open = cordova.InAppBrowser.open;
+
+      var networkState = navigator.connection.type;
+      if (networkState == "Connection.NONE") {
+        localStorage.setItem("connection", "false");
+      } else {
+        localStorage.setItem("connection", "true");
+      }
+      universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
+      var notificationOpenedCallback = function(jsonData) {
+        //save_notification(jsonData);
+        if (jsonData.payload.additionalData.path !== "") {
+          window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+        }
+        //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+      var notificationRecievedCallback = function(jsonData) {
+        save_notification(jsonData);
+        if (jsonData.isAppInFocus) {
+          var not = window.app.f7.notification.create({
+            icon: "<img src='static/img/favico.PNG' style='width:20px;height:20px'>",
+            title: jsonData.payload.title,
+            titleRightText: 'now',
+            text: jsonData.payload.body,
+            closeOnClick: true,
+            closeTimeout: 5000,
+            on: {
+              close: function() {
+                if (jsonData.payload.additionalData.path !== "") {
+                  window.app.f7.router.navigate(jsonData.payload.additionalData.path)
+                }
+              },
+            },
+          });
+          not.open();
+          navigator.vibrate(1000);
+        }
+        //console.log('notificationRecievedCallback: ' + JSON.stringify(jsonData));
+      };
+
+      window.plugins.OneSignal
+        .startInit("ad630897-aa99-4141-8273-d483016e40a9")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .handleNotificationReceived(notificationRecievedCallback)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+        .iOSSettings(iosSettings)
+        .endInit();
+
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
+
+    }, false);
+
+    document.addEventListener("offline", function onOffline() {
+      localStorage.setItem("connection", "false");
+      window.app.f7.dialog.alert("No Internet Connection!", "Warning", function() {
+        location.reload();
+      });
+    }, false);
+
+    document.addEventListener("online", function onOnline() {
+      if (localStorage.getItem("connection") == "false") {
+        localStorage.setItem("connection", "true");
+        location.reload();
+      }
+<<<<<<< HEAD
+    }, false);</script><script src=9e1afa008102323a7a09.main.js></script></body></html>
+=======
+    }, false);</script><script src=9f1ba7c43970c342d01d.main.js></script></body></html>
+>>>>>>> 2776fd812c09e45938dad531a6467c90666d7dda
+>>>>>>> a6b239892b3b5aa0b8a5f25953d685bc94ef897c
