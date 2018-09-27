@@ -54,7 +54,7 @@ export default {
 
         },
         mounted: function() {
-            self = this;
+            let self = this;
             self.order_id = self.$f7route.query.order_id
             self.$f7.preloader.show();
             axios({
@@ -62,7 +62,6 @@ export default {
                 url: api.baseUrl + api.urls.confirmOrder,
                 headers: api.headers(sessionStorage.getItem('session_id'))
             }).then(function(response) {
-                console.log(resposne);
                 var t = self.$f7.toast.create({
                     text: self.$t('confirm.success.msg'),
                     title: self.$t('confirm.success.title'),

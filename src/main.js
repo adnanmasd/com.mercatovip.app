@@ -29,6 +29,8 @@ Vue.use(vuexI18n.plugin, store, {
   }
 });
 
+Vue.i18n.set("en-gb");
+
 let language_code = localStorage.getItem('language_code')
 if (language_code == null){
 localStorage.setItem("language_id", "1");
@@ -87,7 +89,7 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.0.12',
+    version : '2.0.13',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,

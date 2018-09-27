@@ -211,8 +211,16 @@ const Routes = [
     component: require('./assets/vue/pages/setPassword.vue')
   },
   {
+    path: '/404',
+    component: require('./assets/vue/pages/404.vue'),
+  },
+  {
+    path: '/500',
+    component: require('./assets/vue/pages/500.vue'),
+  },
+  {
     path: '(.*)',
-    url: './assets/vue/pages/404.vue',
+    component: require('./assets/vue/pages/404.vue'),
   },
 ]
 
