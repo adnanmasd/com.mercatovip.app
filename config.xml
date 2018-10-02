@@ -107,9 +107,5 @@
     <plugin name="cordova-plugin-firebase" spec="^1.0.4" />
     <engine name="ios" spec="^4.5.5" />
     <engine name="android" spec="^7.0.0" />
-<<<<<<< HEAD
-    <engine name="ios" spec="^4.5.5" />
-=======
     <engine name="browser" spec="^5.0.4" />
->>>>>>> 2776fd812c09e45938dad531a6467c90666d7dda
 </widget>
