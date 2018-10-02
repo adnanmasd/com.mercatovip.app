@@ -367,7 +367,7 @@ export default {
                         //localStorage.setItem('session_id', response.data.session)
                         let not = self.$f7.toast.create({
                             title: self.$t("login.notification.title"),
-                            text: self.$t("login.notification.welcomeBack") +
+                            text: (self.currentLanguageId == 1 ? "Welcome " : "مرحبا ") +
                                 response.data.firstname,
                             closeTimeout: 3000,
                             destroyOnClose: true,
@@ -382,7 +382,7 @@ export default {
                         localStorage.setItem("remember_me_key", null);
                         let not = self.$f7.toast.create({
                             title: self.$t("login.notification.title"),
-                            text: self.$t("login.notification.notLoggedIn"),
+                            text: (self.currentLanguageId == 1 ? 'Session timed out, please login again' : 'تم تسجيل خروج المستخدم ، يرجى تسجيل الدخول مرة أخرى'),
                             closeTimeout: 3000,
                             destroyOnClose: true,
                             cssClass: "toast-red",

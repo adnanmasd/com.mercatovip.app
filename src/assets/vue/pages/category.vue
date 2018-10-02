@@ -319,6 +319,10 @@ export default {
             headers: subCatHeaders
         }).then(function (response) {
             self.category = response.data.data;
+        }).catch(function (error){
+            if (error.response.status == 404){                        
+                        self.$f7router.navigate("/404",{reloadCurrent  :true})
+            } 
         });
         self.onInfinite();
     },
@@ -546,6 +550,7 @@ export default {
                     self.minPrice = Math.floor(0)
                     self.maxPrice = Math.floor(0)
                     self.loading = false;
+                
                 });
             }, 500);
         },

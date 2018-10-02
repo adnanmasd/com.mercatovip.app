@@ -346,7 +346,7 @@ export default {
                     return val.replace(/&amp;/g, '&');
             }
         },
-        async mounted() {
+        mounted() {
             self = this;
             self.$f7.preloader.show();
             let product_id = this.$f7route.query.product_id
@@ -359,7 +359,7 @@ export default {
 
             var productHeaders = api.headers(sessionStorage.getItem('session_id'));
             productHeaders['X-Oc-Image-Dimension'] = "768x802";
-            await axios({
+            axios({
                 method: "GET",
                 url: api.baseUrl + api.urls.getProductById.replace('{id}', product_id),
                 headers: productHeaders,
@@ -368,7 +368,7 @@ export default {
                     return JSON.parse(newReq)
                 }
             }).then(function(response) {
-                if (response.status !== 202 && response.data.data) {
+                 if (response.status !== 202 && response.data.data) {
                     self.product = response.data.data;
 
                     self.images.push(self.product.original_image);
@@ -406,6 +406,11 @@ export default {
                 }
                 self.loading = false;
                 self.$f7.preloader.hide();
+            }).catch(function (e){
+                if (e.response.status == 404){
+                        self.$f7.preloader.hide();
+                        self.$f7router.navigate("/404",{reloadCurrent  :true})
+                }
             });
             var swiper2 = new Swiper('#mainImageSlider', {
                 init: true,

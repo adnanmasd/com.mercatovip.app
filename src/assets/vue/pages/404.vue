@@ -10,7 +10,7 @@
             </f7-link>
         </f7-nav-left>
         <f7-nav-title sliding>
-            404
+            {{$t('404.title')}}
         </f7-nav-title>
         <f7-nav-right sliding>
             <f7-link icon-only>
@@ -19,7 +19,22 @@
     </f7-navbar>
 
     <f7-block>
-        Page Not Found
+        <img src="static/img/404.png" class="display-flex align-self-center align-items-center" style="margin:0 auto"/>
+        </f7-block>
+        <f7-block>
+        {{$t('404.message')}}
+        </f7-block>
+        <f7-block>
+            <div class="list inset">
+                <ul>
+                    <li>
+                        <f7-button :text="$t('404.button1.text')" big fill back></f7-button>
+                    </li>
+                    <li>
+                        <f7-button :text="$t('404.button2.text')" big fill color="green" href="/"></f7-button>
+                    </li>
+                </ul>
+            </div>
     </f7-block>
 
 </f7-page>
