@@ -93,7 +93,8 @@
     }
 
     function goToUrl(eurl) {
-      let url = eurl.split("/")
+      let orginial_params = eurl.split("?")
+      let url = orginial_params[0].split("/")
       let $$ = window.Dom7;
       window.app.f7.request({
         method: 'GET',
@@ -122,6 +123,15 @@
             case 'information_id':
               path = "/information?information_id=" + tg[1]
               break;
+            case 'route': 
+              switch (tg[1]) {
+                case 'account/reset' :
+                  path = "/setPassword?" + orginial_params[1]
+                  break;
+                default:
+                 path=null;
+              }
+              break
             default:
               path = null
           }
@@ -242,4 +252,4 @@
         localStorage.setItem("connection", "true");
         location.reload();
       }
-    }, false);</script><script src=9e1afa008102323a7a09.main.js></script></body></html>
+    }, false);</script><script src=414c0111f77876151226.main.js></script></body></html>
