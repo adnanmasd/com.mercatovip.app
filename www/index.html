@@ -1,173 +1,149 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-security-policy" content="default-src *; script-src &apos;self&apos; data: &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; http://127.0.0.1:8081 http://192.168.8.120:8081; object-src &apos;self&apos; data: http://127.0.0.1:8081 http://192.168.8.120:8081; style-src &apos;self&apos; &apos;unsafe-inline&apos; data: ; img-src *; media-src &apos;self&apos; data: http://127.0.0.1:8081 http://192.168.8.120:8081; frame-src &apos;self&apos; data: http://127.0.0.1:8081 http://192.168.8.120:8081; font-src *; connect-src &apos;self&apos; data: http://127.0.0.1:8081 http://192.168.8.120:8081">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Device Router</title>
-
-    <style>
-        html {
-            background: #DDD;
-            font-size: 14px;
-            color: #222;
-            font-family: Arial, sans-serif;
-        }
-
-        html, body {
-            padding: 0;
-            margin: 0;
-        }
-
-        html * {
-            box-sizing: border-box;
-        }
-
-        #unavailable {
-            display: block;
-        }
-
-        #unavailable p {
-            display: none;
-            font-size: 15px;
-            background: #444;
-            color: #FFF;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            line-height: 24px;
-        }
-
-        #status_text {
-            display: block;
-
-            background: #2196F3;
-            color: #FFF;
-            padding: 20px;
-            margin: 10px;
-
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-        }
-
-        input {
-            display: block;
-            background: #FFF;
-            border: 1px solid #CCCCCC;
-            font-size: 14px;
-            color: #222;
-            width: 100%;
-            height: 46px;
-            padding: 10px;
-        }
-
-        button {
-            display: block;
-            margin-top: 10px;
-            width: 100%;
-            height: 34px;
-        }
-
-        .input_wrap {
-            padding: 0 10px;
-        }
-    </style>
-
-</head>
-<body><script>const localServerIp = '192.168.8.120'</script>
-
-<div id="unavailable">
-    <p>
-        It seems we can&apos;t connect to<br>127.0.0.1:8081<br>
-        <script>document.write(localServerIp)</script>
-        :8081<br><br>
-        You can test yourself with next inputs:
-    </p>
-
-    <div id="status_text">
-        Waiting for device ready...
-    </div>
-
-    <div class="input_wrap">
-        <input type="text" placeholder="Server Ip:Port (like 192.168.0.2:8081)" disabled>
-    </div>
-
-    <div class="input_wrap">
-        <button type="button" onclick="tryConnect()" disabled>Connect</button>
-    </div>
-</div>
-
-<script>
-    var deviceReadyChecker = setTimeout(startRedirectChecks, 5000);
-
-    document.addEventListener("deviceready", function () {
-        clearTimeout(deviceReadyChecker);
-
-        if (typeof navigator.splashscreen !== "undefined" && typeof navigator.splashscreen.hide === "function")
-            navigator.splashscreen.hide();
-
-        startRedirectChecks();
-    });
-
-    function startRedirectChecks() {
-        testConnection('127.0.0.1:8081', goUrl, function () {
-            testConnection(localServerIp + ':8081', goUrl, ajaxErr)
-        })
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><title>MercatoVIP Mobile APP</title><script>if (localStorage.getItem('language_id') == 2) {
+      document.write("<link href='static/css/framework7.rtl.css' rel='stylesheet'>");
+    } else {
+      document.write("<link href='static/css/framework7.css' rel='stylesheet'>");
+    }</script><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet><link href=styles.css rel=stylesheet></head><body class=font-dubai-regular style=background:#eee;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden><script src=cordova.js></script><div id=app></div><script>function handleOpenURL(url) {
+      console.log("received url: " + url);
+      goToUrl(url);
     }
 
-    function tryConnect() {
-        var ipTest = /^([0-9]{1,3}\.){3}[0-9]{1,3}(:[0-9]{1,6})?$/,
-            ipPort = document.querySelector("input").value;
-
-        if (ipTest.test(ipPort))
-            testConnection(ipPort, goUrl, ajaxErr);
+    function pushOn() {
+      window.plugins.OneSignal.setSubscription(true);
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
     }
 
-    function testConnection(ipPort, callback, errCallback) {
-        var xhr = new XMLHttpRequest();
+    function pushOff() {
+      window.plugins.OneSignal.setSubscription(false);
+      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+        localStorage.setItem('push', status.subscriptionStatus.subscribed)
+      });
+    }
 
-        document.querySelector("button").disabled = true;
-        document.querySelector("input").disabled = true;
-        document.querySelector("#status_text").innerText = "Trying to connect http://" + ipPort;
+    function verifyPhoneNumber(phoneNumber) {
+      window.FirebasePlugin.verifyPhoneNumber(phoneNumber, 120, function(credential) {
+        console.log(credential);
+        localStorage.setItem("OTP", credential);
+      }, function(error) {
+        var not = window.app.f7.notification.create({
+          text: error,
+          closeTimeout: 5000,
+          cssClass: 'toast-red'
+        });
+        not.open();
+        navigator.vibrate(80, 80, 80);
+      });
+    }
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                document.querySelector("#status_text").innerText = "Connection to 'http://" + ipPort + "/' success! Redirecting...";
+    function signInWithPhone(code) {
+      creadentialObj = localStorage.getItem('credential')
+      localStorage.removeItem('credential');
+      if (device.platform == "Android") {
+        var verificationId = creadentialObj.verificationId;
+      } else {
+        var verificationId = creadentialObj
+      }
+      var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, code);
+      if (creadential.instantVerification) {
+        firebase.auth().signInWithCustomToken(customTokenFromYourServer);
+        return true;
+      } else {
+        // sign in with the credential
+        firebase.auth().signInWithCredential(credential);
+        // OR link to an account
+        firebase.auth().currentUser.linkWithCredential(credential)
+        return true;
+      }
+      return false;
+    }
 
-                if (typeof callback === "function")
-                    callback(ipPort);
-            }
-            else if (xhr.readyState === 4 && xhr.status !== 200) {
-                document.querySelector("button").disabled = false;
-                document.querySelector("input").disabled = false;
-                document.querySelector("#status_text").innerText = "Connection to 'http://" + ipPort + "/' failed!";
+    function logEvent(key, obj) {
+      window.FirebasePlugin.logEvent(key, obj);
+    }
 
-                if (typeof errCallback === "function")
-                    errCallback(ipPort);
-            }
+    function setScreenName(name) {
+      window.FirebasePlugin.setScreenName(name);
+    }
+
+    function save_notification(data) {
+      let id = data.payload.notificationID;
+      var notfctn = {
+        time: new Date(),
+        bigPicture: (data.payload.bigPicture !== null ? data.payload.bigPicture : null),
+        title: data.payload.title,
+        body: data.payload.body,
+        additionalData: data.payload.additionalData
+      }
+      if (localStorage.getItem('notifications') == null) {
+        var temp = {};
+        temp[id] = notfctn;
+        localStorage.setItem('notifications', JSON.stringify(temp))
+      } else {
+        let temp = JSON.parse(localStorage.getItem('notifications'));
+        temp[id] = (notfctn);
+        localStorage.setItem('notifications', JSON.stringify(temp))
+      }
+    }
+
+    function didLaunchAppFromLink(eventData) {
+      console.log('Did launch app from the link: ' + eventData.url);
+      console.log(eventData);
+      goToUrl(eventData.url);
+    }
+
+    function goToUrl(eurl) {
+      let orginial_params = eurl.split("?")
+      let url = orginial_params[0].split("/")
+      let $$ = window.Dom7;
+      window.app.f7.request({
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+          "X-Oc-Merchant-Id": "4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+          "X-Oc-Merchant-Language": localStorage.getItem('language_code'),
+          "X-Oc-Session": localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        url: "https://mercatovip.com/api/rest/seourl/" + url[url.length - 1],
+        success: function(e, status, xhr) {
+          let tg = e.data.query.split('=');
+          let path = "";
+          switch (tg[0]) {
+            case 'product_id':
+              path = "/product?product_id=" + tg[1]
+              break;
+            case 'category_id':
+              path = "/category?category_id=" + tg[1]
+              break;
+            case 'manufacturer_id':
+              path = "/manufacturer?manufacturer_id=" + tg[1]
+              break;
+            case 'information_id':
+              path = "/information?information_id=" + tg[1]
+              break;
+            case 'route': 
+              switch (tg[1]) {
+                case 'account/reset' :
+                  path = "/setPassword?" + orginial_params[1]
+                  break;
+                default:
+                 path=null;
+              }
+              break
+            default:
+              path = null
+          }
+          if (path !== null)
+            window.app.f7.router.navigate(path)
+        },
+        error: function(e, staus, xhr) {
+          console.log(e);
         }
-
-        xhr.open('GET', 'http://' + ipPort + '/');
-        xhr.send(null);
+      })
     }
 
-    function goUrl(ipPort) {
-        setTimeout(function () {
-            window.location.href = 'http://' + ipPort + '/'
-        }, 1500);
-    }
-
-    function ajaxErr(ipPort) {
-        document.querySelector("#unavailable p").style.display = "block";
-        console.log('Can\'t connect to http://' + ipPort + '/');
-    }
-
-<<<<<<< HEAD
-</script>
-
-
-<script src="cordova.js"></script></body></html>
-=======
     function onBackKeyDown(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -276,9 +252,4 @@
         localStorage.setItem("connection", "true");
         location.reload();
       }
-<<<<<<< HEAD
-    }, false);</script><script src=9e1afa008102323a7a09.main.js></script></body></html>
-=======
-    }, false);</script><script src=9f1ba7c43970c342d01d.main.js></script></body></html>
->>>>>>> 2776fd812c09e45938dad531a6467c90666d7dda
->>>>>>> a6b239892b3b5aa0b8a5f25953d685bc94ef897c
+    }, false);</script><script src=7a41fd2abb1bd1e82136.main.js></script></body></html>

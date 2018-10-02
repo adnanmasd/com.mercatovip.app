@@ -58,18 +58,18 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchHomeData({ commit }) {
-      axios.get(cms.baseUrl+cms.collectionPath+cms.sideBarCategories+cms.tokenVar).then(function (response){
-        commit('updateCategories' , response.data.entries);
-      });
+      // axios.get(cms.baseUrl+cms.collectionPath+cms.sideBarCategories+cms.tokenVar).then(function (response){
+      //   commit('updateCategories' , response.data.entries);
+      // });
       axios.get(cms.baseUrl+cms.collectionPath+cms.sideBarTools+cms.tokenVar).then(function (response){
         commit('updateTools' , response.data.entries);
       });
       axios.get(cms.baseUrl+cms.collectionPath+cms.sideBarInfo+cms.tokenVar).then(function (response){
         commit('updateInfo' , response.data.entries);
       });
-      axios.get(cms.baseUrl + cms.getReigion('home') + cms.tokenVar).then(function (response) {
-        commit('updateHomePageContent', response.data.item);
-      });
+      // axios.get(cms.baseUrl + cms.getReigion('home') + cms.tokenVar).then(function (response) {
+      //   commit('updateHomePageContent', response.data.item);
+      // });
     },
     fetchCart({ commit }) {
       var headers = api.headers(sessionStorage.getItem('session_id'));

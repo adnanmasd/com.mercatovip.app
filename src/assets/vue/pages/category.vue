@@ -71,7 +71,7 @@
             </template>
         </f7-list>
     </f7-popup>
-    
+
     <template v-for="row in categoryContent">
         <template v-for="row2 in row['value']">
             <template v-if="row2['_link'] == 'Sliders'">
@@ -117,8 +117,8 @@
                 <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
                     <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
                         <template v-for="id in row2.product_id">
-                                <product-card :product_id="id.value">
-                                </product-card>
+                            <product-card :product_id="id.value">
+                            </product-card>
                         </template>
                     </f7-swiper>
                 </f7-block>
@@ -153,63 +153,47 @@
     </f7-block>
 
     <!-- Search-through list -->
-    <f7-list v-if="noResult && categoryProducts.length == 0" media-list id="result-list" class="result">
-        <f7-block>
-            <h3>{{$t('category.noResult.message')}}</h3>
-        </f7-block>
-    </f7-list>
-    <f7-list v-else-if="loading && categoryProducts.length == 0" media-list id="result-list" class="result">
-        <f7-row no-gap>
-            <f7-col v-for="row in 1,4" width="50">
-                <f7-card class="animated-background">
-                    <div class="background-masker header-top"></div>
-                    <div class="background-masker header-left"></div>
-                    <div class="background-masker header-right"></div>
-                    <div class="background-masker header-bottom"></div>
-                    <div class="background-masker content-top"></div>
-                </f7-card>
-            </f7-col>
-        </f7-row>
-    </f7-list>
-    <f7-list v-else media-list id="result-list" class="result">
-        <f7-row no-gap>
-            <f7-col v-for="row in categoryProducts" :key="row.id" width="50">
-                <f7-card>
-                    <f7-card-header>
+    <div :class="'list virtual-list media-list categoryContentList-' + category_id + ' no-margin'">
+        <ul>
+            <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item" :style="`top: ${vlData.topPosition}px`">
+                <a :href="'/product?product_id=' + row.id" class="item-link item-content">
+                    <div class="item-media">
                         <div @click='navigate("/product?product_id=" + row.id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
-                                class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
-                    </f7-card-header>
-                    <f7-card-content>
-                        <div @click='navigate("/product?product_id=" + row.id)' class="color-black">
-                            <span class="product-cart-title">{{row.name | andFilter}}</span>
-                            <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
-                            <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                                    class="tag out-of-stock-tag">{{row.stock_status}}</span></div></div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title"><span class="product-cart-title">{{row.name | andFilter}}</span></div>
                         </div>
-                    </f7-card-content>
-                    <f7-card-footer>
-                        <f7-segmented style="width:100%" v-if="theme.ios">
-                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.id)" icon-f7="share" icon-color="black"></f7-button>
-                            <template v-if="!is_favourite(row.id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.id)" icon-f7="heart" icon-color="red"></f7-button>
-                            </template>
-                            <template v-else-if="is_favourite(row.id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                            </template>
-                        </f7-segmented>
-                        <f7-segmented style="width:100%" v-if="theme.md">
-                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.id)" icon-material="share"></f7-button>
-                            <template v-if="!is_favourite(row.id)">
-                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.id)" icon-material="favorite_border"></f7-button>
-                            </template>
-                            <template v-else-if="is_favourite(row.id)">
-                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.id)" icon-material="favorite" icon-color="red"></f7-button>
-                            </template>
-                        </f7-segmented>
-                    </f7-card-footer>
-                </f7-card>
-            </f7-col>
-        </f7-row>
-    </f7-list>
+                        <div class="item-subtitle">
+                            <span v-if="row.special" class="price">{{row.special_formated}}</span>
+                            <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
+                            <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                        </div>
+                        <div class="item-text">
+                            <f7-segmented style="width:100%" v-if="theme.ios">
+                                <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.id)" icon-f7="share" icon-color="black"></f7-button>
+                                <template v-if="!is_favourite(row.id)">
+                                    <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.id)" icon-f7="heart" icon-color="red"></f7-button>
+                                </template>
+                                <template v-else-if="is_favourite(row.id)">
+                                    <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                                </template>
+                            </f7-segmented>
+                            <f7-segmented style="width:100%" v-if="theme.md">
+                                <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.id)" icon-material="share"></f7-button>
+                                <template v-if="!is_favourite(row.id)">
+                                    <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.id)" icon-material="favorite_border"></f7-button>
+                                </template>
+                                <template v-else-if="is_favourite(row.id)">
+                                    <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.id)" icon-material="favorite" icon-color="red"></f7-button>
+                                </template>
+                            </f7-segmented>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </f7-page>
 </template>
 
@@ -220,8 +204,9 @@ import cms from 'cms.js'
 import store from '../../vuex/store.js'
 
 var timeout;
+var virtualList;
 var page = 0;
-var limit = 10;
+var limit = 25;
 
 export default {
     data() {
@@ -256,7 +241,10 @@ export default {
             filterManufacturer: [],
             loading: true,
             noResult: false,
-            theme: this.$theme
+            theme: this.$theme,
+            vlData: {},
+            allContent: [],
+            category_id : []
         }
     },
     computed: {
@@ -272,21 +260,44 @@ export default {
                 return val.replace(/&amp;/g, '&');
         }
     },
+    created() {
+        self = this;
+        self.categoryProducts = [];
+        self.category_id = self.$f7route.query.category_id
+        axios.get(cms.baseUrl + cms.getReigion('category' + self.category_id) + cms.tokenVar).then(function (response) {
+            self.categoryContent = response.data.item
+            //self.allContent['categoryContent'] = response.data.item
+        });
+
+        var subCatHeaders = api.headers(sessionStorage.getItem('session_id'));
+        subCatHeaders['X-Oc-Image-Dimension'] = "50x50";
+        axios({
+            method: "GET",
+            url: api.baseUrl + api.urls.getCategoryById.replace('{id}', self.category_id),
+            headers: subCatHeaders
+        }).then(function (response) {
+            self.category = response.data.data;
+            //self.allContent['category'] = response.data.data
+        }).catch(function (error) {
+            if (error.response.status == 404) {
+                self.$f7router.navigate("/404", {
+                    reloadCurrent: true
+                })
+            }
+        });
+    },
     mounted() {
         this.$f7.preloader.show();
         let self = this;
         page = 0;
         var category_id = self.$f7route.query.category_id
-        axios.get(cms.baseUrl + cms.getReigion('category'+category_id) + cms.tokenVar).then(function (response) {
-            self.categoryContent = response.data.item;
-        });
+        self.category_id = self.$f7route.query.category_id
 
         self.Dom7('#search_cat').on('keyup', function (e) {
             if (e.which == 13) {
                 self.onSearch(e);
             }
         })
-
         var autocompleteSearchbar = self.$f7.autocomplete.create({
             openIn: 'dropdown',
             inputEl: '#search_cat input[type="search"]',
@@ -310,23 +321,31 @@ export default {
                 }
             }
         })
-
-        var subCatHeaders = api.headers(sessionStorage.getItem('session_id'));
-        subCatHeaders['X-Oc-Image-Dimension'] = "50x50";
-        axios({
-            method: "GET",
-            url: api.baseUrl + api.urls.getCategoryById.replace('{id}', category_id),
-            headers: subCatHeaders
-        }).then(function (response) {
-            self.category = response.data.data;
-        }).catch(function (error){
-            if (error.response.status == 404){                        
-                        self.$f7router.navigate("/404",{reloadCurrent  :true})
-            } 
+        self.virtualList = self.$f7.virtualList.create({
+            // List Element
+            el: '.categoryContentList-' + self.category_id,
+            createUl: false,
+            // Pass array with items
+            items: self.categoryProducts,
+            rowsAfter: 25,
+            rowsBefore: 100,
+            //dynamicHeightBufferSize: 2,
+            // List item Template7 template
+            renderExternal: self.renderExternal,
+            // Item height
+            height: function (item) {
+                return 132;
+                //return self.theme === 'ios' ? 63 : 73;
+            },
         });
+
         self.onInfinite();
+
     },
     methods: {
+        renderExternal(vl, vlData) {
+            this.vlData = vlData;
+        },
         display_mode(type, key) {
             if (this.filterData.settings.length > 0) {
                 return (this.filterData.settings[type][key] == 'off')
@@ -493,7 +512,7 @@ export default {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
                 var productsHeaders = api.headers(sessionStorage.getItem('session_id'));
-                productsHeaders['X-Oc-Image-Dimension'] = "455x475";
+                productsHeaders['X-Oc-Image-Dimension'] = "227x237";
                 self.loading = true;
                 self.noResult = false;
                 axios({
@@ -517,12 +536,17 @@ export default {
                         self.$f7.preloader.hide();
                     }
                     if (response.status !== 202 && response.data.data.products && response.data.data.products.length > 0) {
-                        if ((onFilter && page <= 1) || self.categoryProducts.length == 0)
-                            self.categoryProducts = response.data.data.products
-                        else {
-                            for (var i = 0; i < response.data.data.products.length; i++) {
-                                self.categoryProducts.push(response.data.data.products[i])
+                        if (onFilter == false && page <= 1) {
+
+                            self.virtualList.replaceAllItems(response.data.data.products);
+                            //self.categoryProducts = response.data.data.products
+                        } else {
+                            if (response.data.data.products.length > 0){
+                            self.virtualList.appendItems(response.data.data.products);
                             }
+                            // for (var i = 0; i < response.data.data.products.length; i++) {
+                            //     self.categoryProducts.push(response.data.data.products[i])
+                            // }
                         }
                         if (page <= 1) {
                             self.filterData.attributes = response.data.data.attributes
@@ -550,7 +574,7 @@ export default {
                     self.minPrice = Math.floor(0)
                     self.maxPrice = Math.floor(0)
                     self.loading = false;
-                
+
                 });
             }, 500);
         },

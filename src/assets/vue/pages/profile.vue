@@ -28,10 +28,16 @@
             </div>
         </div>
         <div class="sheet-modal-inner">
+            <div class="block-title">{{$t('profile.changePass.title')}}</div>
             <div class="block" id="changePass">
-                <h4>{{$t('profile.changePass.title')}}</h4>
-                <f7-input required validate name="password" type="password" :placeholder="$t('profile.password.placeholder')"></f7-input>
-                <f7-input required validate name="confirm" type="password" :placeholder="$t('profile.confirm')"></f7-input>
+                <f7-list form>
+                    <f7-list-item>
+                        <f7-input required validate name="password" type="password" :placeholder="$t('profile.password.placeholder')"></f7-input>
+                    </f7-list-item>
+                    <f7-list-item>
+                        <f7-input required validate name="confirm" type="password" :placeholder="$t('profile.confirm')"></f7-input>
+                    </f7-list-item>
+                </f7-list>
                 <f7-button fill big raised @click="change()" color="green">{{$t('profile.changePass')}}</f7-button>
             </div>
         </div>

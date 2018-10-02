@@ -416,9 +416,9 @@ span.banner-title {
   bottom: 0px;
   width: 100%;
   text-align: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,1);
   color: white;
-  font-size: 0.7em;
+  font-size: 1em;
     box-shadow: 1px 0px 10px black;
 }
 
@@ -748,11 +748,6 @@ transform: translate3d(0,0,0);
 }
 
 .animated-background {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
     background: #f6f7f8;
     background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
     background-size: 800px 104px;
@@ -954,6 +949,13 @@ transform: translate3d(0,0,0);
 .card-content-inner a.link{
   color: black
 }
+
+.card {
+  box-shadow: none;
+  webkit-box-shadow : none;
+  border : 1px solid lightgray;
+}
+
 .registerLink.active{
   background: #007aff !important;
       color: #fff !important;
@@ -983,11 +985,18 @@ transform: translate3d(0,0,0);
     margin:0;
     list-style:none
 }
-.steps .steps-container li{
+html[dir="ltr"] .steps .steps-container li{
     text-align:center;
     list-style:none;
     float:left
 }
+
+html[dir="rtl"] .steps .steps-container li{
+  text-align:center;
+  list-style:none;
+  float:right
+}
+
 .steps .steps-container li .step{
     padding:0 0px;
 }
@@ -1087,3 +1096,20 @@ white-space: initial;
 .home-page-block{
   margin: 5px 0 !important;
 }
+
+.sheet-modal{
+  height: 400px;
+}
+
+.homeContentList li{
+  list-style-type: none;
+}
+
+.item-media .product-card-image{
+  width : 104px;
+  height : auto
+}
+
+// .categoryContentList li{
+//   list-style-type: none;
+// }

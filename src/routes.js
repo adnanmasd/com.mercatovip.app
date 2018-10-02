@@ -199,15 +199,11 @@ const Routes = [
     component: require('./assets/vue/pages/notifications.vue')
   },
   {
-    path: '/allCategories/',
-    component: require('./assets/vue/pages/allCategories.vue')
-  },
-  {
     path: '/forgot/',
     component: require('./assets/vue/pages/forgot.vue')
   },
   {
-    path: '/setPassword/',
+    path: '/setPassword',
     component: require('./assets/vue/pages/setPassword.vue')
   },
   {

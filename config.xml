@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="com.mercatovip.app" id="com.mercatovip.app" version="2.0.13" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="com.mercatovip.app" id="com.mercatovip.app" version="2.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="android-minSdkVersion" value="16" />
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
@@ -107,9 +107,5 @@
     <plugin name="cordova-plugin-firebase" spec="^1.0.4" />
     <engine name="ios" spec="^4.5.5" />
     <engine name="android" spec="^7.0.0" />
-<<<<<<< HEAD
-    <engine name="ios" spec="^4.5.5" />
-=======
     <engine name="browser" spec="^5.0.4" />
->>>>>>> 2776fd812c09e45938dad531a6467c90666d7dda
 </widget>

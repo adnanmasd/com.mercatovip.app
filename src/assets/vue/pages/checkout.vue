@@ -80,7 +80,6 @@
                     <f7-list-item>
                         <f7-label>{{$t('checkout.shipping.address.postal')}}</f7-label>
                         <f7-input :value="address.postal" name="postal" type="text" @input="address.postal = $event.target.value" :placeholder="$t('checkout.shipping.address.postal')">
-                            <span slot="info" v-if="errors.postal"><span class="text-color-red">{{errors.postal}}</span></span>
                         </f7-input>
                     </f7-list-item>
 
@@ -157,9 +156,11 @@
                 </ul>
                 <div class="step-bar" style="width: 45%;"></div>
             </div>
-            <f7-list form id="shipping_method_form">
+            <f7-list media-list form id="shipping_method_form">
                 <f7-list-item group-title :title="$t('checkout.shipping.method')"></f7-list-item>
-                <f7-list-item radio name="shipping_method" v-for="row,index in shipping_methods" :value="row.quote[index].code" checked :title="row.quote[index].title">{{row.quote[index].text}}</f7-list-item>
+                <f7-list-item radio name="shipping_method" v-for="row,index in shipping_methods" :value="row.quote[index].code" checked :title="row.quote[index].title" :after="row.quote[index].text">
+                    <div slot="inner" v-html="'<br/>' + row.details"></div>
+                </f7-list-item>
                 <f7-list-item group-title :title="$t('checkout.comments')"></f7-list-item>
                 <f7-list-item>
                     <f7-label>{{$t('checkout.comments')}}</f7-label>
@@ -369,10 +370,6 @@ export default {
                         }
                         if (formData.address1 == null || formData.address1 == "") {
                             self.errors['address1'] = self.$t('checkout.validation.address1')
-                            self.errors.length++;
-                        }
-                        if (formData.postal == null || formData.postal == "") {
-                            self.errors['postal'] = self.$t('checkout.validation.postal')
                             self.errors.length++;
                         }
                         if (formData.city == null || formData.city == "") {

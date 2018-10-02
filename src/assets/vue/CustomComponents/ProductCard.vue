@@ -15,31 +15,9 @@
         </f7-card-header>
         <f7-card-content>
             <div @click='navigate("/product?product_id=" + p.product_id)' class="color-black">
-                <!-- <span class="product-cart-title">{{p.name | andFilter}}</span>
-                                    <br/> <span v-if="p.special" class="old-price">{{p.price_formated}}</span> -->
-                <br/> <span v-if="p.special" class="price">{{p.special_formated}}</span> <span v-if="!p.special" class="price">{{p.price_formated}}</span>
+               <br/> <span v-if="p.special" class="price">{{p.special_formated}}</span> <span v-if="!p.special" class="price">{{p.price_formated}}</span>
             </div>
         </f7-card-content>
-        <!-- <f7-card-footer>
-                <f7-segmented style="width:100%" v-if="theme.ios">
-                    <f7-button class="product-card-footer-button" color="white" @click="shareProduct(p.name,p.thumb,p.product_id)" icon-f7="share"></f7-button>
-                    <template v-if="!is_favourite(p.product_id)">
-                        <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(p.product_id)" icon-f7="heart"></f7-button>
-                    </template>
-                    <template v-else-if="is_favourite(p.product_id)">
-                        <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(p.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
-                    </template>
-                </f7-segmented>
-                <f7-segmented style="width:100%" v-if="theme.md">
-                    <f7-button class="product-card-footer-button" color="black" @click="shareProduct(p.name,p.thumb,p.product_id)" icon-material="share"></f7-button>
-                    <template v-if="!is_favourite(p.product_id)">
-                        <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(p.product_id)" icon-material="favorite_border"></f7-button>
-                    </template>
-                    <template v-else-if="is_favourite(p.product_id)">
-                        <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(p.product_id)" icon-material="favorite" icon-color="red"></f7-button>
-                    </template>
-                </f7-segmented>
-            </f7-card-footer> -->
     </f7-card>
     </f7-swiper-slide>
     
@@ -69,7 +47,7 @@ export default {
     mounted() {
         var self = this;
         var headers = api.headers(sessionStorage.getItem('session_id'));
-        headers['X-Oc-Image-Dimension'] = "400x400";
+        headers['X-Oc-Image-Dimension'] = "227x237";
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.getProductById.replace("{id}", this.product_id),

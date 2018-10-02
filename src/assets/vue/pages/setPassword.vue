@@ -1,5 +1,5 @@
 <template>
-<f7-page id="resetPass" no-tabbar no-navbar tabs :page-content="false">
+<f7-page id="resetPass" no-tabbar>
     <f7-navbar :class="this.$theme.md ? 'color-black' : ''">
         <f7-nav-left>
             <f7-link class="back" icon-only>
@@ -56,11 +56,10 @@ export default {
             url: api.baseUrl + api.urls.reset.replace("{code}",self.$f7route.query.code),
             headers: api.headers(sessionStorage.getItem('session_id')),
         }).then(function (response) {
-            if (response.status == 200 && response.data.data.email) {
+            if (response.data.data.email) {
                 self.email = response.data.data.email
             }
             self.$f7.preloader.hide();
-            self.$f7router.back()
         }).catch(function (error) {
             var t = self.$f7.toast.create({
                 text: error.response.data.error,
@@ -72,7 +71,7 @@ export default {
             t.open();
             navigator.vibrate([80, 80, 80])
             self.$f7.preloader.hide();
-            self.$f7router.navigate("/",{reloadCurrent:true})
+            self.$f7router.navigate("/404",{reloadCurrent:true})
         });
     },
     methods: {

@@ -9,7 +9,7 @@
             <img :src="logo" class="logo" />
         </f7-nav-title>
             <f7-nav-right>
-                <f7-link icon-only >
+                <f7-link icon-only>
                 </f7-link>
             </f7-nav-right>
             <f7-subnavbar :inner="false">
@@ -36,85 +36,74 @@
 
     <f7-tabs>
         <f7-page-content tab tab-active id="hometab">
-            <template v-for="row in homePageContent">
-                <template v-for="row2 in row['value']">
-                    {{/*this.console.log(row2)*/}}
-                    <template v-if="row2['_link'] == 'Sliders'">
-                        <f7-row>
-                            <f7-col :width="row2.width">
-                                <f7-swiper v-if="row2.image.length" pagination :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:true}">
-                                    <f7-swiper-slide class="image-slider" v-for="i in row2.image" :key="row.id">
-                                        <span v-if="i.value['txt' + currentLanguageId]" class="slider-title">{{ i.value['txt' + currentLanguageId] }}</span>
-                                        <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="slider lazy swiper-lazy">
+            <div class="list virtual-list media-list homeContentList no-margin">
+                <li v-for="(row, index) in vlData.items" :key="index" media-item :style="`top: ${vlData.topPosition}px`">
+                    <template v-for="row2 in row['value']">
+                        <template v-if="row2['_link'] == 'Sliders'">
+                            <f7-row>
+                                <f7-col :width="row2.width">
+                                    <f7-swiper v-if="row2.image.length" pagination :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:true}">
+                                        <f7-swiper-slide class="image-slider" v-for="i in row2.image" :key="row.id">
+                                            <span v-if="i.value['txt' + currentLanguageId]" class="slider-title">{{ i.value['txt' + currentLanguageId] }}</span>
+                                            <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="slider lazy swiper-lazy">
+                                            <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                        </f7-swiper-slide>
+                                    </f7-swiper>
+                                </f7-col>
+                            </f7-row>
+                        </template>
+
+                        <template v-if="row2['_link'] == 'Banners'">
+                            <f7-block-title v-if="row2.name_as_heading && row2.show_name">{{row2.name[currentLanguageId]}}</f7-block-title>
+                            <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
+                                <f7-row :class="row2['full_width'] ? row2['full_width'] : ''">
+                                    <f7-col :width="row2['width']">
+                                        <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
+                                        <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
+                                </f7-col>
+                                </f7-row>
+                            </f7-block>
+                        </template>
+
+                        <template v-if="row2['_link'] == 'CarouselBanner'">
+                            <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
+                                <f7-swiper class="pagination-below" :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                                    <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
+                                        <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
+                                        <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
                                         <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
                                     </f7-swiper-slide>
                                 </f7-swiper>
-                            </f7-col>
-                        </f7-row>
-                    </template>
-
-                    <template v-if="row2['_link'] == 'Banners'">
-                        <f7-block-title v-if="row2.name_as_heading && row2.show_name">{{row2.name[currentLanguageId]}}</f7-block-title>
-                        <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
-                            <f7-row :class="row2['full_width'] ? row2['full_width'] : ''">
-                                <f7-col :width="row2['width']">
-                                    <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
-                                    <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
-                                </f7-col>
-                            </f7-row>
-                        </f7-block>
-                    </template>
-
-                    <template v-if="row2['_link'] == 'CarouselBanner'">
-                        <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
-                            <f7-swiper class="pagination-below" :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
-                                <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
-                                    <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
-                                    <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
-                                </f7-swiper-slide>
-                            </f7-swiper>
-                        </f7-block>
-                    </template>
-
-                    <template v-if="row2['_link'] == 'CarouselProducts'">
-                        <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
-                        <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
-                            <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
-                                <template v-for="id in row2.product_id">
-                                    <product-card :product_id="id.value">
-                                    </product-card>
-                                </template>
-                            </f7-swiper>
-                        </f7-block>
-                    </template>
-
-                    <template v-if="row2['_link'] == 'CarouselCategory'">
-                        <template v-for="cat in row2['category_id']">
-                            <f7-block-title v-if="cat.value['txt' + currentLanguageId]">{{cat.value['txt' + currentLanguageId]}}<span class="pull-right"><f7-link class="color-blue" :href="cat.value.link">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
-                            <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
-                                <category-carousel :category_id="cat.value.id"></category-carousel>
                             </f7-block>
                         </template>
-                    </template>
 
-                    <template v-if="row2['_link'] == 'CustomHTML'">
-                        <div v-html="row2.html[currentLanguageId]"></div>
-                    </template>
-                </template>
-            </template>
-
-            <template v-if="recentView.length > 0">
-                <f7-block-title>{{$t('home.recentView.title')}}</f7-block-title>
-                <f7-block style="padding : 0" class="carouselHomePage">
-                    <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
-                        <template v-for="id in recentView">
-                            <product-card :product_id="id">
-                            </product-card>
+                        <template v-if="row2['_link'] == 'CarouselProducts'">
+                            <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
+                            <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
+                                <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
+                                    <template v-for="id in row2.product_id">
+                                        <product-card :product_id="id.value">
+                                        </product-card>
+                                    </template>
+                                </f7-swiper>
+                            </f7-block>
                         </template>
-                    </f7-swiper>
-                </f7-block>
-            </template>
+
+                        <template v-if="row2['_link'] == 'CarouselCategory'">
+                            <template v-for="cat in row2['category_id']">
+                                <f7-block-title v-if="cat.value['txt' + currentLanguageId]">{{cat.value['txt' + currentLanguageId]}}<span class="pull-right"><f7-link class="color-blue" :href="cat.value.link">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
+                                <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
+                                    <category-carousel :category_id="cat.value.id"></category-carousel>
+                                </f7-block>
+                            </template>
+                        </template>
+
+                        <template v-if="row2['_link'] == 'CustomHTML'">
+                            <div v-html="row2.html[currentLanguageId]"></div>
+                        </template>
+                    </template>
+                </li>
+            </div>
 
         </f7-page-content>
 
@@ -311,7 +300,7 @@ import CategoryCarousel from "../CustomComponents/CategoryCarousel.vue"
 import Swiper from "framework7/dist/components/swiper/swiper-class/swiper.js";
 
 import store from "src/assets/vuex/store.js";
-import cms_config from "cms.js";
+import cms from "cms.js";
 import api from "api.js";
 import {
     log
@@ -339,9 +328,34 @@ export default {
             swipeoutSide: localStorage.getItem("language_id") == 1 ? "right" : "left",
             push: localStorage.getItem("push") == "false" ? false : true,
             homeProducts: [],
+            vlData: {},
             theme: this.$theme,
             recentView: localStorage.getItem("recentView") == null ? [] : JSON.parse(localStorage.getItem("recentView").split(","))
         };
+    },
+    created() {
+        self = this;
+        self.homeProducts[0] = "0";
+
+        axios.get(cms.baseUrl + cms.getReigion('home') + cms.tokenVar).then(function (response) {
+            var virtualList = self.$f7.virtualList.create({
+                // List Element
+                el: '.homeContentList',
+                createUl: false,
+                height: function(item){
+                    //alert(item);
+                    return 80;
+                },
+                // Pass array with items
+                items: response.data.item,
+                rowsAfter: 50,
+                rowsBefore: 50,
+                dynamicHeightBufferSize: 2,
+                // List item Template7 template
+                renderExternal: self.renderExternal,
+            });
+        });
+
     },
     mounted: function () {
         self = this;
@@ -400,8 +414,6 @@ export default {
         setInterval(function () {
             store.dispatch("fetchCart");
         }, 300000);
-
-        console.log(self);
 
         self.Dom7(".carouselHomePage").removeClass("block");
 
@@ -505,6 +517,9 @@ export default {
         }
     },
     methods: {
+        renderExternal(vl, vlData) {
+            this.vlData = vlData;
+        },
         getAfter(id) {
             //return "<i onClick='" + 'self.$f7.swipeoutOpen(self.Dom7("#' + id + ' .swipeout"), '+ this.swipeoutSide +")" + "' class='f7-icons'>more</i>"
             return (
@@ -622,27 +637,27 @@ export default {
                 self.$t("cart.item.update.quantity.msg"),
                 self.$t("cart.item.update.quantity.title"),
                 function (value) {
-                    if (value > 0){
-                    self.$f7.preloader.show();
-                    axios({
-                        method: "PUT",
-                        url: api.baseUrl + api.urls.cart,
-                        headers: api.headers(sessionStorage.getItem("session_id")),
-                        data: {
-                            key: product_key,
-                            quantity: value
-                        }
-                    }).then(function (response) {
-                        store.dispatch("fetchCart");
-                    });
-                    setTimeout(function () {
-                        self.$f7.preloader.hide();
-                    }, 3000);
-                    self.$f7.swipeout.close(
-                        self.Dom7("li.swipeout-opened"),
-                        function () {}
-                    );
-                }
+                    if (value > 0) {
+                        self.$f7.preloader.show();
+                        axios({
+                            method: "PUT",
+                            url: api.baseUrl + api.urls.cart,
+                            headers: api.headers(sessionStorage.getItem("session_id")),
+                            data: {
+                                key: product_key,
+                                quantity: value
+                            }
+                        }).then(function (response) {
+                            store.dispatch("fetchCart");
+                        });
+                        setTimeout(function () {
+                            self.$f7.preloader.hide();
+                        }, 3000);
+                        self.$f7.swipeout.close(
+                            self.Dom7("li.swipeout-opened"),
+                            function () {}
+                        );
+                    }
                 }
             );
         },
@@ -864,11 +879,25 @@ export default {
             this.$f7router.navigate(link);
         },
         rate() {
-            if (LaunchReview.isRatingSupported()) {
+            let appId, platform = device.platform.toLowerCase();
+            switch (platform) {
+                case "ios":
+                    appId = "1375500175";
+                    break;
+                case "android":
+                    appId = "com.mercatovip.app";
+                    break;
+            }
+            /*if (LaunchReview.isRatingSupported()) {
                 LaunchReview.rating();
             } else {
                 LaunchReview.launch();
-            }
+            }*/
+            LaunchReview.launch(function () {
+                console.log("Successfully launched store app");
+            }, function (err) {
+                console.log("Error launching store app: " + err);
+            }, appId);
         },
         shareapp() {
             window.plugins.socialsharing.share(this.$t('share.app.msg'), this.$t('share.app.title'), /*this.$t('share.app.image')*/ null, this.$t('share.app.link'))

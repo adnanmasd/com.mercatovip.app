@@ -69,7 +69,7 @@ export default {
     mounted() {
         var self = this;
         var headers = api.headers(sessionStorage.getItem('session_id'));
-        headers['X-Oc-Image-Dimension'] = "400x400";
+        headers['X-Oc-Image-Dimension'] = "227x237";
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.getProductsByCategoryFilterPageLimit.replace("{id}", this.category_id).replace("{limit}", 15).replace("{page}", 1),
