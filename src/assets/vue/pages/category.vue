@@ -158,7 +158,7 @@
             <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item" :style="`top: ${vlData.topPosition}px`">
                 <a :href="'/product?product_id=' + row.id" class="item-link item-content">
                     <div class="item-media">
-                        <div @click='navigate("/product?product_id=" + row.id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
+                        <div><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
                                     class="tag out-of-stock-tag">{{row.stock_status}}</span></div></div>
                     <div class="item-inner">
                         <div class="item-title-row">
