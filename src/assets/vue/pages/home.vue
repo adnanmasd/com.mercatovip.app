@@ -342,15 +342,18 @@ export default {
                 // List Element
                 el: '.homeContentList',
                 createUl: false,
-                height: function(item){
-                    //alert(item);
-                    return 80;
+                height: function (item) {
+                    var h = 80; 
+                    for(var i=0; i<item.value.length ; i++){
+                        h = item.value[i].height ? item.value[i].height : h;
+                    }
+                    return h;
                 },
                 // Pass array with items
                 items: response.data.item,
-                rowsAfter: 50,
-                rowsBefore: 50,
-                dynamicHeightBufferSize: 2,
+                rowsAfter: 100,
+                rowsBefore: 100,
+                dynamicHeightBufferSize: 3,
                 // List item Template7 template
                 renderExternal: self.renderExternal,
             });

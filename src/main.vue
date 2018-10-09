@@ -15,7 +15,7 @@
         <f7-view url="/panel-right/" links-view=".view-main" />
     </f7-panel>
 
-    <f7-view url="/" :main="true" id="main-view" class="ios-edges" :pushState="false" :stackPages="true">
+    <f7-view url="/" :main="true" id="main-view" class="ios-edges">
 
     </f7-view>
 
