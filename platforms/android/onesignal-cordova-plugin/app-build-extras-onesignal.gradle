@@ -60,3 +60,6 @@ configurations.all { resolutionStrategy {
         details.useVersion(resolveVersion(versionOverride))
     }
 }}
+
+
+

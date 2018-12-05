@@ -89,11 +89,11 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.0.15',
+    version : '2.0.16',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,
-      fastClicks : false
+      fastClicks : true
     },
     statusbar: {
       iosOverlaysWebview: true,

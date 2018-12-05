@@ -22,7 +22,10 @@
     },
     "is_top_level": true,
     "variables": {
-      "URL_SCHEME": "mercatovip"
+      "URL_SCHEME": "mercatovip",
+      "ANDROID_SCHEME": " ",
+      "ANDROID_HOST": " ",
+      "ANDROID_PATHPREFIX": "/"
     }
   },
   "cordova-plugin-inappbrowser": {
@@ -68,7 +71,7 @@
   "onesignal-cordova-plugin": {
     "source": {
       "type": "registry",
-      "id": "onesignal-cordova-plugin@^2.3.3"
+      "id": "onesignal-cordova-plugin@^2.4.4"
     },
     "is_top_level": true,
     "variables": {}
@@ -113,10 +116,34 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-firebase": {
+  "cordova-plugin-cocoapod-support": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-firebase@^1.0.4"
+      "id": "cordova-plugin-cocoapod-support"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@^1.7.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-swift-support"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "kommunicate-cordova-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git"
     },
     "is_top_level": true,
     "variables": {}

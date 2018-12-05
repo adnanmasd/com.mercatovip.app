@@ -9,7 +9,8 @@
             <img :src="logo" class="logo" />
         </f7-nav-title>
             <f7-nav-right>
-                <f7-link icon-only>
+                <f7-link icon-only href="/tag?tag_name=face-makeup" icon="fa fa-comments-o">
+                    <!-- @click="openChatWindow()" -->
                 </f7-link>
             </f7-nav-right>
             <f7-subnavbar :inner="false">
@@ -37,72 +38,74 @@
     <f7-tabs>
         <f7-page-content tab tab-active id="hometab">
             <div class="list virtual-list media-list homeContentList no-margin">
-                <li v-for="(row, index) in vlData.items" :key="index" media-item :style="`top: ${vlData.topPosition}px`">
-                    <template v-for="row2 in row['value']">
-                        <template v-if="row2['_link'] == 'Sliders'">
-                            <f7-row>
-                                <f7-col :width="row2.width">
-                                    <f7-swiper v-if="row2.image.length" pagination :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:true}">
-                                        <f7-swiper-slide class="image-slider" v-for="i in row2.image" :key="row.id">
-                                            <span v-if="i.value['txt' + currentLanguageId]" class="slider-title">{{ i.value['txt' + currentLanguageId] }}</span>
-                                            <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="slider lazy swiper-lazy">
+                <ul>
+                    <li v-for="(row, index) in vlData.items" :key="index" media-item :style="`top: ${vlData.topPosition}px`">
+                        <template v-for="row2 in row['value']">
+                            <template v-if="row2['_link'] == 'Sliders'">
+                                <f7-row>
+                                    <f7-col :width="row2.width">
+                                        <f7-swiper v-if="row2.image.length" pagination :params="{preloadImages: true,spaceBetween: 10,loop:true,centeredSlides:true,autoplay:true}">
+                                            <f7-swiper-slide class="image-slider" v-for="i in row2.image" :key="row.id">
+                                                <span v-if="i.value['txt' + currentLanguageId]" class="slider-title">{{ i.value['txt' + currentLanguageId] }}</span>
+                                                <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="slider lazy swiper-lazy">
+                                                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                            </f7-swiper-slide>
+                                        </f7-swiper>
+                                    </f7-col>
+                                </f7-row>
+                            </template>
+
+                            <template v-if="row2['_link'] == 'Banners'">
+                                <f7-block-title v-if="row2.name_as_heading && row2.show_name">{{row2.name[currentLanguageId]}}</f7-block-title>
+                                <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
+                                    <f7-row :class="row2['full_width'] ? row2['full_width'] : ''">
+                                        <f7-col :width="row2['width']">
+                                            <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
+                                            <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
+                                </f7-col>
+                                    </f7-row>
+                                </f7-block>
+                            </template>
+
+                            <template v-if="row2['_link'] == 'CarouselBanner'">
+                                <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
+                                    <f7-swiper :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                                        <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
+                                            <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
+                                            <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
                                             <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
                                         </f7-swiper-slide>
                                     </f7-swiper>
-                                </f7-col>
-                            </f7-row>
-                        </template>
-
-                        <template v-if="row2['_link'] == 'Banners'">
-                            <f7-block-title v-if="row2.name_as_heading && row2.show_name">{{row2.name[currentLanguageId]}}</f7-block-title>
-                            <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
-                                <f7-row :class="row2['full_width'] ? row2['full_width'] : ''">
-                                    <f7-col :width="row2['width']">
-                                        <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
-                                        <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
-                                </f7-col>
-                                </f7-row>
-                            </f7-block>
-                        </template>
-
-                        <template v-if="row2['_link'] == 'CarouselBanner'">
-                            <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
-                                <f7-swiper class="pagination-below" :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
-                                    <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
-                                        <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
-                                        <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
-                                        <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
-                                    </f7-swiper-slide>
-                                </f7-swiper>
-                            </f7-block>
-                        </template>
-
-                        <template v-if="row2['_link'] == 'CarouselProducts'">
-                            <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
-                            <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
-                                <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
-                                    <template v-for="id in row2.product_id">
-                                        <product-card :product_id="id.value">
-                                        </product-card>
-                                    </template>
-                                </f7-swiper>
-                            </f7-block>
-                        </template>
-
-                        <template v-if="row2['_link'] == 'CarouselCategory'">
-                            <template v-for="cat in row2['category_id']">
-                                <f7-block-title v-if="cat.value['txt' + currentLanguageId]">{{cat.value['txt' + currentLanguageId]}}<span class="pull-right"><f7-link class="color-blue" :href="cat.value.link">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
-                                <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
-                                    <category-carousel :category_id="cat.value.id"></category-carousel>
                                 </f7-block>
                             </template>
-                        </template>
 
-                        <template v-if="row2['_link'] == 'CustomHTML'">
-                            <div v-html="row2.html[currentLanguageId]"></div>
+                            <template v-if="row2['_link'] == 'CarouselProducts'">
+                                <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
+                                <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
+                                    <f7-swiper :params="{preloadImages: false,slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true,lazy: {loadPrevNext: true,loadPrevNextAmount: 3}}">
+                                        <template v-for="id in row2.product_id">
+                                            <product-card :product_id="id.value">
+                                            </product-card>
+                                        </template>
+                                    </f7-swiper>
+                                </f7-block>
+                            </template>
+
+                            <template v-if="row2['_link'] == 'CarouselCategory'">
+                                <template v-for="cat in row2['category_id']">
+                                    <f7-block-title v-if="cat.value['txt' + currentLanguageId]">{{cat.value['txt' + currentLanguageId]}}<span class="pull-right"><f7-link class="color-blue" :href="cat.value.link">{{$t("home.seeAll")}}</f7-link></span></f7-block-title>
+                                    <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
+                                        <category-carousel :category_id="cat.value.id"></category-carousel>
+                                    </f7-block>
+                                </template>
+                            </template>
+
+                            <template v-if="row2['_link'] == 'CustomHTML'">
+                                <div v-html="row2.html[currentLanguageId]"></div>
+                            </template>
                         </template>
-                    </template>
-                </li>
+                    </li>
+                </ul>
             </div>
 
         </f7-page-content>
@@ -198,7 +201,7 @@
             <f7-block>
                 <h4 v-if="cart.total_product_count > 0" class='text-align-center'>{{$t('confirm.total.title')}} : {{cart.total}}</h4>
                 <f7-button v-if="cart.total_product_count > 0" :disabled="cart_error.length > 0" style="width:100%" href="/checkout/" big raised fill color="green">{{$t('cart.proceed')}}</f7-button>
-                <f7-button v-if="!cart.products" style="width:100%" big raised fill color="green" tab-link="#home">{{$t('cart.continue')}}</f7-button>
+                <f7-button v-if="!cart.products" style="width:100%" big raised fill color="green" class="tab-link" data-tab="#hometab">{{$t('cart.continue')}}</f7-button>
             </f7-block>
         </f7-page-content>
 
@@ -296,6 +299,7 @@ import vuexI18n from "vuex-i18n";
 import axios from "axios";
 import ProductCard from "../CustomComponents/ProductCard.vue"
 import CategoryCarousel from "../CustomComponents/CategoryCarousel.vue"
+import RandomString from "randomString"
 
 import Swiper from "framework7/dist/components/swiper/swiper-class/swiper.js";
 
@@ -343,8 +347,8 @@ export default {
                 el: '.homeContentList',
                 createUl: false,
                 height: function (item) {
-                    var h = 80; 
-                    for(var i=0; i<item.value.length ; i++){
+                    var h = 80;
+                    for (var i = 0; i < item.value.length; i++) {
                         h = item.value[i].height ? item.value[i].height : h;
                     }
                     return h;
@@ -789,7 +793,7 @@ export default {
         },
         getCMSImage(name) {
             if (name.indexOf("http") == -1) {
-                return "http://mercatovip.com/app/" + name;
+                return "https://mercatovip.com/app/" + name;
             } else {
                 return name;
             }
@@ -934,6 +938,46 @@ export default {
             });
             self.$f7.preloader.hide();
         },
+        openChatWindow() {
+            var chatObject = {
+                'appId' : '2G02fGId4z71tZlwW7OGo9mlZrPs2DO1',
+                'groupName' : 'My Support group', 
+                'withPreChat' : true,
+                'isUnique' : true,
+                'agentIds' : ['adnan@mercatovip.com', 'agent2']
+            }
+            kommunicate.startSingleChat(conversationObject, (response) => {
+                console.log("Test Success response : " + response);
+            }, (response) =>{
+                console.log("Test Failure response : " + response);
+            });
+            //this.loginUser(user, userList);
+        },
+        loginUser(user, userList) {
+                kommunicate.isLoggedIn(function (response) {
+                    if (response === "true") {
+                        this.launchChat(userList);
+                    } else {
+                        kommunicate.login(user, (loginResponse) => {
+                            this.launchChat(userList);
+                        }, (loginError) => {
+                            console.log("User login failed : " + JSON.stringify(loginError));
+                        });
+                    }
+                });
+            },
+
+            launchChat(userList) {
+                /*kommunicate.startOrGetConversation(userList, (createResponse) => {
+                    var grpy = {
+                        'clientChannelKey': createResponse,
+                        'takeOrder': true
+                    };
+                    kommunicate.launchParticularConversation(grpy, (launchResponse) => {}, (launchError) => {});
+                }, (createError) => {
+                    console.log("Unable to create chat : " + JSON.stringify(createError));
+                });*/
+            }
     }
 };
 </script>

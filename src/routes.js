@@ -155,6 +155,10 @@ const Routes = [
     component: require('./assets/vue/pages/daily_offers.vue')
   },
   {
+    path: '/tag',
+    component: require('./assets/vue/pages/tag.vue')
+  },
+  {
     path: '/weekly_offers',
     component: require('./assets/vue/pages/weekly_offers.vue')
   },
