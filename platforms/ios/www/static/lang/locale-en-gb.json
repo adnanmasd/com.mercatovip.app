@@ -233,7 +233,7 @@
     "login.notification.welcome" : "Welcome ",
     "login.notification.notLoggedIn" : "You are logged out, please login again",
     "login.notification.title" : "MercatoVIP",
-    "login.notification.welcomeback" : "Welcome back ",
+    "login.notification.welcomeBack" : "Welcome back ",
     "loginRegister.verify.title" : "Please enter the code sent to your mobile number: ",
     "loginRegister.verfiy.verify" : "Confirm",
     "allCategories.title" : "Categories",
@@ -277,6 +277,13 @@
     "forgot.reset.button.text" : "Reset Password",
     "forgot.success.title" : "Success",
     "forgot.success.message" : "We have send you an email for resetting the password.",
-    "loginRegister.forgot.password" : "Forgot?"
+    "loginRegister.forgot.password" : "Forgot?",
+    "404.title" : "404 - Not Found",
+    "404.message" : "Oops, the page you are looking for is not found.",
+    "404.button1.text" : "Go Back",
+    "404.button2.text" : "Go Home",
+    "500.title" : "500 - Server Error",
+    "500.message" : "Oops, there is something wrong on our side. We are fixing it. Please try again later.",
+    "500.button2.text" : "Retry"
   }
   
