@@ -17,6 +17,7 @@ let headers = function(session_id){
 }
 
 export default {
+  "base" : base_url,
   "baseUrl" : base_url + '/api/rest',
   "payment_link" : payment_link,
   "headers" : headers,

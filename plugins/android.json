@@ -16,6 +16,9 @@
     "cordova-launch-review": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "mercatovip",
       "ANDROID_SCHEME": " ",
@@ -24,9 +27,6 @@
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.mercatovip.app"
-    },
-    "cordova-plugin-firebase": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-inappbrowser": {
@@ -50,11 +50,20 @@
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
+    "kommunicate-cordova-plugin": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-cocoapod-support": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
+    "cordova-plugin-swift-support": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "es6-promise-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }

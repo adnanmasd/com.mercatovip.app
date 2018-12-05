@@ -9,23 +9,23 @@
 
     function pushOn() {
       window.plugins.OneSignal.setSubscription(true);
-      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+      window.plugins.OneSignal.getPermissionSubscriptionState(function (status) {
         localStorage.setItem('push', status.subscriptionStatus.subscribed)
       });
     }
 
     function pushOff() {
       window.plugins.OneSignal.setSubscription(false);
-      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+      window.plugins.OneSignal.getPermissionSubscriptionState(function (status) {
         localStorage.setItem('push', status.subscriptionStatus.subscribed)
       });
     }
 
     function verifyPhoneNumber(phoneNumber) {
-      window.FirebasePlugin.verifyPhoneNumber(phoneNumber, 120, function(credential) {
+      window.FirebasePlugin.verifyPhoneNumber(phoneNumber, 120, function (credential) {
         console.log(credential);
         localStorage.setItem("OTP", credential);
-      }, function(error) {
+      }, function (error) {
         var not = window.app.f7.notification.create({
           text: error,
           closeTimeout: 5000,
@@ -96,52 +96,57 @@
       let orginial_params = eurl.split("?")
       let url = orginial_params[0].split("/")
       let $$ = window.Dom7;
-      window.app.f7.request({
-        method: 'GET',
-        dataType: 'json',
-        headers: {
-          "X-Oc-Merchant-Id": "4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
-          "X-Oc-Merchant-Language": localStorage.getItem('language_code'),
-          "X-Oc-Session": localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        url: "https://mercatovip.com/api/rest/seourl/" + url[url.length - 1],
-        success: function(e, status, xhr) {
-          let tg = e.data.query.split('=');
-          let path = "";
-          switch (tg[0]) {
-            case 'product_id':
-              path = "/product?product_id=" + tg[1]
-              break;
-            case 'category_id':
-              path = "/category?category_id=" + tg[1]
-              break;
-            case 'manufacturer_id':
-              path = "/manufacturer?manufacturer_id=" + tg[1]
-              break;
-            case 'information_id':
-              path = "/information?information_id=" + tg[1]
-              break;
-            case 'route': 
-              switch (tg[1]) {
-                case 'account/reset' :
-                  path = "/setPassword?" + orginial_params[1]
-                  break;
-                default:
-                 path=null;
-              }
-              break
-            default:
-              path = null
+
+      if (url[0] === "t" && url.length == '2') {
+        window.app.f7.router.navigate("tag?t=" + $url[1])
+      } else {
+        window.app.f7.request({
+          method: 'GET',
+          dataType: 'json',
+          headers: {
+            "X-Oc-Merchant-Id": "4RsyLcNY41FH1WGWWlxCLow8GVFrWZIR",
+            "X-Oc-Merchant-Language": localStorage.getItem('language_code'),
+            "X-Oc-Session": localStorage.getItem('session_id') ? localStorage.getItem('session_id') : '',
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          url: "https://mercatovip.com/api/rest/seourl/" + url[url.length - 1],
+          success: function (e, status, xhr) {
+            let tg = e.data.query.split('=');
+            let path = "";
+            switch (tg[0]) {
+              case 'product_id':
+                path = "/product?product_id=" + tg[1]
+                break;
+              case 'category_id':
+                path = "/category?category_id=" + tg[1]
+                break;
+              case 'manufacturer_id':
+                path = "/manufacturer?manufacturer_id=" + tg[1]
+                break;
+              case 'information_id':
+                path = "/information?information_id=" + tg[1]
+                break;
+              case 'route':
+                switch (tg[1]) {
+                  case 'account/reset':
+                    path = "/setPassword?" + orginial_params[1]
+                    break;
+                  default:
+                    path = null;
+                }
+                break
+              default:
+                path = null
+            }
+            if (path !== null)
+              window.app.f7.router.navigate(path)
+          },
+          error: function (e, staus, xhr) {
+            console.log(e);
           }
-          if (path !== null)
-            window.app.f7.router.navigate(path)
-        },
-        error: function(e, staus, xhr) {
-          console.log(e);
-        }
-      })
+        })
+      }
     }
 
     function onBackKeyDown(e) {
@@ -151,7 +156,7 @@
       if (new Date().getTime() - window.lastTimeBackPress < window.timePeriodToExit) {
         navigator.app.exitApp();
       }
-      else if($$('.preloader-modal').length == 0) {
+      else if ($$('.preloader-modal').length == 0) {
         if ($$('.modal-in').length > 0) {
           window.app.f7.popup.close();
           return false;
@@ -176,7 +181,7 @@
       }
     };
 
-    document.addEventListener('deviceready', function(evt) {
+    document.addEventListener('deviceready', function (evt) {
       //console.log(window.$theme);
       window.backButton = 0;
       window.lastTimeBackPress = 0;
@@ -195,14 +200,14 @@
         localStorage.setItem("connection", "true");
       }
       universalLinks.subscribe('openurl', window.didLaunchAppFromLink);
-      var notificationOpenedCallback = function(jsonData) {
+      var notificationOpenedCallback = function (jsonData) {
         //save_notification(jsonData);
         if (jsonData.payload.additionalData.path !== "") {
           window.app.f7.router.navigate(jsonData.payload.additionalData.path)
         }
         //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       };
-      var notificationRecievedCallback = function(jsonData) {
+      var notificationRecievedCallback = function (jsonData) {
         save_notification(jsonData);
         if (jsonData.isAppInFocus) {
           var not = window.app.f7.notification.create({
@@ -213,7 +218,7 @@
             closeOnClick: true,
             closeTimeout: 5000,
             on: {
-              close: function() {
+              close: function () {
                 if (jsonData.payload.additionalData.path !== "") {
                   window.app.f7.router.navigate(jsonData.payload.additionalData.path)
                 }
@@ -234,7 +239,7 @@
         .iOSSettings(iosSettings)
         .endInit();
 
-      window.plugins.OneSignal.getPermissionSubscriptionState(function(status) {
+      window.plugins.OneSignal.getPermissionSubscriptionState(function (status) {
         localStorage.setItem('push', status.subscriptionStatus.subscribed)
       });
 
@@ -242,7 +247,7 @@
 
     document.addEventListener("offline", function onOffline() {
       localStorage.setItem("connection", "false");
-      window.app.f7.dialog.alert("No Internet Connection!", "Warning", function() {
+      window.app.f7.dialog.alert("No Internet Connection!", "Warning", function () {
         location.reload();
       });
     }, false);
@@ -252,4 +257,4 @@
         localStorage.setItem("connection", "true");
         location.reload();
       }
-    }, false);</script><script src=aacecbc8307e81982b44.main.js></script></body></html>
+    }, false);</script><script src=2832f39a6cf19ccd1e6b.main.js></script></body></html>

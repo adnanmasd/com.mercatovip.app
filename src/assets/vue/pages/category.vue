@@ -21,7 +21,7 @@
 
         </f7-subnavbar>
     </f7-navbar>
-    <f7-popup id="filter" v-if="categoryProducts.length > 0" style="overflow-y:auto">
+    <f7-popup id="filter" style="overflow-y:auto">
         <f7-navbar :sliding="false" :class="this.$theme.md ? 'color-black' : ''">
             <f7-nav-left>
                 <f7-link popup-close icon-only>
@@ -37,6 +37,9 @@
                 </f7-link>
             </f7-nav-right>
         </f7-navbar>
+        <f7-block v-if="filterAttributes.length > 0 || filterOptions.length > 0 || filterManufacturer.length > 0">
+            <f7-chip :text="$t('category.filter.removeAll')" media-bg-color="black" deleteable @delete="onChipDelete"></f7-chip>
+        </f7-block>
         <f7-list id="filter" style="margin-top:0">
             <f7-list-item v-if="filterData.price" :title="$t('category.filter.price.title')" group-title></f7-list-item>
             <f7-list-item>
@@ -148,10 +151,6 @@
         </f7-list>
     </f7-block>
 
-    <f7-block v-if="filterAttributes.length > 0 || filterOptions.length > 0 || filterManufacturer.length > 0">
-        <f7-chip :text="$t('category.filter.removeAll')" media-bg-color="black" deleteable @delete="onChipDelete"></f7-chip>
-    </f7-block>
-
     <!-- Search-through list -->
     <div :class="'list virtual-list media-list categoryContentList-' + category_id + ' no-margin'">
         <ul>
@@ -244,7 +243,7 @@ export default {
             theme: this.$theme,
             vlData: {},
             allContent: [],
-            category_id : []
+            category_id: []
         }
     },
     computed: {
@@ -347,10 +346,10 @@ export default {
             this.vlData = vlData;
         },
         display_mode(type, key) {
-            if (this.filterData.settings.length > 0) {
-                return (this.filterData.settings[type][key] == 'off')
+            if (this.filterData.settings.length == 0) {
+                return false;                
             } else {
-                return false;
+                return (this.filterData.settings[type][key] == 'off')
             }
         },
         onRangeChange(e) {
@@ -536,13 +535,12 @@ export default {
                         self.$f7.preloader.hide();
                     }
                     if (response.status !== 202 && response.data.data.products && response.data.data.products.length > 0) {
-                        if (onFilter == false && page <= 1) {
-
+                        if (page <= 1) {
                             self.virtualList.replaceAllItems(response.data.data.products);
                             //self.categoryProducts = response.data.data.products
                         } else {
-                            if (response.data.data.products.length > 0){
-                            self.virtualList.appendItems(response.data.data.products);
+                            if (response.data.data.products.length > 0) {
+                                self.virtualList.appendItems(response.data.data.products);
                             }
                             // for (var i = 0; i < response.data.data.products.length; i++) {
                             //     self.categoryProducts.push(response.data.data.products[i])
