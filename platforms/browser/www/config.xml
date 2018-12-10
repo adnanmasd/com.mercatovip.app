@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-packageName="com.mercatovip.app" id="com.mercatovip.app" version="2.0.16" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <hook src="hooks/hookers.js" type="before_prepare" />
+    <hook src="hooks/beforedep.js" type="before_deploy" />
+    <hook src="hooks/msg_icon.js" type="before_prepare" />
+    <name>MercatoVIP</name>
+    <description>
+        Update project!
+    </description>
+    <author email="adnan@mercatovip.com" href="http://mercatovip.com">
+        Adnan Masood
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <universal-links>
+        <ios-team-id value="G5BV79CWFQ" />
+        <host name="mercatovip.com" scheme="https">
+            <path event="payconfirm" url="/pay/confirm" />
+            <path event="payfail" url="/pay/fail" />
+            <path event="openurl" url="*" />
+        </host>
+        <host name="mercatovip.com" scheme="http">
+            <path event="openurl" url="*" />
+        </host>
+    </universal-links>
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="AndroidLaunchMode" value="singleInstance" />
+    <preference name="orientation" value="portrait" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+</widget>

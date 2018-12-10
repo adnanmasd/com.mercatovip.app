@@ -116,36 +116,28 @@
     "is_top_level": true,
     "variables": {}
   },
+  "kommunicate-cordova-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "kommunicate-cordova-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@1.7.2"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
   "cordova-plugin-cocoapod-support": {
     "source": {
       "type": "registry",
       "id": "cordova-plugin-cocoapod-support"
     },
     "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-add-swift-support": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-add-swift-support@^1.7.2"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-swift-support": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-swift-support"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "kommunicate-cordova-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git"
-    },
-    "is_top_level": true,
     "variables": {}
   }
 }

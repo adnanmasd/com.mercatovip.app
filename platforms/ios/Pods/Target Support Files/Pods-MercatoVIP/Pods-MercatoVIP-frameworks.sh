@@ -141,6 +141,23 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Applozic/Applozic.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ApplozicSwift/ApplozicSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kommunicate/Kommunicate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Applozic/Applozic.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ApplozicSwift/ApplozicSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kommunicate/Kommunicate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi
