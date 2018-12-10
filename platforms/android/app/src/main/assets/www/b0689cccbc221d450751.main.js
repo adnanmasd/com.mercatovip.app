@@ -96227,8 +96227,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })]), _vm._v(" "), _c('f7-nav-right', [_c('f7-link', {
     attrs: {
       "icon-only": "",
-      "href": "/tag?tag_name=face-makeup",
       "icon": "fa fa-comments-o"
+    },
+    on: {
+      "click": function($event) {
+        _vm.openChatWindow()
+      }
     }
   })], 1), _vm._v(" "), _c('f7-subnavbar', {
     attrs: {

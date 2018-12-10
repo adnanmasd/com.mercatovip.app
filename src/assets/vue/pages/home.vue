@@ -9,8 +9,8 @@
             <img :src="logo" class="logo" />
         </f7-nav-title>
             <f7-nav-right>
-                <f7-link icon-only href="/tag?tag_name=face-makeup" icon="fa fa-comments-o">
-                    <!-- @click="openChatWindow()" -->
+                <f7-link icon-only @click="openChatWindow()"  icon="fa fa-comments-o">
+                    <!-- href="/tag?tag_name=face-makeup" -->
                 </f7-link>
             </f7-nav-right>
             <f7-subnavbar :inner="false">
