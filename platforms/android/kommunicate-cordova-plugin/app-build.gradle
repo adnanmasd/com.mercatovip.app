@@ -1,3 +1,0 @@
-dependencies {
-	compile 'io.kommunicate:kommunicate:1.6.3'
-}

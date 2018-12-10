@@ -107,7 +107,7 @@
     <plugin name="cordova-ios-export-compliance" spec="~1.0.2" />
     <plugin name="cordova-ios-plugin-no-export-compliance" spec="~0.0.5" />
     <plugin name="cordova-plugin-device" spec="~2.0.2" />
-    <plugin name="cordova-plugin-add-swift-support" spec="^1.7.2" />
+    <plugin name="kommunicate-cordova-plugin" spec="^0.4.1" />
     <engine name="browser" spec="^5.0.4" />
     <engine name="ios" spec="^4.5.5" />
 </widget>

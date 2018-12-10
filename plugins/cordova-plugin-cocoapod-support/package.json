@@ -1,41 +1,23 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "cordova-plugin-cocoapod-support",
-        "scope": null,
-        "escapedName": "cordova-plugin-cocoapod-support",
-        "name": "cordova-plugin-cocoapod-support",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app"
-    ]
-  ],
-  "_from": "cordova-plugin-cocoapod-support@latest",
+  "_from": "cordova-plugin-cocoapod-support",
   "_id": "cordova-plugin-cocoapod-support@1.6.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha512-nrD+jcEFokPXURoRYaPHemnuvj/eHhLktBlRSb52BGdnaGcYLhXVQYlQat3jyk4zxIAq8gMm/AT1ohfuxYxFdg==",
   "_location": "/cordova-plugin-cocoapod-support",
-  "_nodeVersion": "9.11.1",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cordova-plugin-cocoapod-support_1.6.0_1533823851772_0.2716116322947666"
+  "_phantomChildren": {
+    "glob": "7.1.2",
+    "interpret": "1.1.0",
+    "rechoir": "0.6.2"
   },
-  "_npmUser": {
-    "name": "blakgeek",
-    "email": "blakgeek@gmail.com"
-  },
-  "_npmVersion": "6.1.0",
-  "_phantomChildren": {},
   "_requested": {
+    "type": "tag",
+    "registry": true,
     "raw": "cordova-plugin-cocoapod-support",
-    "scope": null,
-    "escapedName": "cordova-plugin-cocoapod-support",
     "name": "cordova-plugin-cocoapod-support",
+    "escapedName": "cordova-plugin-cocoapod-support",
     "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
@@ -43,12 +25,12 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-cocoapod-support/-/cordova-plugin-cocoapod-support-1.6.0.tgz",
   "_shasum": "cb32a771741411d83f9f83d249ac2eb742bd5f07",
-  "_shrinkwrap": null,
   "_spec": "cordova-plugin-cocoapod-support",
-  "_where": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app",
+  "_where": "/Users/adnan/Documents/GitHub/com.mercatovip.app",
   "bugs": {
     "url": "https://github.com/blakgeek/cordova-plugin-cocoapods-support/issues"
   },
+  "bundleDependencies": false,
   "cordova": {
     "id": "cordova-plugin-cocoapod-support",
     "platforms": [
@@ -62,20 +44,11 @@
     "shelljs": "^0.7.5",
     "xml2js": "^0.4.16"
   },
+  "deprecated": false,
   "description": "A Cordova/PhoneGap plugin to add support for Cocoapod dependencies.",
   "devDependencies": {
     "libxmljs": "^0.18.4"
   },
-  "directories": {},
-  "dist": {
-    "integrity": "sha512-nrD+jcEFokPXURoRYaPHemnuvj/eHhLktBlRSb52BGdnaGcYLhXVQYlQat3jyk4zxIAq8gMm/AT1ohfuxYxFdg==",
-    "shasum": "cb32a771741411d83f9f83d249ac2eb742bd5f07",
-    "tarball": "https://registry.npmjs.org/cordova-plugin-cocoapod-support/-/cordova-plugin-cocoapod-support-1.6.0.tgz",
-    "fileCount": 10,
-    "unpackedSize": 105314,
-    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbbEtsCRA9TVsSAnZWagAA3+EQAJ6cypAycxD873/L5R2r\nFrEGTssTnf68hZOScAL+Uu2Ing1AJyFEZbqykMKRjWfR9tymi71lngcaKirk\nf8x3+6TNT3WMallQ4qQD4ReEknP+yU8G59Br9Ni8FYUxaQOVAYpREohFxlb6\n//dDzBhB+g2TKUtMWz1LdY4f0vWtZAIpELPJSrbWHzZsHqjXN1IocdRxWK8K\nRN5qIsQIoo8WE4mTafU090Fzj6ar4AzxXFD37qb1O647DVLufUglKE6smNNs\nsNoQrhh4szPNVAWEkC1/brdAZOeubLNYQSblx2QwZC7f48WcX3cROh/ueH5q\nf1ql/YJPIYfwyFpOWVycpnBjzrJjXwOX9PwrQ6soyc/HH8bqRvIqkMiJnl6v\nAlKB39n9MGolx+xAJrH61RGh5vjLnE4cgNHsb6nr74hBHSYVqrn50WoKC4CZ\nsc6b3kKjzBW/y/qmkjCEQ7OH0KiKO9dTJBGl/ScoWm1T986EYtyJhAW9wL3m\nHLAX616ATvRR84N2864vo0rrxI9Q0B2HROY3BamwNLP4PGnlPbqzQ+0gVG8f\nHc2VOo9DvUkKPXwJXfBJ07aCTKo/uxWzcqaPaaHJNkItF1tY3TqwNQndnWL5\nN/0z23XogYn8kQDK8Ymw7xfLSr0uSmIUbzLwOJj9EtCvUK0efVb1V/k1s9J3\nwzHm\r\n=glJS\r\n-----END PGP SIGNATURE-----\r\n"
-  },
-  "gitHead": "868ac27a8034d79881253f93751809ace9184fbe",
   "homepage": "https://github.com/blakgeek/cordova-plugin-cocoapods-support",
   "keywords": [
     "ecosystem:cordova",
@@ -87,15 +60,7 @@
     "plugin"
   ],
   "license": "MIT",
-  "maintainers": [
-    {
-      "name": "blakgeek",
-      "email": "blakgeek@gmail.com"
-    }
-  ],
   "name": "cordova-plugin-cocoapod-support",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blakgeek/cordova-plugin-cocoapods-support.git"

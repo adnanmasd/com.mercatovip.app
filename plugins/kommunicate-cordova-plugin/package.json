@@ -1,65 +1,35 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-        "scope": null,
-        "escapedName": null,
-        "name": null,
-        "rawSpec": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-        "spec": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-        "type": "hosted",
-        "hosted": {
-          "type": "github",
-          "ssh": "git@github.com:Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-          "sshUrl": "git+ssh://git@github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-          "httpsUrl": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-          "gitUrl": "git://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-          "shortcut": "github:Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin",
-          "directUrl": "https://raw.githubusercontent.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin/master/package.json"
-        }
-      },
-      "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app"
-    ]
-  ],
-  "_from": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
+  "_from": "kommunicate-cordova-plugin",
   "_id": "kommunicate-cordova-plugin@0.4.1",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha512-Jd/kWaGkuRazJBDKd0X+LbgQAf9a/KsIb6DjgaWO+i8pJbbLqJg8YDhcsEaSdw/93IFbsAhBHTspIfBpsiMjvw==",
   "_location": "/kommunicate-cordova-plugin",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-    "scope": null,
-    "escapedName": null,
-    "name": null,
-    "rawSpec": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-    "spec": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-    "type": "hosted",
-    "hosted": {
-      "type": "github",
-      "ssh": "git@github.com:Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-      "sshUrl": "git+ssh://git@github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-      "httpsUrl": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-      "gitUrl": "git://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-      "shortcut": "github:Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin",
-      "directUrl": "https://raw.githubusercontent.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin/master/package.json"
-    }
+    "type": "tag",
+    "registry": true,
+    "raw": "kommunicate-cordova-plugin",
+    "name": "kommunicate-cordova-plugin",
+    "escapedName": "kommunicate-cordova-plugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git#227af9b0b3a18f7b6185ef97b5a71a77e6659df0",
-  "_shasum": "b404b8393af1789e459989d29f6edabdaa572b93",
-  "_shrinkwrap": null,
-  "_spec": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git",
-  "_where": "D:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app",
+  "_resolved": "https://registry.npmjs.org/kommunicate-cordova-plugin/-/kommunicate-cordova-plugin-0.4.1.tgz",
+  "_shasum": "d1c7e36ec2bbe66e54297d42bef5e726218aa15a",
+  "_spec": "kommunicate-cordova-plugin",
+  "_where": "/Users/adnan/Documents/GitHub/com.mercatovip.app",
   "author": {
     "name": "kommunicate"
   },
   "bugs": {
     "url": "https://issues.apache.org/jira/browse/CB"
   },
+  "bundleDependencies": false,
   "cordova": {
     "id": "kommunicate-cordova-plugin",
     "platforms": [
@@ -76,9 +46,8 @@
       "windows"
     ]
   },
-  "dependencies": {},
+  "deprecated": false,
   "description": "Kommunicate is a customer communication software for growing businesses for building long-lasting customer relationships that drive growth.",
-  "devDependencies": {},
   "engines": {
     "cordovaDependencies": {
       "3.0.0": {
@@ -86,7 +55,6 @@
       }
     }
   },
-  "gitHead": "227af9b0b3a18f7b6185ef97b5a71a77e6659df0",
   "homepage": "https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin#readme",
   "keywords": [
     "cordova",
@@ -106,9 +74,6 @@
   ],
   "license": "Apache-2.0",
   "name": "kommunicate-cordova-plugin",
-  "optionalDependencies": {},
-  "readme": "### Kommunicate Cordova (Ionic/PhoneGap) Chat SDK for Customer Support https://www.kommunicate.io/\r\n\r\nOpen Source Cordova Live Chat SDK for Ionic and PhoneGap apps\r\n\r\n# Overview\r\nKommunicate provides open source live chat sdk in cordova which works with both Ionic and PhoneGap apps. Kommunicate lets you add real time live chat, in-app messaging and bot integration in your mobile applications and website for customer support.\r\n\r\nSignup at [https://dashboard.kommunicate.io/signup](https://dashboard.kommunicate.io/signup?utm_source=github&utm_medium=readme&utm_campaign=cordova) to get the Application ID.\r\n\r\n\r\n# Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin\r\nKommunicate plugin for Ionic/Phonegap/Cordova\r\n\r\n## Installation\r\nYou can add the plugin using the below command:\r\n \r\n`cordova plugin add kommunicate-cordova-plugin`\r\n\r\nFor ionic, use the below command:\r\n\r\n`ionic cordova plugin add kommunicate-cordova-plugin`\r\n\r\n## Authentication\r\n\r\nTo authenticate a user you need to create a user object and then pass it to the `login` function:\r\n\r\n```\r\n    var kmUser = {\r\n        'userId' : this.userId,   //Replace it with the userId of the logged in user\r\n        'password' : this.password,  //Put password here\r\n        'authenticationTypeId' : 1,\r\n        'applicationId' : '22823b4a764f9944ad7913ddb3e43cae1',  //replace \"applozic-sample-app\" with Application Key from     Applozic Dashboard\r\n        'deviceApnsType' : 0    //Set 0 for Development and 1 for Distribution (Release)\r\n    };\r\n```\r\n\r\nThen call the `login` function from the plugin:\r\n\r\n```\r\nkommunicate.login(kmUser, function(response) {\r\n        //login success\r\n    }, function(response) {\r\n       //login failed\r\n    });\r\n  }\r\n```\r\n\r\nYou can check if the user is logged in or not by calling the `isLoggedIn()` function from the plugin:\r\n\r\n```\r\n kommunicate.isLoggedIn((response) => {\r\n      if(response === \"true\"){\r\n        //The user is logged in, you can directly launch the chat here \r\n      }else{\r\n        //User is not logged in, maybe you need to call login function here\r\n      }\r\n    });\r\n```\r\n\r\n## Launching chat screen\r\n\r\nYou can open the chat screen by calling the below function:\r\n\r\n```\r\nkommunicate.launchConversation((response) => {\r\n          //conversation launched successfully\r\n        }, (response) => {\r\n         //conversation launch failed\r\n        });\r\n```\r\n\r\n## Launching individual chat thread\r\n\r\nYou can open an individual chat thread by calling the below function and passing the `groupId`:\r\n\r\n```\r\nlet convObj = {\r\n        'clientChannelKey' : groupId, //pass the groupId here\r\n        'takeOrder' : true //skip chat list on back press, pass false if you want to show chat list on back press\r\n      };\r\n      \r\nkommunicate.launchParticularConversation(convObj, function(response) {\r\n        //Conversation launched successfully\r\n      }, function(response) {\r\n        //Conversation launch failed\r\n      });\r\n```\r\n\r\n## Starting a new Conversation\r\n\r\nYou can start a new conversation by using the below function:\r\n\r\n```\r\n let convInfo = {\r\n      'agentIds':['reytum@live.com'],  //Array of agentIds\r\n      'botIds': ['Hotel-Booking-Assistant'] .  //Array of botIds\r\n     };\r\n     \r\n  kommunicate.startNewConversation(convInfo, (response) => {\r\n      \r\n       console.log(\"Kommunicate create conversation successfull : \" + response);\r\n    },(response) => {\r\n      console.log(\"Kommunicate create conversation failed : \" + response);\r\n    });\r\n ```\r\n## Starting a Unique conversation\r\n\r\nYou can create a unique conversation using the below method. A unique conversation is identified by the list of agentIds and botIds used to create the conversation. If the same set of Ids are passed to the below method, then the already created conversation would be returned instead of creating a new conversation:\r\n\r\n```\r\n      var vary = {\r\n        'agentIds':['reytum@live.com'],\r\n        'botIds' : ['bot1', 'bot2']\r\n       };\r\n\r\n       kommunicate.startOrGetConversation(vary, (response) => {  \r\n         console.log(\"Kommunicate create conversation successfull : \" + response);\r\n      },(response) => {\r\n         console.log(\"Kommunicate create conversation failed : \" + response);\r\n      });\r\n```\r\n## Logging out the user\r\n\r\nYou can logout the user from Kommunicate using the below function:\r\n\r\n```\r\nkommunicate.logout(function(response){\r\n       //logout successfull\r\n    }, function(response){\r\n      //logout failed\r\n    });\r\n```\r\n\r\nFor sample code you can refer to our sample app made in ionic3 https://github.com/Kommunicate-io/Kommunicate-Ionic-Cordova-Sample-App\r\n",
-  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kommunicate-io/Kommunicate-Cordova-Ionic-PhoneGap-Chat-Plugin.git"

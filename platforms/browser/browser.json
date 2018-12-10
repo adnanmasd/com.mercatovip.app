@@ -61,19 +61,16 @@
     "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
+    "cordova-android-firebase-gradle-release": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
     "cordova-plugin-cocoapod-support": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "kommunicate-cordova-plugin": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-android-firebase-gradle-release": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-firebase": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-add-swift-support": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -206,14 +203,6 @@
       "clobbers": [
         "kommunicate"
       ]
-    },
-    {
-      "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
-      "id": "cordova-plugin-firebase.FirebasePlugin",
-      "pluginId": "cordova-plugin-firebase",
-      "clobbers": [
-        "FirebasePlugin"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -231,10 +220,9 @@
     "cordova-plugin-x-socialsharing": "5.3.1",
     "cordova-universal-links-plugin": "1.2.1",
     "onesignal-cordova-plugin": "2.3.3",
-    "cordova-plugin-cocoapod-support": "1.6.0",
-    "kommunicate-cordova-plugin": "0.3.0",
     "cordova-android-firebase-gradle-release": "1.0.3",
-    "cordova-plugin-firebase": "2.0.5",
-    "cordova-plugin-add-swift-support": "1.7.2"
+    "cordova-plugin-add-swift-support": "1.7.2",
+    "cordova-plugin-cocoapod-support": "1.6.0",
+    "kommunicate-cordova-plugin": "0.4.1"
   }
 }

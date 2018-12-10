@@ -1,0 +1,17 @@
+{
+	"pods": {
+		"Kommunicate": {
+			"type": "pod",
+			"name": "Kommunicate",
+			"version": "0.11.0"
+		},
+		"OneSignal": {
+			"type": "podspec",
+			"src": "OneSignal",
+			"spec": "2.8.2"
+		}
+	},
+	"sources": {},
+	"iosMinVersion": "9.0",
+	"useFrameworks": true
+}
