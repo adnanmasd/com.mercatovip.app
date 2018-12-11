@@ -105,14 +105,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
-        "id": "cordova-universal-links-plugin.universalLinks",
-        "pluginId": "cordova-universal-links-plugin",
-        "clobbers": [
-            "universalLinks"
-        ]
-    },
-    {
         "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
         "id": "onesignal-cordova-plugin.OneSignal",
         "pluginId": "onesignal-cordova-plugin",
@@ -144,7 +136,6 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
-    "cordova-universal-links-plugin": "1.2.1",
     "onesignal-cordova-plugin": "2.3.3",
     "cordova-android-firebase-gradle-release": "1.0.3",
     "cordova-plugin-add-swift-support": "1.7.2",

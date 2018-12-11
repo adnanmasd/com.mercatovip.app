@@ -940,13 +940,13 @@ export default {
         },
         openChatWindow() {
             var chatObject = {
-                'appId' : '2G02fGId4z71tZlwW7OGo9mlZrPs2DO1',
+                'appId' : '2ef94a3e4ac8e4b86824fcd1f36c841e9',
                 'groupName' : 'My Support group', 
                 'withPreChat' : true,
                 'isUnique' : true,
-                'agentIds' : ['adnan@mercatovip.com', 'agent2']
+                'agentIds' : ['adnan@mercatovip.com']
             }
-            kommunicate.startSingleChat(conversationObject, (response) => {
+            kommunicate.startSingleChat(chatObject, (response) => {
                 console.log("Test Success response : " + response);
             }, (response) =>{
                 console.log("Test Failure response : " + response);

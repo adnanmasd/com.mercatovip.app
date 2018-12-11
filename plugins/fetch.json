@@ -76,14 +76,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-universal-links-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/flipflopapp/cordova-universal-links-plugin.git"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-vibration": {
     "source": {
       "type": "registry",
@@ -119,7 +111,7 @@
   "kommunicate-cordova-plugin": {
     "source": {
       "type": "registry",
-      "id": "kommunicate-cordova-plugin"
+      "id": "kommunicate-cordova-plugin@^0.4.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -138,6 +130,14 @@
       "id": "cordova-plugin-cocoapod-support"
     },
     "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-deeplinks": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-deeplinks"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }
