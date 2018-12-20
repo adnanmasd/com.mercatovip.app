@@ -520,7 +520,7 @@ export default {
                     headers: productsHeaders,
                     data: {
                         "order": 'DESC',
-                        "sort": 'date_added',
+                        "sort": 'sort_order',
                         "filters": self.filters
                     },
                     transformResponse: function (req) {

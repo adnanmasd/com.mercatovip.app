@@ -74,6 +74,45 @@
         </f7-block>
     </f7-popup>
 
+    <f7-popup id="sizechart" style="overflow-y:auto" v-if="product.sizechart">
+        <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
+            <f7-nav-left>
+                <f7-link popup-close icon-only>
+                    <f7-icon icon="fa fa-times"></f7-icon>
+                </f7-link>
+            </f7-nav-left>
+            <f7-nav-title>
+                {{$t('product.sizechart.title')}}
+            </f7-nav-title>
+            <f7-nav-right>
+                <f7-link icon-only>
+                </f7-link>
+            </f7-nav-right>
+        </f7-navbar>
+        <f7-block>
+            <div class="data-table data-table-init">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="label-cell"></th>
+                            <th v-for="row in product.sizechart.opt_val" class="label-cell">{{row}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(row,i) in product.sizechart.optvaluesize[currentLanguageId].length">
+                            <td class="label-cell">{{product.sizechart.optvaluesize[currentLanguageId][i]}}</td>
+                            <td class="numeric-cell" v-for="row2 in product.sizechart.opt_val">{{product.sizechart.optvalues[i][row2]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </f7-block>
+        <f7-block v-if="product.sizechart.imgchart">
+            <img class="main-image" :src="product.sizechart.imgchart" />
+        </f7-block>
+
+    </f7-popup>
+
 
     <f7-popup id="reviews" v-if="reviews > 0">
         <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
@@ -114,41 +153,23 @@
         </f7-block>
     </f7-popup>
 
-    <div class="swiper-container" id="mainImageSlider">
-        <div class="swiper-wrapper" v-if="imgs.length == 0">
-            <div class="swiper-slide" v-for="num in 1,2">
-                <f7-card class="animated-background product">
-                    <div class="background-masker-product header-top"></div>
-                    <div class="background-masker-product header-left"></div>
-                    <div class="background-masker-product header-right"></div>
-                    <div class="background-masker-product header-bottom"></div>
-                    <!-- <div class="background-masker content-top"></div> -->
-                </f7-card>
-            </div>
-        </div>
-        <div class="swiper-wrapper" v-else>
-            <div class="swiper-slide welcome-slider" v-for="row in imgs" :key="row.id">
-                <img class="main-image" @click="openPhotoBrowser" :src="row" />
-                <span v-if="product.special" class="tag left-tag">{{getDiscount(product.special,product.price)}}%</span>
-                <span v-if="is_new(product.date_added)" class="tag right-tag">NEW</span>
-                <span v-if="!product.quantity" class="tag out-of-stock-tag">{{product.stock_status}}</span>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
+    <div v-if="imgs.length == 0" class='text-align-center '>
+        <f7-preloader></f7-preloader>
     </div>
+    <f7-swiper v-else :params="{slidesPerView: 1,loop: false,
+    lazy: {loadPrevNext: true,loadPrevNextAmount: 3}}">
+        <f7-swiper-slide class="welcome-slider" v-for="row in imgs" :key="row.id">
+            <img class="main-image" @click="openPhotoBrowser" :src="row" />
+                    <span v-if="product.special" class="tag left-tag">{{getDiscount(product.special,product.price)}}%</span>
+                    <span v-if="is_new(product.date_added)" class="tag right-tag">NEW</span>
+                    <span v-if="!product.quantity" class="tag out-of-stock-tag">{{product.stock_status}}</span>
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+        </f7-swiper-slide>
+    </f7-swiper>
 
     <img v-if="!product.seller" src="static/img/mercato-tag.png" class="pull-right" />
-    <template v-if="loading">
-        <div class="animated-background product-name">
-            <div class="background-masker-product-name header-top"></div>
-            <div class="background-masker-product-name header-left"></div>
-            <div class="background-masker-product-name header-right"></div>
-            <div class="background-masker-product-name header-bottom"></div>
-            <div class="background-masker-product-name content-top"></div>
-            <div class="background-masker-product-name content-top2"></div>
-        </div>
-    </template>
-    <template v-else>
+    
+    <template>
         <f7-block-title>{{$t('product.ean.title')}} : {{product.ean}} </f7-block-title>
         <f7-block>
             <f7-row>
@@ -257,6 +278,8 @@
                     <div slot="inner">
                         <f7-link popup-open="#specification" class="read-more pull-right">{{$t('product.readmore')}}</f7-link>
                     </div>
+                </f7-list-item>
+                <f7-list-item v-if="product.sizechart" :title="$t('product.sizechart.title')" class="product-desc" link="#" popup-open="#sizechart">
                 </f7-list-item>
             </f7-list>
         </f7-card-content>
@@ -412,12 +435,12 @@ export default {
                         self.$f7router.navigate("/404",{reloadCurrent  :true})
                 }
             });
-            var swiper2 = new Swiper('#mainImageSlider', {
-                init: true,
-                slidesPerView: 1,
-                loop: false,
-                spaceBetween: 10
-            });
+            // var swiper2 = new Swiper('#mainImageSlider', {
+            //     init: true,
+            //     slidesPerView: 1,
+            //     loop: false,
+            //     spaceBetween: 10
+            // });
         },
         methods: {
             shareProduct(pname, pimage, pid) {
