@@ -9,6 +9,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
+        "id": "cordova-plugin-deeplinks.universalLinks",
+        "pluginId": "cordova-plugin-deeplinks",
+        "clobbers": [
+            "universalLinks"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
         "pluginId": "cordova-plugin-device",
@@ -105,19 +113,19 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
-        "id": "onesignal-cordova-plugin.OneSignal",
-        "pluginId": "onesignal-cordova-plugin",
-        "clobbers": [
-            "OneSignal"
-        ]
-    },
-    {
         "file": "plugins/kommunicate-cordova-plugin/www/kommunicate.js",
         "id": "kommunicate-cordova-plugin.kommunicate",
         "pluginId": "kommunicate-cordova-plugin",
         "clobbers": [
             "kommunicate"
+        ]
+    },
+    {
+        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+        "id": "onesignal-cordova-plugin.OneSignal",
+        "pluginId": "onesignal-cordova-plugin",
+        "clobbers": [
+            "OneSignal"
         ]
     }
 ];
@@ -127,7 +135,10 @@ module.exports.metadata =
     "cordova-ios-export-compliance": "1.0.2",
     "cordova-ios-plugin-no-export-compliance": "0.0.5",
     "cordova-launch-review": "3.1.0",
+    "cordova-plugin-add-swift-support": "1.7.2",
+    "cordova-plugin-cocoapod-support": "1.6.0",
     "cordova-plugin-customurlscheme": "4.3.0",
+    "cordova-plugin-deeplinks": "1.1.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-inappbrowser": "2.0.2",
     "cordova-plugin-network-information": "2.0.1",
@@ -136,11 +147,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
-    "onesignal-cordova-plugin": "2.3.3",
-    "cordova-android-firebase-gradle-release": "1.0.3",
-    "cordova-plugin-add-swift-support": "1.7.2",
-    "cordova-plugin-cocoapod-support": "1.6.0",
-    "kommunicate-cordova-plugin": "0.4.1"
+    "kommunicate-cordova-plugin": "0.4.1",
+    "onesignal-cordova-plugin": "2.4.6"
 }
 // BOTTOM OF METADATA
 });
