@@ -49,6 +49,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <resource-file src="MercatoVIP.entitlements" />
         <icon height="1024" src="res/icons/ios/icon-1024.png" width="1024" />
         <icon height="29" src="res/icons/ios/icon-small.png" width="29" />
         <icon height="58" src="res/icons/ios/icon-small@2x.png" width="58" />
@@ -101,13 +102,11 @@
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.1" />
-    <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
     <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
     <plugin name="cordova-ios-export-compliance" spec="~1.0.2" />
     <plugin name="cordova-ios-plugin-no-export-compliance" spec="~0.0.5" />
     <plugin name="cordova-plugin-device" spec="~2.0.2" />
     <plugin name="kommunicate-cordova-plugin" spec="^0.4.1" />
-    <engine name="browser" spec="^5.0.4" />
     <engine name="ios" spec="^4.5.5" />
-    <engine name="android" spec="^7.1.4" />
+    <engine name="browser" spec="^5.0.4" />
 </widget>

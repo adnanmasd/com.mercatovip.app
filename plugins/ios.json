@@ -20,6 +20,9 @@
       "URL_SCHEME": "mercatovip",
       "PACKAGE_NAME": "com.mercatovip.app"
     },
+    "cordova-plugin-deeplinks": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },

@@ -942,7 +942,7 @@ export default {
             var chatObject = {
                 'appId' : '2ef94a3e4ac8e4b86824fcd1f36c841e9',
                 'groupName' : 'My Support group', 
-                'withPreChat' : true,
+                'withPreChat' : false,
                 'isUnique' : true,
                 'agentIds' : ['adnan@mercatovip.com']
             }

@@ -17,6 +17,14 @@ module.exports = [
     ]
   },
   {
+    "id": "cordova-plugin-deeplinks.universalLinks",
+    "file": "plugins/cordova-plugin-deeplinks/www/universal_links.js",
+    "pluginId": "cordova-plugin-deeplinks",
+    "clobbers": [
+      "universalLinks"
+    ]
+  },
+  {
     "id": "cordova-plugin-device.device",
     "file": "plugins/cordova-plugin-device/www/device.js",
     "pluginId": "cordova-plugin-device",
@@ -81,14 +89,6 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-universal-links-plugin.universalLinks",
-    "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
-    "pluginId": "cordova-universal-links-plugin",
-    "clobbers": [
-      "universalLinks"
-    ]
-  },
-  {
     "id": "kommunicate-cordova-plugin.kommunicate",
     "file": "plugins/kommunicate-cordova-plugin/www/kommunicate.js",
     "pluginId": "kommunicate-cordova-plugin",
@@ -114,6 +114,7 @@ module.exports.metadata =
   "cordova-plugin-add-swift-support": "1.7.2",
   "cordova-plugin-cocoapod-support": "1.6.0",
   "cordova-plugin-customurlscheme": "4.3.0",
+  "cordova-plugin-deeplinks": "1.1.0",
   "cordova-plugin-device": "2.0.2",
   "cordova-plugin-inappbrowser": "2.0.2",
   "cordova-plugin-network-information": "2.0.1",
@@ -122,9 +123,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "es6-promise-plugin": "4.1.0",
   "cordova-plugin-x-socialsharing": "5.3.1",
-  "cordova-universal-links-plugin": "1.2.1",
   "kommunicate-cordova-plugin": "0.4.1",
-  "onesignal-cordova-plugin": "2.3.3"
+  "onesignal-cordova-plugin": "2.4.6"
 };
 // BOTTOM OF METADATA
 });

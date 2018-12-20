@@ -232,7 +232,7 @@ OneSignal.prototype.setLogLevel = function(logLevel) {
 };
 
 OneSignal.prototype.setLocationShared = function(shared) {
-   cordova.exec(function() {}, "OneSignalPush", "setLocationShared", [shared]);
+   cordova.exec(function() {}, function() {}, "OneSignalPush", "setLocationShared", [shared]);
 };
 
 //email
@@ -266,6 +266,26 @@ OneSignal.prototype.logoutEmail = function(onSuccess, onFailure) {
     
     cordova.exec(onSuccess, onFailure, "OneSignalPush", "logoutEmail", []);
 }
+
+OneSignal.prototype.userProvidedPrivacyConsent = function(callback) {
+   cordova.exec(callback, function(){}, "OneSignalPush", "userProvidedPrivacyConsent", []);
+ }
+ 
+ OneSignal.prototype.setRequiresUserPrivacyConsent = function(required) {
+   cordova.exec(function() {}, function() {}, "OneSignalPush", "setRequiresUserPrivacyConsent", [required]);
+ }
+ 
+ OneSignal.prototype.provideUserConsent = function(granted) {
+   cordova.exec(function() {}, function() {}, "OneSignalPush", "provideUserConsent", [granted]);
+ }
+
+ OneSignal.prototype.setExternalUserId = function(externalId) {
+    cordova.exec(function() {}, function() {}, "OneSignalPush", "setExternalUserId", [externalId]);
+ }
+
+ OneSignal.prototype.removeExternalUserId = function() {
+    cordova.exec(function() {}, function() {}, "OneSignalPush", "removeExternalUserId", []);
+ }
 
 
 //-------------------------------------------------------------------
