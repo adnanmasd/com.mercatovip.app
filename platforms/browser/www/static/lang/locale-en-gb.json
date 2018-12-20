@@ -168,6 +168,7 @@
     "product.specification.brand" : "Brand",
     "product.ean.title" : "EAN",
     "product.reviews.title" : "Review(s)",
+    "product.sizechart.title" : "Size Chart",
     "product.options.title" : "Options",
       "product.option.select.title" : "Select",
     "product.quantity.title" : "Quantity",

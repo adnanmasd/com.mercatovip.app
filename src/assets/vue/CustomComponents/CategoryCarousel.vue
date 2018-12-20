@@ -1,5 +1,5 @@
 <template>
-<div v-if="loaded == false" class='text-align-center '>
+<div v-if="loaded == false" class='text-align-center'>
     <f7-preloader></f7-preloader>
 </div>
 <f7-swiper v-else :params="{preloadImages: false,slidesPerView: 2.3, spaceBetween:1,loop: false,freeMode: true,observer: true,
