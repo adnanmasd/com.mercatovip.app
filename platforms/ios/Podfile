@@ -1,6 +1,6 @@
 platform :ios, '9.0'
 use_frameworks!
 target 'MercatoVIP' do
-	pod 'Kommunicate', '0.11.0'
+	pod 'Kommunicate', '0.12.0'
 	pod 'OneSignal', '2.9.4'
 end

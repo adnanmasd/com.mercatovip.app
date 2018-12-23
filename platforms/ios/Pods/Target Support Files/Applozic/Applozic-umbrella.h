@@ -155,6 +155,7 @@
 #import "ALGroupDetailViewController.h"
 #import "ALImageActivity.h"
 #import "ALImagePickerController.h"
+#import "ALImagePreviewController.h"
 #import "ALMapViewController.h"
 #import "ALMessageInfoViewController.h"
 #import "ALMessagesViewController.h"
@@ -169,7 +170,9 @@
 #import "ALVOIPNotificationHandler.h"
 #import "ALChatCell.h"
 #import "ALContactCell.h"
+#import "ALGroupDetailsMemberCell.h"
 #import "ALImageCell.h"
+#import "ALLinkCell.h"
 #import "ALNewContactCell.h"
 #import "ALNotificationView.h"
 

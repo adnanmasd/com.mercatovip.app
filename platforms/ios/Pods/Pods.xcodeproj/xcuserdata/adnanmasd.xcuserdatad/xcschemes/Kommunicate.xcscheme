@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "384B1911C43BA577B49FA76D2E4C35F7"
+               BlueprintIdentifier = "C337F27E515C5358AB5B81F97F890FBA"
                BlueprintName = "Kommunicate"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Kommunicate.framework">

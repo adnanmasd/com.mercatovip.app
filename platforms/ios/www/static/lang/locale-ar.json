@@ -7,6 +7,7 @@
     "welcome.next.title" : "التالي",
     "welcome.second.heading1": "أحصل على خصم",
     "welcome.second.para": "خصم 10٪ على جميع المنتجات الأزياء. استخدم رمز القسيمة",
+    "navbar.customerservice" : "خدمة العملاء",
     "home.sideBar.login" : "الدخول / تسجيل",
     "home.featured" : "منتجات مميزة",
     "home.sideBar.greetings" : "أهلا",
@@ -167,6 +168,7 @@
     "product.specification.title" : "مواصفات",
     "product.specification.brand" : "الماركة",
     "product.ean.title" : "رقم مميز السلعة",
+    "product.sizechart.title" : "جدول مقاسات",
     "product.reviews.title" : "التقييمات",
     "product.options.title" : "خيارات",
     "product.option.select.title" : "أختر",
@@ -286,4 +288,3 @@
       "500.message" : "عفوًا ، هناك شيء خاطئ من جانبنا. يرجى المحاولة مرة أخرى في وقت لاحق.",
       "500.button2.text" : "إعادة المحاولة"
   }
-  

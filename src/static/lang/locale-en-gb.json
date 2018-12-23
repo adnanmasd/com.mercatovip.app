@@ -7,6 +7,7 @@
     "welcome.next.title" : "Next",
     "welcome.second.heading1": "Get Your Discount",
     "welcome.second.para": "10% off on all Fashion items. Use coupon code :",
+    "navbar.customerservice" : "Chat",
     "home.featured" : "Featured Products",
     "home.sideBar.login" : "Login / Register",
     "home.sideBar.greetings" : "Welcome",
@@ -287,4 +288,3 @@
     "500.message" : "Oops, there is something wrong on our side. We are fixing it. Please try again later.",
     "500.button2.text" : "Retry"
   }
-  

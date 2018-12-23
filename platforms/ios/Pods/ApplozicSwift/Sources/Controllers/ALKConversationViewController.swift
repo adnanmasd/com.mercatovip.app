@@ -14,8 +14,6 @@ import SafariServices
 
 open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
-    var contactService: ALContactService!
-
     public var viewModel: ALKConversationViewModel! {
         willSet(updatedVM) {
             guard viewModel != nil else {return}
@@ -27,6 +25,16 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
     }
 
+    override open var title: String? {
+        didSet {
+            titleButton.setTitle(title, for: .normal)
+        }
+    }
+
+    public lazy var chatBar = ALKChatBar(frame: CGRect.zero, configuration: self.configuration)
+
+    var contactService: ALContactService!
+
     /// Check if view is loaded from notification
     private var isViewLoadedFromTappingOnNotification: Bool = false
 
@@ -35,8 +43,6 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     /// See configuration.
     private var isProfileTapActionEnabled = true
-
-    var chatBar: ALKChatBar = ALKChatBar(frame: .zero, configuration: ALKConfiguration())
 
     private var isFirstTime = true
     private var bottomConstraint: NSLayoutConstraint?
@@ -56,7 +62,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     fileprivate let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
 
     fileprivate var keyboardSize: CGRect?
-    
+
     fileprivate var localizedStringFileName: String!
 
     fileprivate enum ConstraintIdentifier {
@@ -74,11 +80,10 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
     }
 
-    let tableView : UITableView = {
+      var tableView : UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
         tv.separatorStyle   = .none
         tv.allowsSelection  = false
-        tv.backgroundColor  = UIColor.clear
         tv.clipsToBounds    = true
         tv.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
         tv.accessibilityIdentifier = "InnerChatScreenTableView"
@@ -87,7 +92,6 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     fileprivate let titleButton : UIButton = {
         let titleButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        titleButton.setTitleColor(UIColor.black, for: .normal)
         titleButton.titleLabel?.font  = UIFont.boldSystemFont(ofSize: 17.0)
         return titleButton
     }()
@@ -128,7 +132,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         self.localizedStringFileName = configuration.localizedStringFileName
         self.contactService = ALContactService()
         configurePropertiesWith(configuration: configuration)
-        self.chatBar = ALKChatBar(frame: .zero, configuration: configuration)
+        self.chatBar.configuration = configuration
         self.typingNoticeView = TypingNotice(localizedStringFileName: configuration.localizedStringFileName)
     }
 
@@ -203,7 +207,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
             notification in
             guard let weakSelf = self else { return }
             let msgArray = notification.object as? [ALMessage]
-            print("new notification received: ", msgArray?.first?.message as Any, msgArray?.count)
+            print("new notification received: ", msgArray?.first?.message as Any, msgArray?.count ?? "")
             guard let list = notification.object as? [Any], !list.isEmpty, weakSelf.isViewLoaded, weakSelf.viewModel != nil else { return }
             weakSelf.viewModel.addMessagesToList(list)
 //            weakSelf.handlePushNotification = false
@@ -283,6 +287,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
             tableView.semanticContentAttribute = UISemanticContentAttribute.forceRightToLeft
         }
@@ -310,7 +315,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
 
         viewModel.delegate = self
-        viewModel.prepareController()
+        self.refreshViewController()
+        
         if let templates = viewModel.getMessageTemplates(){
             templateView = ALKTemplateMessagesView(frame: CGRect.zero, viewModel: ALKTemplateMessagesViewModel(messageTemplates: templates))
         }
@@ -333,6 +339,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
+        setupConstraints()
     }
 
     override open func viewDidLayoutSubviews() {
@@ -375,7 +382,6 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         unreadScrollButton.addTarget(self, action: #selector(unreadScrollDownAction(_:)), for: .touchUpInside)
 
         backgroundView.backgroundColor = configuration.backgroundColor
-        setupConstraints()
         prepareTable()
         prepareMoreBar()
         prepareChatBar()
@@ -385,17 +391,18 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         //Check for group left
         isChannelLeft()
 
-        guard viewModel.isContextBasedChat else { return }
+        guard viewModel.isContextBasedChat else {
+            toggleVisibilityOfContextTitleView(false)
+            return
+        }
         prepareContextView()
     }
 
     func isChannelLeft() {
-        guard let channelKey = viewModel.channelKey else {
+        guard let channelKey = viewModel.channelKey, let channel = ALChannelService().getChannelByKey(channelKey) else {
             return
         }
-        let messages = viewModel.messageModels
-        if  ALChannelService().getChannelByKey(channelKey).type != 6 &&
-            !ALChannelService().isLoginUser(inChannel: channelKey) {
+        if  channel.type != 6 && !ALChannelService().isLoginUser(inChannel: channelKey) {
             chatBar.disableChat()
             //Disable click on toolbar
             titleButton.isUserInteractionEnabled = false
@@ -409,9 +416,14 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     func prepareContextView(){
         guard let topicDetail = viewModel.getContextTitleData() else {return }
         contextTitleView.configureWith(value: topicDetail)
+        toggleVisibilityOfContextTitleView(true)
+    }
+    
+    private func toggleVisibilityOfContextTitleView(_ show: Bool) {
+        let height: CGFloat = show ? Padding.ContextView.height : 0
         contextTitleView.constraint(
             withIdentifier: ConstraintIdentifier.contextTitleView)?
-            .constant = Padding.ContextView.height
+            .constant = height
     }
 
     private func setupConstraints() {
@@ -480,6 +492,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     private func setupNavigation() {
 
         titleButton.setTitle(self.title, for: .normal)
+        titleButton.setTitleColor(self.configuration.navigationBarTitleColor, for: .normal)
         titleButton.addTarget(self, action: #selector(showParticipantListChat), for: .touchUpInside)
         titleButton.isEnabled = isGroupDetailActionEnabled
         self.navigationItem.titleView = titleButton
@@ -524,11 +537,12 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         tableView.register(ALKFriendLocationCell.self)
         tableView.register(ALKMyVideoCell.self)
         tableView.register(ALKFriendVideoCell.self)
-        tableView.register(ALKCollectionTableViewCell.self)
-        tableView.register(ALKGenericListCell.self)
+        tableView.register(ALKMyGenericListCell.self)
+        tableView.register(ALKFriendGenericListCell.self)
         tableView.register(ALKFriendMessageQuickReplyCell.self)
         tableView.register(ALKMyMessageQuickReplyCell.self)
-
+        tableView.register(ALKMyGenericCardCell.self)
+        tableView.register(ALKFriendGenericCardCell.self)
     }
 
 
@@ -540,7 +554,6 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
             self?.hideMoreBar()
         }
     }
-
 
     private func prepareChatBar() {
         // Update ChatBar's top view which contains send button and the text view.
@@ -591,7 +604,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
             case .sendText(let button, let message):
 
-                if message.characters.count < 1 {
+                if message.count < 1 {
                     return
                 }
 
@@ -688,6 +701,13 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         view.endEditing(true)
     }
 
+    /// Call this method after proper viewModel initialization
+    public func refreshViewController() {
+        viewModel.clearViewModel()
+        tableView.reloadData()
+        viewModel.prepareController()
+    }
+    
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         UIMenuController.shared.setMenuVisible(false, animated: true)
         hideMoreBar()
@@ -839,6 +859,22 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
 
     }
+    
+    func postGenericListButtonTapNotification(tag: Int, title: String, template: [ALKGenericListTemplate]) {
+        print("\(title, tag) button selected in generic list")
+        var infoDict = [String: Any]()
+        infoDict["buttonName"] = title
+        infoDict["buttonIndex"] = tag
+        infoDict["template"] = template
+        infoDict["userId"] = self.viewModel.contactId
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "GenericRichListButtonSelected"), object: infoDict)
+    }
+    
+    func collectionViewOffsetFromIndex(_ index: Int) -> CGFloat {
+        let value = contentOffsetDictionary[index]
+        let horizontalOffset = CGFloat(value != nil ? value!.floatValue : 0)
+        return horizontalOffset
+    }
 
     fileprivate func hideMediaOptions() {
         chatBar.hideMediaView()
@@ -921,7 +957,13 @@ extension ALKConversationViewController: ALKConversationViewModelDelegate {
 
     public func loadingFinished(error: Error?) {
         activityIndicator.stopAnimating()
+        let oldSectionCount = tableView.numberOfSections
         tableView.reloadData()
+        let newSectionCount = tableView.numberOfSections
+        if newSectionCount > oldSectionCount {
+            let offset = newSectionCount - oldSectionCount - 1
+            tableView.scrollToRow(at: IndexPath(row: 0, section: offset), at: .none, animated: true)
+        }
         print("loading finished")
         DispatchQueue.main.async {
             if self.viewModel.isFirstTime {

@@ -9,8 +9,9 @@
             <img :src="logo" class="logo" />
         </f7-nav-title>
             <f7-nav-right>
-                <f7-link icon-only @click="openChatWindow()"  icon="fa fa-comments-o">
+                <f7-link @click="openChatWindow()">
                     <!-- href="/tag?tag_name=face-makeup" -->
+                    <span style="font-size:14px; line-height:0px">{{$t('navbar.customerservice')}}</span>
                 </f7-link>
             </f7-nav-right>
             <f7-subnavbar :inner="false">
@@ -941,10 +942,10 @@ export default {
         openChatWindow() {
             var chatObject = {
                 'appId' : '2ef94a3e4ac8e4b86824fcd1f36c841e9',
-                'groupName' : 'My Support group', 
-                'withPreChat' : false,
+                'groupName' : 'Customer Service',
+                'withPreChat' : true,
                 'isUnique' : true,
-                'agentIds' : ['adnan@mercatovip.com']
+                'agentIds' : ['adnan@mercatovip.com','cs@mercatovip.com']
             }
             kommunicate.startSingleChat(chatObject, (response) => {
                 console.log("Test Success response : " + response);

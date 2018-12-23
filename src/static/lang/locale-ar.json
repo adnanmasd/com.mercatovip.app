@@ -7,6 +7,7 @@
     "welcome.next.title" : "التالي",
     "welcome.second.heading1": "أحصل على خصم",
     "welcome.second.para": "خصم 10٪ على جميع المنتجات الأزياء. استخدم رمز القسيمة",
+    "navbar.customerservice" : "خدمة العملاء",
     "home.sideBar.login" : "الدخول / تسجيل",
     "home.featured" : "منتجات مميزة",
     "home.sideBar.greetings" : "أهلا",
@@ -287,4 +288,3 @@
       "500.message" : "عفوًا ، هناك شيء خاطئ من جانبنا. يرجى المحاولة مرة أخرى في وقت لاحق.",
       "500.button2.text" : "إعادة المحاولة"
   }
-  

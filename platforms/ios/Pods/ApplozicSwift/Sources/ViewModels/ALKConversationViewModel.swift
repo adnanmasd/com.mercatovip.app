@@ -107,6 +107,19 @@ open class ALKConversationViewModel: NSObject, Localizable {
             loadMessages()
         }
     }
+        
+    public func addToWrapper(message: ALMessage) {
+        
+        self.alMessageWrapper.addALMessage(toMessageArray: message)
+        self.alMessages.append(message)
+        self.messageModels.append(message.messageModel)
+    }
+    
+    func clearViewModel() {
+        self.messageModels.removeAll()
+        self.alMessages.removeAll()
+        self.richMessages.removeAll()
+    }
 
     open func groupProfileImgUrl() -> String {
         guard let message = alMessages.last, let imageUrl = message.avatarGroupImageUrl else {
@@ -265,10 +278,18 @@ open class ALKConversationViewModel: NSObject, Localizable {
             }
             return height
         case .genericCard:
-            return ALKGenericCardCollectionView.rowHeightFor(message: messageModel)
+            if messageModel.isMyMessage {
+                return ALKMyGenericCardCell.rowHeightFor(message: messageModel)
+            } else {
+                return ALKFriendGenericCardCell.rowHeightFor(message: messageModel)
+            }
         case .genericList:
-            guard let template = genericTemplateFor(message: messageModel) as? ALKGenericListTemplate else {return 0}
-            return ALKGenericListCell.rowHeightFor(template: template)
+            guard let template = genericTemplateFor(message: messageModel) as? [ALKGenericListTemplate] else {return 0}
+            if messageModel.isMyMessage {
+                return ALKMyGenericListCell.rowHeightFor(template: template, viewModel: messageModel)
+            } else {
+                return ALKFriendGenericListCell.rowHeightFor(template: template, viewModel: messageModel)
+            }
         case .quickReply:
             if messageModel.isMyMessage {
                 let heigh = ALKMyMessageQuickReplyCell.rowHeigh(viewModel: messageModel, width: maxWidth)
@@ -361,7 +382,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
         }
         var sortedArray = filteredArray
         if filteredArray.count > 1 {
-            sortedArray = filteredArray.sorted { Int($0.createdAtTime) < Int($1.createdAtTime) }
+            sortedArray = filteredArray.sorted { Int(truncating: $0.createdAtTime) < Int(truncating: $1.createdAtTime) }
         }
         guard !sortedArray.isEmpty else { return }
 
@@ -475,7 +496,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
         } else {
             ALMessageService.sharedInstance().sendMessages(alMessage, withCompletion: {
                 message, error in
-                NSLog("Message sent section: \(indexPath.section), \(alMessage.message)")
+                NSLog("Message sent section: \(indexPath.section), \(String(describing: alMessage.message))")
                 guard error == nil, indexPath.section < self.messageModels.count else { return }
                 NSLog("No errors while sending the message")
                 alMessage.status = NSNumber(integerLiteral: Int(SENT.rawValue))
@@ -903,13 +924,14 @@ open class ALKConversationViewModel: NSObject, Localizable {
             self.alMessageWrapper.addObject(toMessageArray: messages)
             let models = self.alMessages.map { $0.messageModel }
             self.messageModels = models
-            if self.messageModels.count < 50 {
-                let id = self.contactId ?? self.channelKey?.stringValue
-                if let convId = self.conversationId {
-                    ALUserDefaultsHandler.setShowLoadEarlierOption(false, forContactId: convId.stringValue)
-                } else {
-                    ALUserDefaultsHandler.setShowLoadEarlierOption(false, forContactId: id)
-                }
+            
+            let showLoadEarlierOption: Bool = self.messageModels.count >= 50
+        
+            let id = self.contactId ?? self.channelKey?.stringValue
+            if let convId = self.conversationId {
+                ALUserDefaultsHandler.setShowLoadEarlierOption(showLoadEarlierOption, forContactId: convId.stringValue)
+            } else {
+                ALUserDefaultsHandler.setShowLoadEarlierOption(showLoadEarlierOption, forContactId: id)
             }
             self.delegate?.loadingFinished(error: nil)
         })
@@ -927,13 +949,12 @@ open class ALKConversationViewModel: NSObject, Localizable {
             self.alMessageWrapper.addObject(toMessageArray: messages)
             let models = messages.map { ($0 as! ALMessage).messageModel }
             self.messageModels = models
-            if self.messageModels.count < 50 {
-                let id = self.contactId ?? self.channelKey?.stringValue
-                if let convId = self.conversationId {
-                    ALUserDefaultsHandler.setShowLoadEarlierOption(false, forContactId: convId.stringValue)
-                } else {
-                    ALUserDefaultsHandler.setShowLoadEarlierOption(false, forContactId: id)
-                }
+            let showLoadEarlierOption: Bool = self.messageModels.count >= 50
+            let id = self.contactId ?? self.channelKey?.stringValue
+            if let convId = self.conversationId {
+                ALUserDefaultsHandler.setShowLoadEarlierOption(showLoadEarlierOption, forContactId: convId.stringValue)
+            } else {
+                ALUserDefaultsHandler.setShowLoadEarlierOption(showLoadEarlierOption, forContactId: id)
             }
             if isFirstTime {
                 self.delegate?.loadingFinished(error: nil)
@@ -978,6 +999,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
     }
 
     private func loadEarlierMessages() {
+        self.delegate?.loadingStarted()
         var time: NSNumber? = nil
         if let messageList = alMessageWrapper.getUpdatedMessageArray(), messageList.count > 1, let first = alMessages.first {
             time = first.createdAtTime
@@ -1074,13 +1096,6 @@ open class ALKConversationViewModel: NSObject, Localizable {
         } catch {
             NSLog("Not saved due to error")
         }
-    }
-
-    private func addToWrapper(message: ALMessage) {
-
-        self.alMessageWrapper.addALMessage(toMessageArray: message)
-        self.alMessages.append(message)
-        self.messageModels.append(message.messageModel)
     }
 
     private func getMessageToPost(isTextMessage: Bool = false) -> ALMessage {
@@ -1228,7 +1243,8 @@ open class ALKConversationViewModel: NSObject, Localizable {
             let payload = metadata["payload"] as? String
             else { return nil}
         do {
-            let cardTemplate = try JSONDecoder().decode(ALKGenericCardTemplate.self, from: payload.data)
+            let cards = try JSONDecoder().decode([ALKGenericCard].self, from: payload.data)
+            let cardTemplate = ALKGenericCardTemplate(cards: cards)
             richMessages[message.identifier] = cardTemplate
             return cardTemplate
         } catch(let error) {
@@ -1237,13 +1253,13 @@ open class ALKConversationViewModel: NSObject, Localizable {
         }
     }
 
-    private func getGenericListTemplateFor(message: ALKMessageViewModel) -> ALKGenericListTemplate? {
+    private func getGenericListTemplateFor(message: ALKMessageViewModel) -> [ALKGenericListTemplate]? {
         guard
             let metadata = message.metadata,
             let payload = metadata["payload"] as? String
             else { return nil}
         do {
-            let cardTemplate = try JSONDecoder().decode(ALKGenericListTemplate.self, from: payload.data)
+            let cardTemplate = try JSONDecoder().decode([ALKGenericListTemplate].self, from: payload.data)
             richMessages[message.identifier] = cardTemplate
             return cardTemplate
         } catch(let error) {
