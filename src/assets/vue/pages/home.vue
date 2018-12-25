@@ -41,7 +41,34 @@
             <div class="list virtual-list media-list homeContentList no-margin">
                 <ul>
                     <li v-for="(row, index) in vlData.items" :key="index" media-item :style="`top: ${vlData.topPosition}px`">
-                        <template v-for="row2 in row['value']">
+                        <template v-if="row.value.length > 1">
+                            <f7-block class="home-page-block">
+                                <f7-row>
+                                    <template v-for="row2 in row['value']">
+                                        <template v-if="row2['_link'] == 'Banners'">
+                                            <f7-col :width="row2['width']">
+                                                <span class="banner-title" v-if="row2.name[currentLanguageId] && row2.show_name">{{row2.name[currentLanguageId]}}</span>
+                                                <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
+                                            </f7-col>
+                                        </template>
+                                        <template v-if="row2['_link'] == 'CarouselBanner'">
+                                            <f7-swiper :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                                                <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
+                                                    <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
+                                                    <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
+                                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                                </f7-swiper-slide>
+                                            </f7-swiper>
+                                        </template>
+                                        <template v-if="row2['_link'] == 'CustomHTML'">
+                                            <div v-html="row2.html[currentLanguageId]"></div>
+                                        </template>
+                                    </template>
+                                </f7-row>
+                            </f7-block>
+                        </template>
+                        
+                        <template v-else v-for="row2 in row['value']">
                             <template v-if="row2['_link'] == 'Sliders'">
                                 <f7-row>
                                     <f7-col :width="row2.width">
@@ -105,10 +132,11 @@
                                 <div v-html="row2.html[currentLanguageId]"></div>
                             </template>
                         </template>
+
+                        
                     </li>
                 </ul>
             </div>
-
         </f7-page-content>
 
         <f7-page-content tab id="carttab">
@@ -343,6 +371,7 @@ export default {
         self.homeProducts[0] = "0";
 
         axios.get(cms.baseUrl + cms.getReigion('home') + cms.tokenVar).then(function (response) {
+            console.log(response.data);
             var virtualList = self.$f7.virtualList.create({
                 // List Element
                 el: '.homeContentList',
@@ -358,7 +387,7 @@ export default {
                 items: response.data.item,
                 rowsAfter: 100,
                 rowsBefore: 100,
-                dynamicHeightBufferSize: 3,
+                dynamicHeightBufferSize: 2,
                 // List item Template7 template
                 renderExternal: self.renderExternal,
             });
