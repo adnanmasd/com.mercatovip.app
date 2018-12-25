@@ -67,7 +67,7 @@
                                 </f7-row>
                             </f7-block>
                         </template>
-                        
+
                         <template v-else v-for="row2 in row['value']">
                             <template v-if="row2['_link'] == 'Sliders'">
                                 <f7-row>
@@ -133,7 +133,7 @@
                             </template>
                         </template>
 
-                        
+
                     </li>
                 </ul>
             </div>
@@ -974,7 +974,7 @@ export default {
                 'groupName' : 'Customer Service',
                 'withPreChat' : true,
                 'isUnique' : true,
-                'agentIds' : ['adnan@mercatovip.com','cs@mercatovip.com']
+                'agentIds' : ['cs@mercatovip.com']
             }
             kommunicate.startSingleChat(chatObject, (response) => {
                 console.log("Test Success response : " + response);

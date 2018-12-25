@@ -89,7 +89,7 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.0.19',
+    version : '2.1.0',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,
