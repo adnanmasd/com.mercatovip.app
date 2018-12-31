@@ -10,7 +10,7 @@
             {{category.name | andFilter}}
         </f7-nav-title>
         <f7-nav-right sliding>
-            <f7-link popup-open="#filter" icon-only>
+            <f7-link :popup-open="'#filter-'+category.id" icon-only>
                 <f7-icon fa="filter">
                 </f7-icon>
             </f7-link>
@@ -21,7 +21,7 @@
 
         </f7-subnavbar>
     </f7-navbar>
-    <f7-popup id="filter" style="overflow-y:auto">
+    <f7-popup :id="'filter-'+category.id" style="overflow-y:auto">
         <f7-navbar :sliding="false" :class="this.$theme.md ? 'color-black' : ''">
             <f7-nav-left>
                 <f7-link popup-close icon-only>
@@ -48,7 +48,7 @@
                         <span id="minPriceLabel">{{minPrice}}</span>
                     </f7-col>
                     <f7-col width="60">
-                        <f7-range id="price-filter" :min="minPrice" :max="maxPrice" :step="1" :value="[minPrice, maxPrice]" :dual="true" :label="true" color="green" @range:change="onRangeChange"></f7-range>
+                        <f7-range :id="'price-filter-'+category.id" color="green"></f7-range>
                     </f7-col>
                     <f7-col width="20" class="text-align-center">
                         <span id="maxPriceLabel">{{maxPrice}}</span>
@@ -76,7 +76,34 @@
     </f7-popup>
 
     <template v-for="row in categoryContent">
-        <template v-for="row2 in row['value']">
+        <template v-if="row.value.length > 1">
+            <f7-block class="home-page-block">
+                <f7-row>
+                    <template v-for="row2 in row['value']">
+                        <template v-if="row2['_link'] == 'Banners'">
+                            <f7-col :width="row2['width']">
+                                <span class="banner-title" v-if="row2.name[currentLanguageId] && row2.show_name">{{row2.name[currentLanguageId]}}</span>
+                                <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
+                            </f7-col>
+                        </template>
+                        <template v-if="row2['_link'] == 'CarouselBanner'">
+                            <f7-swiper :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                                <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
+                                    <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
+                                    <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
+                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                </f7-swiper-slide>
+                            </f7-swiper>
+                        </template>
+                        <template v-if="row2['_link'] == 'CustomHTML'">
+                            <div v-html="row2.html[currentLanguageId]"></div>
+                        </template>
+                    </template>
+                </f7-row>
+            </f7-block>
+        </template>
+
+        <template v-else v-for="row2 in row['value']">
             <template v-if="row2['_link'] == 'Sliders'">
                 <f7-row>
                     <f7-col :width="row2.width">
@@ -98,14 +125,14 @@
                         <f7-col :width="row2['width']">
                             <span class="banner-title" v-if="row2.name[currentLanguageId] && !row2.name_as_heading  && row2.show_name">{{row2.name[currentLanguageId]}}</span>
                             <img @click="navigate(row2.link)" :src="getCMSImage(row2.image[currentLanguageId].path)" class="specialBanner">
-                        </f7-col>
+                </f7-col>
                     </f7-row>
                 </f7-block>
             </template>
 
             <template v-if="row2['_link'] == 'CarouselBanner'">
                 <f7-block class="home-page-block" :style="row2.full_width ? 'padding : 0' : ''">
-                    <f7-swiper class="pagination-below" :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
+                    <f7-swiper :pagination="row2.length > row2.show_per_row" :params="{preloadImages: false,lazy: true,freeMode: true,slidesPerView: row2.show_per_row,slidesPerColumn: 1,spaceBetween:10}" style="width:100%">
                         <f7-swiper-slide v-for="i in row2.image" class="image-slider" :key="i.id">
                             <span class="banner-title">{{i.value['txt' + currentLanguageId]}}</span>
                             <img @click="navigate(i.value.link)" :src="getCMSImage(i.value['img' + currentLanguageId].path)" class="banner lazy swiper-lazy">
@@ -118,7 +145,7 @@
             <template v-if="row2['_link'] == 'CarouselProducts'">
                 <f7-block-title v-if="row2.title[currentLanguageId]">{{row2.title[currentLanguageId]}}</f7-block-title>
                 <f7-block :style="row2.full_width ? 'padding : 0' : ''" class="carouselHomePage home-page-block">
-                    <f7-swiper :params="{slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true}">
+                    <f7-swiper :params="{preloadImages: false,slidesPerView: 2.3, spaceBetween:1,loop: false,autoplay: true,freeMode: true,lazy: {loadPrevNext: true,loadPrevNextAmount: 3}}">
                         <template v-for="id in row2.product_id">
                             <product-card :product_id="id.value">
                             </product-card>
@@ -151,10 +178,49 @@
         </f7-list>
     </f7-block>
 
+    <!-- <f7-list v-if="categoryProducts.length > 0" media-list :id="'category-' + category.id + '-list'" class="result">
+        <f7-row no-gap>
+            <f7-col v-for="row in categoryProducts" :key="row.product_id" width="50">
+                <f7-card>
+                    <f7-card-header style="padding: 0">
+                        <div @click='navigate("/product?product_id=" + row.product_id)'><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
+                            class="tag out-of-stock-tag">{{row.stock_status}}</span></div>
+                    </f7-card-header>
+                    <f7-card-content style="padding: 0 16px">
+                        <div @click='navigate("/product?product_id=" + row.product_id)'>
+                            <span class="product-cart-title">{{row.name | andFilter}}</span>
+                            <br/> <span v-if="row.special" class="old-price">{{row.price_formated}}</span>
+                            <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
+                        </div>
+                    </f7-card-content>
+                   <f7-card-footer>
+                        <f7-segmented style="width:100%" v-if="theme.ios">
+                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share" icon-color="black"></f7-button>
+                            <template v-if="!is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart" icon-color="red"></f7-button>
+                            </template>
+                            <template v-else-if="is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
+                            </template>
+                        </f7-segmented>
+                        <f7-segmented style="width:100%" v-if="theme.md">
+                            <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
+                            <template v-if="!is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
+                            </template>
+                            <template v-else-if="is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
+                            </template>
+                        </f7-segmented>
+                    </f7-card-footer>
+                </f7-card>
+            </f7-col>
+        </f7-row>
+    </f7-list> -->
     <!-- Search-through list -->
     <div :class="'list virtual-list media-list categoryContentList-' + category_id + ' no-margin'">
         <ul>
-            <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item" :style="`top: ${vlData.topPosition}px`">
+            <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item product-line" :style="`top: ${vlData.topPosition}px`">
                 <a :href="'/product?product_id=' + row.id" class="item-link item-content">
                     <div class="item-media">
                         <div><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
@@ -193,6 +259,7 @@
             </li>
         </ul>
     </div>
+
 </f7-page>
 </template>
 
@@ -333,11 +400,28 @@ export default {
             renderExternal: self.renderExternal,
             // Item height
             height: function (item) {
-                return 132;
+                return 200;
                 //return self.theme === 'ios' ? 63 : 73;
             },
         });
-
+        var $$ = self.Dom7;
+        $$('#filter-'+self.category.id).on('popup:open',function(e, popup){
+            self.$f7.range.create({
+                el : '#price-filter-'+self.category.id,
+                dual : 'true',
+                step : '1',
+                label : 'true',
+                min : self.minPrice,
+                max : self.maxPrice,
+                value : [self.minPrice,self.maxPrice],
+                on : {
+                    change : function (e) {
+                        self.Dom7('#minPriceLabel').text(e.value[0]);
+                        self.Dom7('#maxPriceLabel').text(e.value[1]);
+                    }
+                }
+            })
+        })
         self.onInfinite();
 
     },

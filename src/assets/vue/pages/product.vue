@@ -583,13 +583,34 @@ export default {
                     }).then(function(response) {
                         if (response.status == 200) {
                             store.dispatch("fetchCart").then(() => {
-                                var t = self.$f7.toast.create({
-                                    text: self.$t('product.addTocart.success'),
-                                    closeTimeout: 5000,
-                                    destroyOnClose: true,
-                                    //icon: '<i class="fa fa-shopping-cart-plus text-color-white"></i>',
-                                    cssClass: 'toast-green',
-                                    position: 'top'
+                                // var t = self.$f7.toast.create({
+                                //     text: self.$t('product.addTocart.success'),
+                                //     closeTimeout: 5000,
+                                //     destroyOnClose: true,
+                                //     //icon: '<i class="fa fa-shopping-cart-plus text-color-white"></i>',
+                                //     cssClass: 'toast-green',
+                                //     position: 'top'
+                                // });
+                                // t.open();
+                                var t = self.$f7.dialog.create({
+                                    title : self.$t('product.addTocart.title'),
+                                    text : self.$t('product.addTocart.success'),
+                                    buttons : [
+                                        {
+                                            text: self.$t('product.addTocart.continue'),
+                                        },
+                                        {
+                                            text: self.$t('product.addTocart.gotoCart'),
+                                        }
+                                    ],
+                                    verticalButtons : true,
+                                    onClick : function(dialog,index){
+                                        if (index == 0){
+                                            dialog.close();
+                                        } else {
+                                            self.$f7router.navigate('/cart/',{clearPreviousHistory : true})
+                                        }
+                                    }
                                 });
                                 t.open();
                                 navigator.vibrate(100)

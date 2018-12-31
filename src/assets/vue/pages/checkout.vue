@@ -47,12 +47,12 @@
             <f7-list form id="checkout">
                 <f7-list-item group-title :title="$t('checkout.shipping.address')"></f7-list-item>
 
-                <f7-list-item radio :checked="(row.address_id == shipping_address.address_id)" v-for="row in shipping_address.addresses" name="shipping_address_id" :value="row.address_id" :input-value="row.address_id" :title="row.firstname + ' ' + row.lastname + ', ' + row.address_1 + ', ' + row.address_2 + ', ' + row.city"
+                <f7-list-item radio :checked="(row.address_id == shipping_address.address_id)" v-for="row in shipping_address.addresses" name="shipping_address_id" :value="row.address_id" :input-value="row.address_id" :title="row.firstname + ' ' + row.lastname + ', ' + row.address_1 + ', ' + row.zone + ', ' + row.city"
                 @click="address_type_selected = 'existing'">
                 </f7-list-item>
 
-                <f7-list-item radio name="shipping_address_id" value="new" input-value="new" :title="$t('checkout.shipping.address.new')" @click="address_type_selected = 'new'"></f7-list-item>
-                <template v-if="address_type_selected == 'new'">
+                <f7-list-item radio :checked="!shipping_address.addresses" name="shipping_address_id" value="new" input-value="new" :title="$t('checkout.shipping.address.new')" @click="address_type_selected = 'new'"></f7-list-item>
+                <template v-if="address_type_selected == 'new' || !shipping_address.addresses">
                     <f7-list-item>
                         <f7-label>{{$t('checkout.shipping.address.first')}}</f7-label>
                         <f7-input :value="address.firstname" name="firstname" type="text" @input="address.firstname = $event.target.value" :placeholder="$t('checkout.shipping.address.first')">
@@ -276,7 +276,7 @@ export default {
                     region: "",
                     city: "",
                 },
-                address_type_selected: "",
+                address_type_selected: '0',
                 countries: [],
                 zones: [],
                 cities: [],
@@ -359,6 +359,11 @@ export default {
                     self.$f7.preloader.show();
                     let formData = self.$f7.form.convertToData("#checkout");
                     self.errors = [];
+                    if (!formData.shipping_address_id) {
+                        self.$f7.preloader.hide();
+                        self.$f7.dialog.alert(self.$t('checkout.validation.select'))
+                        return;
+                    }
                     if (formData.shipping_address_id == 'new') {
                         if (formData.firstname == null || formData.firstname == "") {
                             self.errors['firstname'] = self.$t('checkout.validation.first')
@@ -409,16 +414,6 @@ export default {
                                 data: JSON.stringify(address_new),
                                 success: function(e, status, xhr) {}
                             })
-                            self.$f7.request({
-                                async: false,
-                                dataType: 'json',
-                                contentType: "application/json",
-                                method: "POST",
-                                url: api.baseUrl + api.urls.paymentAddress,
-                                headers: api.headers(sessionStorage.getItem('session_id')),
-                                data: JSON.stringify(address_new),
-                                success: function(e, status, xhr) {}
-                            })
                         }
                     } else {
                         self.$f7.request({
@@ -429,7 +424,7 @@ export default {
                             url: api.baseUrl + api.urls.setExistingShippingAddress,
                             headers: api.headers(sessionStorage.getItem('session_id')),
                             data: JSON.stringify({
-                                "address_id": self.shipping_address.address_id
+                                "address_id": formData.shipping_address_id
                             }),
                             success: function(e, status, xhr) {}
                         })
@@ -442,7 +437,7 @@ export default {
                             url: api.baseUrl + api.urls.setExistingPaymentAddress,
                             headers: api.headers(sessionStorage.getItem('session_id')),
                             data: JSON.stringify({
-                                "address_id": self.shipping_address.address_id
+                                "address_id": formData.shipping_address_id
                             }),
                             success: function(e, status, xhr) {
                                 //self.payment_address = response.data

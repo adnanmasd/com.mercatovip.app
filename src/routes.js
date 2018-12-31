@@ -2,7 +2,25 @@ const Routes = [
   {
     name: "home",
     path: '/',
-    component: require('./assets/vue/pages/home.vue')
+    component: require('./assets/vue/pages/home.vue'),
+    tabs: [
+      // First (default) tab has the same url as the page itself
+      {
+        // Tab path
+        path: '/',
+        id: 'hometab',
+      },
+      // Second tab
+      {
+        path: '/cart/',
+        id: 'carttab',
+      },
+      // Third tab
+      {
+        path: '/profile/',
+        id: 'profiletab',
+      },
+    ],
   },
   {
     path: '/panel-left/',
@@ -209,6 +227,10 @@ const Routes = [
   {
     path: '/setPassword',
     component: require('./assets/vue/pages/setPassword.vue')
+  },
+  {
+    path: '/contact',
+    component: require('./assets/vue/pages/contactus.vue')
   },
   {
     path: '/404',

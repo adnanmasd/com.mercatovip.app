@@ -2,7 +2,7 @@
 
 <template>
 
-<f7-page name="special" no-tabbar>
+<f7-page name="special" no-tabbar infinite @infinite="onInfinite">
     <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
         <f7-nav-left sliding>
             <f7-link class="back" icon-only>
@@ -54,26 +54,26 @@
                             <br/> <span v-if="row.special" class="price">{{row.special_formated}}</span> <span v-if="!row.special" class="price">{{row.price_formated}}</span>
                         </div>
                     </f7-card-content>
-                    <!-- <f7-card-footer>
+                   <f7-card-footer>
                         <f7-segmented style="width:100%" v-if="theme.ios">
-                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share"></f7-button>
-                            <template v-if="!is_favourite(row.product_id)">
-                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart"></f7-button>
+                            <f7-button class="product-card-footer-button" color="white" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-f7="share" icon-color="black"></f7-button>
+                            <template v-if="!is_favourite(row.id)">
+                                <f7-button class="product-card-footer-button" color="white" @click="addToWishlist(row.product_id)" icon-f7="heart" icon-color="red"></f7-button>
                             </template>
-                            <template v-else-if="is_favourite(row.product_id)">
+                            <template v-else-if="is_favourite(row.id)">
                                 <f7-button class="product-card-footer-button" color="white" @click="removeFromWishlist(row.product_id)" icon-f7="heart_fill" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
                         <f7-segmented style="width:100%" v-if="theme.md">
                             <f7-button class="product-card-footer-button" color="black" @click="shareProduct(row.name,row.thumb,row.product_id)" icon-material="share"></f7-button>
-                            <template v-if="!is_favourite(row.product_id)">
+                            <template v-if="!is_favourite(row.id)">
                                 <f7-button class="product-card-footer-button" color="black" @click="addToWishlist(row.product_id)" icon-material="favorite_border"></f7-button>
                             </template>
-                            <template v-else-if="is_favourite(row.product_id)">
+                            <template v-else-if="is_favourite(row.id)">
                                 <f7-button class="product-card-footer-button" color="black" @click="removeFromWishlist(row.product_id)" icon-material="favorite" icon-color="red"></f7-button>
                             </template>
                         </f7-segmented>
-                    </f7-card-footer> -->
+                    </f7-card-footer>
                 </f7-card>
             </f7-col>
         </f7-row>
@@ -88,6 +88,10 @@ import axios from 'axios'
 import api from 'api.js'
 import store from '../../vuex/store.js'
 
+var timeout;
+var page = 0;
+var limit = 10;
+
 export default {
     data() {
             return {
@@ -95,7 +99,12 @@ export default {
                 currentLanguage: (localStorage.getItem('language_id') == 1 ? false : true),
                 direction: (localStorage.getItem('language_id') == 1 ? "ltr" : "rtl"),
                 specials: [],
-                noOffers: false
+                noOffers: false,
+                sort: "sort_order",
+                order: "ASC",
+                loading: true,
+                noResult: false,
+                theme : this.$theme
             }
         },
         computed: {
@@ -114,20 +123,20 @@ export default {
         mounted() {
             let self = this;
             self.$f7.preloader.show();
-            var specials_headers = api.headers(sessionStorage.getItem('session_id'));
-            specials_headers['X-Oc-Image-Dimension'] = "455x475";
-            axios({
-                method: "GET",
-                url: api.baseUrl + api.urls.getSpecials,
-                headers: specials_headers
-            }).then(function(response) {
-                if (response.data.data.length <= 0)
-                    self.noOffers = true;
-                self.specials = response.data.data;
-            });
-            self.$f7.preloader.hide();
+            page = 0;
+            self.onInfinite();
+           
         },
         methods: {
+             display_mode(type, key) {
+                    if (this.filterData.settings.length > 0)
+                        return (this.filterData.settings[type][key] == 'off')
+                },
+                onRangeChange(e) {
+                    //console.log(e);
+                    this.Dom7('#minPriceLabel').text(e[0]);
+                    this.Dom7('#maxPriceLabel').text(e[1]);
+                },
             shareProduct(pname, pimage, pid) {
                     let self = this;
                     axios({
@@ -147,7 +156,12 @@ export default {
                     }
                     return false
                 },
+                andFilter(val) {
+                    if (val)
+                        return val.replace(/&amp;/g, '&');
+                },
                 addToWishlist(product_id) {
+                    let self = this;
                     self.$f7.preloader.show();
                     axios({
                         method: "POST",
@@ -171,6 +185,7 @@ export default {
                     self.$f7.preloader.hide();
                 },
                 removeFromWishlist(product_id) {
+                    let self = this;
                     self.$f7.preloader.show();
                     axios({
                         method: "DELETE",
@@ -193,6 +208,14 @@ export default {
                     });
                     self.$f7.preloader.hide();
                 },
+                is_favourite(pid) {
+                    let wishlist = store.state.user ? store.state.user.wishlist : []
+                    for (let j in wishlist) {
+                        if (wishlist[j].product_id == pid)
+                            return true
+                    }
+                    return false
+                },
                 is_new(date) {
                     var d = Date.parse(date);
                     var t = new Date();
@@ -207,7 +230,51 @@ export default {
                 },
                 navigate(link) {
                     this.$f7router.navigate(link);
-                }
+                },
+                update() {
+                    this.products = [];
+                    page = 0;
+                    this.onInfinite(true);
+                },
+                onInfinite: function(onFilter = false) {
+                    var self = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function() {
+                        var specials_headers = api.headers(sessionStorage.getItem('session_id'));
+                        specials_headers['X-Oc-Image-Dimension'] = "400x400";
+                        axios({
+                            method: "GET",
+                            url: api.baseUrl + api.urls.getSpecialsLimit.replace('{limit}', limit).replace('{page}', ++page),
+                            headers: specials_headers,
+                            transformResponse: function(req) {
+                                return JSON.parse(req.replace(/[\n\r]/g, ' '))
+                            },
+                        }).then(function(response) {
+                            if (response.status == 200 && response.data.data.length == 0) {
+                                self.$f7.infiniteScroll.destroy();
+                                self.Dom7('.infinite-scroll-preloader').remove();
+                                self.loading = false;
+                            }
+                            if (response.status !== 202 && response.data.data && response.data.data.length > 0) {
+                                if (self.specials.length == 0)
+                                    self.specials = response.data.data
+                                else {
+                                    for (var i = 0; i < response.data.data.length; i++) {
+                                       self.specials.push(response.data.data[i])
+                                    }
+                                }
+                                self.loading = false;
+                            }
+                            self.$f7.preloader.hide();
+                        }).catch(function(error) {
+                            self.$f7.infiniteScroll.destroy();
+                            self.Dom7('.infinite-scroll-preloader').remove();
+                            self.$f7.preloader.hide();
+                            self.specials = [];
+                            self.loading = false;
+                        });
+                    }, 500);
+                },
         },
 }
 

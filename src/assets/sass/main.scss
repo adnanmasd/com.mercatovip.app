@@ -149,6 +149,24 @@ html[dir="rtl"] i.override {
     -ms-filter: "FlipH";
 }
 
+body{
+  background: #eee;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.product-line .item-content .item-media img{
+  width : 160px;
+  height : auto;
+}
+
+.product-line .item-content .product-cart-title{
+  height : 6em;
+  overflow: visible;
+  white-space: normal;
+}
 
 * {
 	user-select: none;
@@ -985,7 +1003,8 @@ transform: translate3d(0,0,0);
     margin:0;
     list-style:none
 }
-html[dir="ltr"] .steps .steps-container li{
+
+.steps .steps-container li{
     text-align:center;
     list-style:none;
     float:left

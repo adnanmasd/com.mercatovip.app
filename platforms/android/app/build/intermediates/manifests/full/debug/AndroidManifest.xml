@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mercatovip.app"
     android:hardwareAccelerated="true"
-    android:versionCode="20017"
-    android:versionName="2.0.17" >
+    android:versionCode="20101"
+    android:versionName="2.1.1" >
 
     <uses-sdk
         android:minSdkVersion="19"

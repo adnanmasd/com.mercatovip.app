@@ -91,7 +91,7 @@ export default {
     "createProductReviews" : "/products/{id}/review",
     "getClasses" : "/product_classes",
     "getSpecials" : "/specials",
-    "getSpecialsLimit" : "/specials/limit/{limit}",
+    "getSpecialsLimit" : "/specials/limit/{limit}/page/{page}",
     "getDaily" : "/daily_offers",
     "getDailyLimit" : "/daily_offers/limit/{limit}/page/{page}",
     "getWeekly" : "/weekly_offers",
