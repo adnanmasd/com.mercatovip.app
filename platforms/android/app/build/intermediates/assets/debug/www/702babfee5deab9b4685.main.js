@@ -286,7 +286,8 @@ exports.default = {
     "voucher": "/voucher",
     "getWishlist": "/wishlist",
     "wishlist": "/wishlist/{id}",
-    "producturl": "/producturl/{id}"
+    "producturl": "/producturl/{id}",
+    "getTagSeo": "/tag_seo/{tag}"
   }
 };
 
@@ -61991,7 +61992,7 @@ var appinstance = new _vue2.default({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version: '2.1.1',
+    version: '2.1.2',
     theme: 'auto', // md or ios
     touch: {
       tapHold: true,
@@ -77443,6 +77444,7 @@ exports.default = {
         getCMSImage: function getCMSImage(name) {
             if (name.indexOf("http") == -1) {
                 return "https://mercatovip.com/app/" + name;
+                //return "https://dyourw.com/" + name;
             } else {
                 return name;
             }
@@ -105338,6 +105340,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 var timeout;
 var virtualList;
@@ -105372,7 +105377,7 @@ exports.default = {
             filterAttributes: [],
             filterOptions: [],
             filterManufacturer: []
-        }, _defineProperty(_ref, 'loading', true), _defineProperty(_ref, 'noResult', false), _defineProperty(_ref, 'vlData', {}), _defineProperty(_ref, 'allContent', []), _defineProperty(_ref, 'tag_name', ""), _ref;
+        }, _defineProperty(_ref, 'loading', true), _defineProperty(_ref, 'noResult', false), _defineProperty(_ref, 'vlData', {}), _defineProperty(_ref, 'allContent', []), _defineProperty(_ref, 'tag_name', []), _defineProperty(_ref, 'tag_seo', []), _ref;
     },
 
     computed: {
@@ -105388,6 +105393,21 @@ exports.default = {
         }
     },
     created: function created() {
+        self = this;
+        self.tag_seo = [];
+        self.tag_name = self.$f7route.query.tag_name;
+        (0, _axios2.default)({
+            method: "GET",
+            url: _api2.default.baseUrl + _api2.default.urls.getTagSeo.replace('{tag}', self.tag_name),
+            headers: _api2.default.headers(sessionStorage.getItem('session_id'))
+        }).then(function (response) {
+            console.log(response);
+            self.tag_seo = response.data.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    },
+    mounted: function mounted() {
         this.$f7.preloader.show();
         var self = this;
         page = 0;
@@ -105399,7 +105419,7 @@ exports.default = {
             el: '.products-' + tag_name,
             createUl: false,
             // Pass array with items
-            items: [],
+            items: self.products,
             rowsAfter: 25,
             rowsBefore: 100,
             //dynamicHeightBufferSize: 2,
@@ -105407,7 +105427,7 @@ exports.default = {
             renderExternal: self.renderExternal,
             // Item height
             height: function height(item) {
-                return 132;
+                return 200;
                 //return self.theme === 'ios' ? 63 : 73;
             }
         });
@@ -105416,7 +105436,6 @@ exports.default = {
 
     methods: {
         renderExternal: function renderExternal(vl, vlData) {
-            console.log(vlData);
             this.vlData = vlData;
         },
         display_mode: function display_mode(type, key) {
@@ -105549,6 +105568,7 @@ exports.default = {
                         return JSON.parse(req.replace(/[\n\r]/g, ' '));
                     }
                 }).then(function (response) {
+                    console.log(response);
                     if (response.status == 200 && response.data.data.length == 0) {
                         self.$f7.infiniteScroll.destroy();
                         self.Dom7('.infinite-scroll-preloader').remove();
@@ -105564,21 +105584,11 @@ exports.default = {
                                 self.virtualList.appendItems(response.data.data);
                             }
                         }
-                        if (page <= 1) {
-                            self.filterData.attributes = response.data.data.attributes;
-                            self.filterData.manufacturers = response.data.data.manufacturers;
-                            self.filterData.options = response.data.data.options;
-                            self.filterData.price = response.data.data.price;
-                            self.filterData.settings = response.data.data.settings;
-                            self.minPrice = Math.floor(response.data.data.price.min);
-                            self.maxPrice = Math.floor(response.data.data.price.max);
-                        }
                         self.$f7.preloader.hide();
                         self.loading = false;
+                        return;
                     }
                 }).catch(function (error) {
-                    console.log(error);
-
                     self.$f7.preloader.hide();
                     self.$f7.infiniteScroll.destroy();
                     self.Dom7('.infinite-scroll-preloader').remove();
@@ -105609,7 +105619,7 @@ exports.default = {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('f7-page', {
     attrs: {
-      "name": "tag",
+      "name": 'tag' + _vm.tag_name,
       "infinite": "",
       "no-tabbar": ""
     },
@@ -105634,7 +105644,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "icon": 'fa fa-chevron-' + (this.$f7.rtl ? 'right' : 'left')
     }
-  })], 1)], 1), _vm._v(" "), _c('f7-nav-title', [_vm._v("\r\n            " + _vm._s(_vm.$t('tag.result.title')) + "\r\n        ")]), _vm._v(" "), _c('f7-nav-right', {
+  })], 1)], 1), _vm._v(" "), _c('f7-nav-title', [_vm._v("\r\n            " + _vm._s(_vm._f("andFilter")(_vm.tag_seo.h1)) + "\r\n        ")]), _vm._v(" "), _c('f7-nav-right', {
     attrs: {
       "sliding": ""
     }
@@ -105642,12 +105652,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "icon-only": ""
     }
-  })], 1)], 1), _vm._v(" "), _c('div', {
+  })], 1)], 1), _vm._v(" "), _c('f7-block-title', [_vm._v(_vm._s(_vm._f("andFilter")(_vm.tag_seo.h1)))]), _vm._v(" "), _c('f7-block', [_vm._v("\r\n        " + _vm._s(_vm.tag_seo.meta_description) + "\r\n    ")]), _vm._v(" "), _c('div', {
     class: 'list virtual-list media-list products-' + _vm.tag_name + ' no-margin'
   }, [_c('ul', _vm._l((_vm.vlData.items), function(row, index) {
     return _c('li', {
       key: index,
-      staticClass: "vlist-item",
+      staticClass: "vlist-item product-line",
       style: (("top: " + (_vm.vlData.topPosition) + "px")),
       attrs: {
         "media-item": ""

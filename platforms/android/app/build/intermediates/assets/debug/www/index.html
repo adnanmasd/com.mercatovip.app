@@ -97,8 +97,8 @@
       let url = orginial_params[0].split("/")
       let $$ = window.Dom7;
 
-      if (url[0] === "t" && url.length == '2') {
-        window.app.f7.router.navigate("tag?t=" + $url[1])
+      if (url[4] == "t" && url.length == 6) {
+        window.app.f7.router.navigate("tag?tag_name=" + url[url.length - 1])
       } else {
         window.app.f7.request({
           method: 'GET',
@@ -257,4 +257,4 @@
         localStorage.setItem("connection", "true");
         location.reload();
       }
-    }, false);</script><script src=97315158d16064274fea.main.js></script></body></html>
+    }, false);</script><script src=702babfee5deab9b4685.main.js></script></body></html>
