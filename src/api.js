@@ -107,6 +107,7 @@ export default {
     "voucher" : "/voucher",
     "getWishlist" : "/wishlist",
     "wishlist" : "/wishlist/{id}",
-    "producturl" : "/producturl/{id}"
+    "producturl" : "/producturl/{id}",
+    "getTagSeo" : "/tag_seo/{tag}"
   }
 }

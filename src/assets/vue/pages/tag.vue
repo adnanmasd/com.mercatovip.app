@@ -1,5 +1,5 @@
 <template>
-<f7-page name="tag" infinite @infinite="onInfinite" no-tabbar>
+<f7-page :name="'tag'+tag_name" infinite @infinite="onInfinite" no-tabbar>
     <f7-navbar sliding :class="this.$theme.md ? 'color-black' : ''">
         <f7-nav-left sliding>
             <f7-link class="back" icon-only>
@@ -7,18 +7,21 @@
             </f7-link>
         </f7-nav-left>
         <f7-nav-title>
-            {{$t('tag.result.title')}}
+            {{tag_seo.h1 | andFilter}}
         </f7-nav-title>
         <f7-nav-right sliding>
             <f7-link icon-only>
             </f7-link>
         </f7-nav-right>
     </f7-navbar>
-
+    <f7-block-title>{{tag_seo.h1 | andFilter}}</f7-block-title>
+    <f7-block>
+        {{tag_seo.meta_description}}
+    </f7-block>
     <!-- Search-through list -->
     <div :class="'list virtual-list media-list products-' + tag_name + ' no-margin'">
         <ul>
-            <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item" :style="`top: ${vlData.topPosition}px`">
+            <li v-for="(row, index) in vlData.items" :key="index" media-item class="vlist-item product-line" :style="`top: ${vlData.topPosition}px`">
                 <a :href="'/product?product_id=' + row.id" class="item-link item-content">
                     <div class="item-media">
                         <div><img :src="row.image" class="product-card-image"><span v-if="row.special" class="tag left-tag">{{getDiscount(row.special,row.price)}}%</span><span v-if="is_new(row.date_added)" class="tag right-tag">NEW</span><span v-if="!row.quantity"
@@ -102,7 +105,8 @@ export default {
             noResult: false,
             vlData: {},
             allContent: [],
-            tag_name: ""
+            tag_name: [],
+            tag_seo : []
         }
     },
     computed: {
@@ -119,6 +123,21 @@ export default {
         }
     },
     created() {
+        self = this;
+        self.tag_seo = [];
+        self.tag_name = self.$f7route.query.tag_name
+        axios({
+            method: "GET",
+            url: api.baseUrl + api.urls.getTagSeo.replace('{tag}', self.tag_name),
+            headers: api.headers(sessionStorage.getItem('session_id')),
+        }).then(function (response) {
+            console.log(response)
+            self.tag_seo = response.data.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    },
+    mounted() {
         this.$f7.preloader.show();
         let self = this;
         page = 0;
@@ -130,7 +149,7 @@ export default {
             el: '.products-' + tag_name,
             createUl: false,
             // Pass array with items
-            items: [],
+            items: self.products,
             rowsAfter: 25,
             rowsBefore: 100,
             //dynamicHeightBufferSize: 2,
@@ -138,7 +157,7 @@ export default {
             renderExternal: self.renderExternal,
             // Item height
             height: function (item) {
-                return 132;
+                return 200;
                 //return self.theme === 'ios' ? 63 : 73;
             },
         });
@@ -146,7 +165,6 @@ export default {
     },
     methods: {
         renderExternal(vl, vlData) {
-            console.log(vlData);
             this.vlData = vlData;
         },
         display_mode(type, key) {
@@ -278,6 +296,7 @@ export default {
                         return JSON.parse(req.replace(/[\n\r]/g, ' '))
                     },
                 }).then(function (response) {
+                    console.log(response);
                     if (response.status == 200 && response.data.data.length == 0) {
                         self.$f7.infiniteScroll.destroy();
                         self.Dom7('.infinite-scroll-preloader').remove();
@@ -293,21 +312,11 @@ export default {
                                 self.virtualList.appendItems(response.data.data);
                             }
                         }
-                        if (page <= 1) {
-                            self.filterData.attributes = response.data.data.attributes
-                            self.filterData.manufacturers = response.data.data.manufacturers
-                            self.filterData.options = response.data.data.options
-                            self.filterData.price = response.data.data.price
-                            self.filterData.settings = response.data.data.settings
-                            self.minPrice = Math.floor(response.data.data.price.min)
-                            self.maxPrice = Math.floor(response.data.data.price.max)
-                        }
                         self.$f7.preloader.hide();
                         self.loading = false;
+                        return;
                     }
                 }).catch(function (error) {
-                    console.log(error);
-
                     self.$f7.preloader.hide();
                     self.$f7.infiniteScroll.destroy();
                     self.Dom7('.infinite-scroll-preloader').remove();
