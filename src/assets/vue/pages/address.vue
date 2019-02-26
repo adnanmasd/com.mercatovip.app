@@ -76,7 +76,7 @@ export default {
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.listAddress,
-            headers: api.headers(sessionStorage.getItem('session_id')),
+            headers: api.headers(localStorage.getItem('session_id')),
         }).then(function (response) {
             if (response.status !== 202 && response.data.data.addresses.length > 0) {
                 self.address = response.data.data.addresses

@@ -55,22 +55,21 @@ axios.get(url).then((response) => {
 
 
 localStorage.setItem('loggedIn', false);
-sessionStorage.removeItem('session_id');
-Framework7.request({
-      async: false,
-      dataType : "json",
-      contentType: "application/json",
-      method: "GET",
-      url: api.baseUrl + api.urls.getSession,
-      headers: api.headers(null),
-      success : function(e, status, xhr) {
-        sessionStorage.setItem('session_id', e.data.session)
-      }
-});
+//localStorage.removeItem('session_id');
+if (localStorage.getItem('session_id') == null || localStorage.getItem('session_id') == "") {
+  Framework7.request({
+        async: false,
+        dataType : "json",
+        contentType: "application/json",
+        method: "GET",
+        url: api.baseUrl + api.urls.getSession,
+        headers: api.headers(localStorage.getItem('session_id')),
+        success : function(e, status, xhr) {
+          localStorage.setItem('session_id', e.data.session)
+        }
+  });
+}
 
-setTimeout(function(){
-
-},3000)
 // Init F7 Vue Plugin
 //Vue.use(Framework7Vue)
 Vue.use(Framework7Vue, Framework7);
@@ -89,7 +88,7 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.1.2',
+    version : '2.1.4',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,

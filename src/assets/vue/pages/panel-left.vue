@@ -99,7 +99,7 @@ export default {
     mounted: function () {
         self = this;
         self.$f7.preloader.show();
-        var headers = api.headers(sessionStorage.getItem('session_id'));
+        var headers = api.headers(localStorage.getItem('session_id'));
         headers['X-Oc-Image-Dimension'] = "200x200";
         axios({
             method: "GET",

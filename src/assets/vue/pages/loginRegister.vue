@@ -194,7 +194,7 @@ export default {
             self.$f7.preloader.show();
             axios({
                 method: "GET",
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 url: api.baseUrl + api.urls.getAllCountries
             }).then(function(response) {
                 self.countries = response.data.data
@@ -209,7 +209,7 @@ export default {
                     let country_id = ($$('select[name="country_id"]')[0].value);
                     axios({
                         method: "GET",
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         url: api.baseUrl + api.urls.getAllZonesByCountry.replace("{id}", country_id)
                     }).then(function(response) {
                         self.c = country_id
@@ -236,7 +236,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.login,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         data: {
                             "email": loginObj.email,
                             "password": loginObj.password
@@ -303,7 +303,7 @@ export default {
                     axios({
                         method: "POST",
                         url: api.baseUrl + api.urls.register,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         data: {
                             "firstname": registerObj.firstname,
                             "lastname": registerObj.lastname,

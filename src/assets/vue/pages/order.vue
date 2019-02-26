@@ -117,7 +117,7 @@ export default {
             axios({
                 method: "GET",
                 url: api.baseUrl + api.urls.getorderById.replace('{id}', order_id),
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 transformResponse: function(req) {
                     var newReq = req.replace(/[\r\n|\n\r]/g, '');
                     return JSON.parse(newReq)
@@ -142,7 +142,7 @@ export default {
             axios({
                 method: "GET",
                 url: api.baseUrl + api.urls.getAllOrderStatuses,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
             }).then(function(response) {
                 for (let j in response.data.data) {
                     self.order_statuses[response.data.data[j].order_status_id] = response.data.data[j].name

@@ -6,6 +6,7 @@ export default {
   baseUrl : 'https://mercatovip.com/app/cms',
   //baseUrl : 'https://dyourw.com/app',
   collectionPath : '/api/collections/get',
+  singletonPath : '/api/singletons/get',
   regionsPath : '/api/regions/data',
   sliderHome : '/Slider',
   sliderCategory : '/SliderCategory',
@@ -18,5 +19,11 @@ export default {
   sideBarInfo : '/SideBarInfo',
   getReigion: function(name) {
     return this.regionsPath + '/' + name
+  },
+  getCollection: function(name) {
+    return this.collectionPath + '/' + name
+  },
+  getSingleton: function(name) {
+    return this.singletonPath + '/' + name
   }
 };

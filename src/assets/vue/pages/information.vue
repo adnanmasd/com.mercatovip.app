@@ -55,7 +55,7 @@ export default {
             axios({
               method : "GET",
               url : api.baseUrl + api.urls.getInformationById.replace("{id}", self.information_id),
-              headers : api.headers(sessionStorage.getItem('session_id')),
+              headers : api.headers(localStorage.getItem('session_id')),
               transformResponse: function(res) {
                   var newReq = res.replace(/[\r\n|\n\r]/g, '');
                   var newnewReq = newReq.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, "'").replace(/&amp;/g,"&").replace(/&nbsp;/g,"<br/>").replace(/src='/g,"src='https://mercatovip.com/");

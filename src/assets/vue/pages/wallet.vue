@@ -77,7 +77,7 @@ export default {
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.getTransaction,
-            headers: api.headers(sessionStorage.getItem('session_id')),
+            headers: api.headers(localStorage.getItem('session_id')),
             transformResponse: function (req) {
                 var newReq = req.replace(/[\r\n|\n\r]/g, '');
                 return JSON.parse(newReq)
