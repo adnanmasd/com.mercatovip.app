@@ -75,7 +75,7 @@ export default {
                 axios({
                     method: "POST",
                     url: api.baseUrl + api.urls.createProductReviews.replace("{id}", self.$f7route.query.product_id),
-                    headers: api.headers(sessionStorage.getItem('session_id')),
+                    headers: api.headers(localStorage.getItem('session_id')),
                     data: {
                         "name": formData.name,
                         "text": formData.text,

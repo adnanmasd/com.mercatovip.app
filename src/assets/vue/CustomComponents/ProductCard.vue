@@ -46,7 +46,7 @@ export default {
     },
     mounted() {
         var self = this;
-        var headers = api.headers(sessionStorage.getItem('session_id'));
+        var headers = api.headers(localStorage.getItem('session_id'));
         headers['X-Oc-Image-Dimension'] = "227x237";
         axios({
             method: "GET",
@@ -80,7 +80,7 @@ export default {
             axios({
                     method: "POST",
                     url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                    headers: api.headers(sessionStorage.getItem("session_id"))
+                    headers: api.headers(localStorage.getItem("session_id"))
                 })
                 .then(function (response) {
                     if (response.status == 200) {
@@ -105,7 +105,7 @@ export default {
             axios({
                     method: "DELETE",
                     url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                    headers: api.headers(sessionStorage.getItem("session_id"))
+                    headers: api.headers(localStorage.getItem("session_id"))
                 })
                 .then(function (response) {
                     if (response.status == 200) {

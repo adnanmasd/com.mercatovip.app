@@ -59,7 +59,7 @@ export default {
                 axios({
                     method: "POST",
                     url: api.baseUrl + api.urls.sendContactUs,
-                    headers: api.headers(sessionStorage.getItem('session_id')),
+                    headers: api.headers(localStorage.getItem('session_id')),
                     data: {
                         "name": formData.name,
                         "email": formData.email,

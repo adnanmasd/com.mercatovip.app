@@ -60,7 +60,7 @@ export default {
             axios({
                 method: "PUT",
                 url: api.baseUrl + api.urls.confirmOrder,
-                headers: api.headers(sessionStorage.getItem('session_id'))
+                headers: api.headers(localStorage.getItem('session_id'))
             }).then(function(response) {
                 var t = self.$f7.toast.create({
                     text: self.$t('confirm.success.msg'),

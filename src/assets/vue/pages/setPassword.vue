@@ -54,7 +54,7 @@ export default {
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.reset.replace("{code}",self.$f7route.query.code),
-            headers: api.headers(sessionStorage.getItem('session_id')),
+            headers: api.headers(localStorage.getItem('session_id')),
         }).then(function (response) {
             if (response.data.data.email) {
                 self.email = response.data.data.email
@@ -82,7 +82,7 @@ export default {
             axios({
                 method: "POST",
                 url: api.baseUrl + api.urls.reset,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 data: {
                     "email": self.email,
                     "password": resetObj.password,

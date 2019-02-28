@@ -300,5 +300,7 @@
     "contactus.sumbit.success.msg" : "Your message has been sent successfully.",
     "contactus.email" : "Email",
     "contactus.email.placeholder" : "Email",
-    "home.sideBar.contactus.title" : "Contact Us"
+    "home.sideBar.contactus.title" : "Contact Us",
+    "app.update.text" : "A new update is available in the store",
+    "app.update.title" : "Update"
   }

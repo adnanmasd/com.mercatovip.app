@@ -261,7 +261,7 @@ export default {
             axios({
                 method: "GET",
                 url: api.baseUrl + api.urls.producturl.replace("{id}", pid),
-                headers: api.headers(sessionStorage.getItem('session_id'))
+                headers: api.headers(localStorage.getItem('session_id'))
             }).then(function (response) {
                 console.log(response);
                 window.plugins.socialsharing.share(self.$t('share.product.msg'), pname, pimage, self.$t('share.product.url') + response.data.data.keyword)
@@ -299,7 +299,7 @@ export default {
             axios({
                 method: "POST",
                 url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
             }).then(function (response) {
                 if (response.status == 200) {
                     store.dispatch("fetchWishlist");
@@ -323,7 +323,7 @@ export default {
             axios({
                 method: "DELETE",
                 url: api.baseUrl + api.urls.wishlist.replace("{id}", product_id),
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
             }).then(function (response) {
                 if (response.status == 200) {
                     store.dispatch("fetchWishlist");
@@ -407,7 +407,7 @@ export default {
             var self = this;
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                var productsHeaders = api.headers(sessionStorage.getItem('session_id'));
+                var productsHeaders = api.headers(localStorage.getItem('session_id'));
                 productsHeaders['X-Oc-Image-Dimension'] = "227x237";
                 self.loading = true;
                 self.noResult = false;

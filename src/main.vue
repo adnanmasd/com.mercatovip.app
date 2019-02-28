@@ -125,7 +125,7 @@ export default {
           api.urls.loginRM +
           "/" +
           localStorage.getItem("remember_me_key"),
-        headers: api.headers(sessionStorage.getItem("session_id")),
+        headers: api.headers(localStorage.getItem("session_id")),
         }).then(function(response) {
           if (response.data.data != null) {
             localStorage.setItem("user", JSON.stringify(response.data.data));

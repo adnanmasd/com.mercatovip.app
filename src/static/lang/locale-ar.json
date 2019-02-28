@@ -300,5 +300,7 @@
     "contactus.sumbit.success.msg" : "تم ارسال رسالتك بنجاح",
     "contactus.email" : "بريدك الالكتروني",
     "contactus.email.placeholder" : "بريدك الالكتروني",
-    "home.sideBar.contactus.title" : "اتصل بنا"
+    "home.sideBar.contactus.title" : "اتصل بنا",
+    "app.update.text" : "يتوفر تحديث جديد في المتجر",
+    "app.update.title" : "تحديث"
   }

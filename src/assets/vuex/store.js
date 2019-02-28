@@ -72,7 +72,7 @@ const store = new Vuex.Store({
       // });
     },
     fetchCart({ commit }) {
-      var headers = api.headers(sessionStorage.getItem('session_id'));
+      var headers = api.headers(localStorage.getItem('session_id'));
       headers['X-Oc-Image-Dimension'] = "80x80";
       axios({
         method: "GET",
@@ -87,7 +87,7 @@ const store = new Vuex.Store({
       axios({
         method: "GET",
         url: api.baseUrl + api.urls.getWishlist,
-        headers: api.headers(sessionStorage.getItem('session_id'))
+        headers: api.headers(localStorage.getItem('session_id'))
       }).then(function (response) {
         user.wishlist = response.data.data
         localStorage.setItem("user", JSON.stringify(user))
@@ -102,7 +102,7 @@ const store = new Vuex.Store({
       commit('updateNotifications', JSON.parse(localStorage.getItem("notifications")));
     },
     fetchWishlist({ commit }) {
-      var w_headers = api.headers(sessionStorage.getItem('session_id'));
+      var w_headers = api.headers(localStorage.getItem('session_id'));
       w_headers['X-Oc-Image-Dimension'] = "400x400";
       axios({
         method: "GET",

@@ -52,7 +52,7 @@ export default {
             axios({
                 method: "POST",
                 url: api.baseUrl + api.urls.forgottenPass,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 data: {
                     "email": forgotObj.email
                 }

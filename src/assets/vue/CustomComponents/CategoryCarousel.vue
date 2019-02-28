@@ -43,7 +43,7 @@ export default {
     mounted() {
         var cat = this.category_id;
         var self = this;
-        var headers = api.headers(sessionStorage.getItem('session_id'));
+        var headers = api.headers(localStorage.getItem('session_id'));
         headers['X-Oc-Image-Dimension'] = "227x237";
         axios({
             method: "GET",

@@ -62,7 +62,7 @@ export default {
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.returns,
-            headers: api.headers(sessionStorage.getItem('session_id'))
+            headers: api.headers(localStorage.getItem('session_id'))
         }).then(function (response) {
             if (response.status !== 202) {
                 self.returns = response.data.data

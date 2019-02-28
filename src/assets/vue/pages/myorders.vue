@@ -93,7 +93,7 @@ export default {
                     axios({
                         method: "GET",
                         url: api.baseUrl + api.urls.getOrderList.replace("{page}", ++page).replace("{limit}", limit),
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                     }).then(function(response) {
                         if (response.status !== 202 && response.data.data.length > 0) {
                             if (self.orders.length == 0)

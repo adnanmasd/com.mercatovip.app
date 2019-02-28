@@ -307,7 +307,7 @@ export default {
                 dataType: 'json',
                 contentType: "application/json",
                 method: "GET",
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 url: api.baseUrl + api.urls.getAllCountries,
                 success: function(e, status, xhr) {
                     self.countries = e.data
@@ -335,7 +335,7 @@ export default {
                             method: "GET",
                             crossDomain: true,
                             url: api.baseUrl + api.urls.shippingAddress,
-                            headers: api.headers(sessionStorage.getItem('session_id')),
+                            headers: api.headers(localStorage.getItem('session_id')),
                             success: function(e, status, xhr) {
                                 self.shipping_address = e.data
                                 self.a = self.shipping_address.address_id;
@@ -410,7 +410,7 @@ export default {
                                 contentType: "application/json",
                                 method: "POST",
                                 url: api.baseUrl + api.urls.shippingAddress,
-                                headers: api.headers(sessionStorage.getItem('session_id')),
+                                headers: api.headers(localStorage.getItem('session_id')),
                                 data: JSON.stringify(address_new),
                                 success: function(e, status, xhr) {}
                             })
@@ -422,7 +422,7 @@ export default {
                             contentType: "application/json",
                             method: "POST",
                             url: api.baseUrl + api.urls.setExistingShippingAddress,
-                            headers: api.headers(sessionStorage.getItem('session_id')),
+                            headers: api.headers(localStorage.getItem('session_id')),
                             data: JSON.stringify({
                                 "address_id": formData.shipping_address_id
                             }),
@@ -435,7 +435,7 @@ export default {
                             contentType: "application/json",
                             method: "POST",
                             url: api.baseUrl + api.urls.setExistingPaymentAddress,
-                            headers: api.headers(sessionStorage.getItem('session_id')),
+                            headers: api.headers(localStorage.getItem('session_id')),
                             data: JSON.stringify({
                                 "address_id": formData.shipping_address_id
                             }),
@@ -458,7 +458,7 @@ export default {
                         contentType: "application/json",
                         method: "GET",
                         url: api.baseUrl + api.urls.shippingMethods,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         success: function(e, status, xhr) {
                             self.shipping_methods = e.data.shipping_methods
                             self.$f7.preloader.hide();
@@ -476,7 +476,7 @@ export default {
                         dataType: 'json',
                         contentType: "application/json",
                         url: api.baseUrl + api.urls.shippingMethods,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         data: JSON.stringify({
                             "shipping_method": formData.shipping_method,
                             "comment": formData.comments
@@ -509,7 +509,7 @@ export default {
                         dataType: 'json',
                         contentType: "application/json",
                         url: api.baseUrl + api.urls.paymentMethods,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         beforeOpen: function(req, status) {
                             //var newReq = req.replace(/[\r\n]/g, '');
                             //return JSON.parse(newReq)
@@ -532,7 +532,7 @@ export default {
                         dataType: 'json',
                         contentType: "application/json",
                         url: api.baseUrl + api.urls.paymentMethods,
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         data: JSON.stringify({
                             "payment_method": formData.payment_method,
                             "agree": true,
@@ -571,7 +571,7 @@ export default {
                         dataType: 'json',
                         contentType: "application/json",
                         method: "GET",
-                        headers: api.headers(sessionStorage.getItem('session_id')),
+                        headers: api.headers(localStorage.getItem('session_id')),
                         url: api.baseUrl + api.urls.getAllZonesByCountry.replace("{id}", country_id),
                         success: function(e, status, xhr) {
                             self.zones = e.data

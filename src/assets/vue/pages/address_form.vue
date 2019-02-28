@@ -117,7 +117,7 @@ export default {
         axios({
             method: "GET",
             url: api.baseUrl + api.urls.addressById.replace('{id}', address_id),
-            headers: api.headers(sessionStorage.getItem('session_id')),
+            headers: api.headers(localStorage.getItem('session_id')),
             transformResponse: function (req) {
                 var newReq = req.replace(/[\r\n|\n\r]/g, '');
                 return JSON.parse(newReq)
@@ -156,7 +156,7 @@ export default {
         updateCounty() {
             axios({
                 method: "GET",
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 url: api.baseUrl + api.urls.getAllCountries
             }).then(function (response) {
                 self.countries = response.data.data
@@ -169,7 +169,7 @@ export default {
             let country_id = self.c;
             axios({
                 method: "GET",
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 url: api.baseUrl + api.urls.getAllZonesByCountry.replace("{id}", country_id)
             }).then(function (response) {
                 self.zones = response.data.data
@@ -194,7 +194,7 @@ export default {
             axios({
                 method: "POST",
                 url: api.baseUrl + api.urls.register,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 data: {
                     "firstname": registerObj.firstname,
                     "lastname": registerObj.lastname,

@@ -94,7 +94,7 @@ export default {
         self.$f7.preloader.show();
         axios({
             method: "GET",
-            headers: api.headers(sessionStorage.getItem('session_id')),
+            headers: api.headers(localStorage.getItem('session_id')),
             url: api.baseUrl + api.urls.getAccountDetails
         }).then(function (response) {
             localStorage.setItem("user", true);
@@ -109,7 +109,7 @@ export default {
             axios({
                 method: "PUT",
                 url: api.baseUrl + api.urls.changePass,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 data: {
                     "password": changePassObj.password,
                     "confirm": changePassObj.confirm
@@ -146,7 +146,7 @@ export default {
             axios({
                 method: "PUT",
                 url: api.baseUrl + api.urls.getAccountDetails,
-                headers: api.headers(sessionStorage.getItem('session_id')),
+                headers: api.headers(localStorage.getItem('session_id')),
                 data: {
                     "firstname": registerObj.firstname,
                     "lastname": registerObj.lastname,
