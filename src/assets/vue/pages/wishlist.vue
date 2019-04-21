@@ -84,7 +84,7 @@ export default {
         computed: {
             wishlist: {
                 get: function() {
-                    return store.state.user ? store.state.user.wishlist : []
+                    return store.state.wishlist
                 }
             },
             cart: {

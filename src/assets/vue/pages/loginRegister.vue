@@ -242,19 +242,9 @@ export default {
                             "password": loginObj.password
                         }
                     }).then(function(response) {
-                        localStorage.setItem("user", true);
-                        store.dispatch("saveUser", response.data.data)
+                        //localStorage.setItem("user", true);
+                        store.dispatch("loginUser", response.data.data)
                         store.dispatch('fetchCart')
-                        let not = self.$f7.toast.create({
-                            title: self.$t('login.notification.title'),
-                            text: self.$t('login.notification.welcome') + response.data.data.firstname,
-                            closeTimeout: 3000,
-                            destroyOnClose: true,
-                            cssClass: 'toast-green',
-                            position: 'top'
-                        });
-                        not.open();
-                        navigator.vibrate(100)
                         self.$f7.preloader.hide();
                         self.$f7router.back()
                     }).catch(function(error) {
@@ -325,7 +315,7 @@ export default {
                         }
                     }).then(function(response) {
                         localStorage.setItem("user", true);
-                        store.dispatch("saveUser", response.data.data)
+                        store.dispatch("loginUser", response.data.data)
                         store.dispatch('fetchCart')
                         self.$f7.preloader.hide();
                         if (self.$f7route.query.url)

@@ -54,7 +54,7 @@ axios.get(url).then((response) => {
 });
 
 
-localStorage.setItem('loggedIn', false);
+localStorage.setItem('isLoggedIn', false);
 //localStorage.removeItem('session_id');
 if (localStorage.getItem('session_id') == null || localStorage.getItem('session_id') == "") {
   Framework7.request({
@@ -88,7 +88,7 @@ let appinstance = new Vue({
   framework7: {
     id: 'com.mercatovip.app',
     name: 'MercatoVIP',
-    version : '2.1.4',
+    version : '2.2.0',
     theme : 'auto', // md or ios
     touch: {
       tapHold: true,

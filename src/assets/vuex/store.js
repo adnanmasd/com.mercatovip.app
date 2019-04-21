@@ -18,7 +18,7 @@ const store = new Vuex.Store({
     cart_error: [],
     wishlist: [],
     notifications: [],
-    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
+    user: null,
   },
   mutations: {
     updateCategories(state, data) {
@@ -45,15 +45,12 @@ const store = new Vuex.Store({
     updateUser(state, data) {
       state.user = data;
     },
-    updateWishlist(state, data) {
-      state.user.wishlist = data;
-    },
     updateNotifications(state, data) {
       state.notifications = data
     },
     removeUser(state) {
       state.user = null;
-      localStorage.removeItem('remember_me_key');
+      //localStorage.removeItem('remember_me_key');
     }
   },
   actions: {
@@ -70,6 +67,44 @@ const store = new Vuex.Store({
       // axios.get(cms.baseUrl + cms.getReigion('home') + cms.tokenVar).then(function (response) {
       //   commit('updateHomePageContent', response.data.item);
       // });
+    },
+    PreloginUser({ commit }) {
+      console.log("Logging in user wit RMK");
+      let rmk = localStorage.getItem("remember_me_key");
+      axios({
+        method: "GET",
+        content: "application/json",
+        dataType: "json",
+        url:
+          api.baseUrl +
+          api.urls.loginRM +
+          "/" +
+          rmk,
+        headers: api.headers(localStorage.getItem("session_id")),
+        }).then(function(response) {
+          if (response.data.data != null) {
+            commit("updateUser",JSON.stringify(response.data.data));
+            localStorage.setItem("isLoggedIn", true)
+            store.dispatch("fetchCart");
+          } else {
+            commit("removeUser", null);
+          }
+        });
+    },
+    loginUser({ commit }, user) {
+      axios({
+        method: "GET",
+        url: api.baseUrl + api.urls.getWishlist,
+        headers: api.headers(localStorage.getItem('session_id'))
+      }).then(function (response) {
+        user.wishlist = response.data.data
+        commit("updateUser", user)
+        localStorage.setItem("remember_me_key", user.remember_me_key)
+        localStorage.setItem("isLoggedIn", true)
+      });
+    },
+    logoutUser ({commit}) {
+
     },
     fetchCart({ commit }) {
       var headers = api.headers(localStorage.getItem('session_id'));
@@ -90,12 +125,15 @@ const store = new Vuex.Store({
         headers: api.headers(localStorage.getItem('session_id'))
       }).then(function (response) {
         user.wishlist = response.data.data
-        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("user", user)
         localStorage.setItem("remember_me_key", user.remember_me_key)
+        localStorage.setItem("isLoggedIn", true)
         commit('updateUser', user);
       });
     },
     removeUser({ commit }) {
+      localStorage.setItem("isLoggedIn", false)
+      localStorage.removeItem("remember_me_key")
       commit('removeUser');
     },
     notifications({ commit }) {
@@ -110,9 +148,7 @@ const store = new Vuex.Store({
         headers: w_headers
       }).then(function (response) {
         commit('updateWishlist', response.data.data);
-        let user = JSON.parse(localStorage.getItem("user"))
-        user.wishlist = response.data.data
-        localStorage.setItem("user", JSON.stringify(user))
+        //user.wishlist = response.data.data
       });
     }
   },

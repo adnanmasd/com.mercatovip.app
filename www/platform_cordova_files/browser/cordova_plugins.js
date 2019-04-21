@@ -113,19 +113,19 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/kommunicate-cordova-plugin/www/kommunicate.js",
-        "id": "kommunicate-cordova-plugin.kommunicate",
-        "pluginId": "kommunicate-cordova-plugin",
-        "clobbers": [
-            "kommunicate"
-        ]
-    },
-    {
         "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
         "id": "onesignal-cordova-plugin.OneSignal",
         "pluginId": "onesignal-cordova-plugin",
         "clobbers": [
             "OneSignal"
+        ]
+    },
+    {
+        "file": "plugins/kommunicate-cordova-plugin/www/kommunicate.js",
+        "id": "kommunicate-cordova-plugin.kommunicate",
+        "pluginId": "kommunicate-cordova-plugin",
+        "clobbers": [
+            "kommunicate"
         ]
     }
 ];
@@ -135,8 +135,6 @@ module.exports.metadata =
     "cordova-ios-export-compliance": "1.0.2",
     "cordova-ios-plugin-no-export-compliance": "0.0.5",
     "cordova-launch-review": "3.1.0",
-    "cordova-plugin-add-swift-support": "1.7.2",
-    "cordova-plugin-cocoapod-support": "1.6.0",
     "cordova-plugin-customurlscheme": "4.3.0",
     "cordova-plugin-deeplinks": "1.1.0",
     "cordova-plugin-device": "2.0.2",
@@ -147,8 +145,10 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "es6-promise-plugin": "4.1.0",
     "cordova-plugin-x-socialsharing": "5.3.1",
-    "kommunicate-cordova-plugin": "0.4.1",
-    "onesignal-cordova-plugin": "2.4.6"
+    "onesignal-cordova-plugin": "2.4.6",
+    "cordova-plugin-add-swift-support": "1.7.2",
+    "cordova-plugin-cocoapod-support": "1.6.0",
+    "kommunicate-cordova-plugin": "0.4.6"
 }
 // BOTTOM OF METADATA
 });

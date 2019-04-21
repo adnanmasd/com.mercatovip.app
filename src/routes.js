@@ -34,8 +34,8 @@ const Routes = [
     path: '/checkout/',
     //component: require('./assets/vue/pages/checkout.vue'),
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/checkout.vue') })
@@ -53,8 +53,8 @@ const Routes = [
   {
     path: '/wishlist',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve ({ component: require('./assets/vue/pages/wishlist.vue') })
@@ -64,8 +64,8 @@ const Routes = [
   {
     path: '/profile',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/profile.vue') })
@@ -75,8 +75,8 @@ const Routes = [
   {
     path: '/address',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/address.vue') })
@@ -86,8 +86,8 @@ const Routes = [
   {
     path: '/address_new',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/address_new.vue') })
@@ -97,8 +97,8 @@ const Routes = [
   {
     path: '/address/:addressId',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/address_form.vue') })
@@ -108,8 +108,8 @@ const Routes = [
   {
     path: '/wallet',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/wallet.vue') })
@@ -119,8 +119,8 @@ const Routes = [
   {
     path: '/returns',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/returns.vue') })
@@ -130,8 +130,8 @@ const Routes = [
   {
     path: '/returns/:return_id',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/return.vue') })
@@ -141,8 +141,8 @@ const Routes = [
   {
     path: '/myorders',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/myorders.vue') })
@@ -152,8 +152,8 @@ const Routes = [
   {
     path: '/myorders/:order_id',
     async(routeTo, routeFrom, resolve, reject) {
-      let user = localStorage.getItem('user')
-      if (user == null || user == "null") {
+      let user = localStorage.getItem('isLoggedIn')
+      if (user == "false") {
         resolve({ component: require('./assets/vue/pages/loginRegister.vue') })
       } else {
         resolve({ component: require('./assets/vue/pages/order.vue') })

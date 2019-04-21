@@ -74,6 +74,7 @@
     "kommunicate-cordova-plugin": "^0.4.1",
     "loglevel": "^1.4.1",
     "mkpath": "^1.0.0",
+    "mobi.moica.whatsapp": "git+https://github.com/ranjitpandit/whatsapp-phonegap-plugin.git",
     "node-version-compare": "^1.0.1",
     "onesignal-cordova-plugin": "^2.4.6",
     "plist": "^3.0.1",

@@ -8,7 +8,7 @@
         <img :src="logo" class="logo">
       </f7-nav-title>
       <f7-nav-right>
-        <f7-link @click="openChatWindow()">
+        <f7-link class="external" href="https://api.whatsapp.com/send?phone=966544485558">
           <!-- href="/tag?tag_name=face-makeup" -->
           <span style="font-size:14px; line-height:0px">{{$t('navbar.customerservice')}}</span>
         </f7-link>
@@ -704,9 +704,47 @@ export default {
       });
     self.checkVersion();
   },
+  watch: {
+    user: {
+      handler: function(val) {
+        if (val == null){
+          let not = self.$f7.toast.create({
+              title: self.$t("login.notification.title"),
+              text:
+                self.currentLanguageId == 1
+                  ? "Session timed out, please login again"
+                  : "تم تسجيل خروج المستخدم ، يرجى تسجيل الدخول مرة أخرى",
+              closeTimeout: 3000,
+              destroyOnClose: true,
+              cssClass: "toast-red",
+              position: "top"
+            });
+            not.open();
+            navigator.vibrate(80, 80, 80);
+        } else {
+          let not = self.$f7.toast.create({
+              title: self.$t("login.notification.title"),
+              text:
+                (self.currentLanguageId == 1 ? "Welcome " : "مرحبا ") +
+                self.user.firstname,
+              closeTimeout: 3000,
+              destroyOnClose: true,
+              cssClass: "toast-green",
+              position: "top"
+            });
+            not.open();
+            navigator.vibrate(80);
+        }
+      }
+      // deep: true
+    }
+  },
   mounted: function() {
     self = this;
     store.dispatch("fetchHomeData");
+    if (localStorage.getItem('remember_me_key')) {
+      store.dispatch("PreloginUser");
+    } 
     store.dispatch("fetchCart");
 
     // setInterval(function () {
@@ -1248,25 +1286,6 @@ export default {
         });
       self.$f7.preloader.hide();
     },
-    openChatWindow() {
-      var chatObject = {
-        appId: "2ef94a3e4ac8e4b86824fcd1f36c841e9",
-        groupName: "Customer Service",
-        withPreChat: true,
-        isUnique: true,
-        agentIds: ["cs@mercatovip.com"]
-      };
-      kommunicate.startSingleChat(
-        chatObject,
-        response => {
-          console.log("Test Success response : " + response);
-        },
-        response => {
-          console.log("Test Failure response : " + response);
-        }
-      );
-      //this.loginUser(user, userList);
-    },
     checkVersion() {
       let self = this;
       let version;
@@ -1301,35 +1320,6 @@ export default {
         );
       }
     },
-    loginUser(user, userList) {
-      kommunicate.isLoggedIn(function(response) {
-        if (response === "true") {
-          this.launchChat(userList);
-        } else {
-          kommunicate.login(
-            user,
-            loginResponse => {
-              this.launchChat(userList);
-            },
-            loginError => {
-              console.log("User login failed : " + JSON.stringify(loginError));
-            }
-          );
-        }
-      });
-    },
-
-    launchChat(userList) {
-      /*kommunicate.startOrGetConversation(userList, (createResponse) => {
-                    var grpy = {
-                        'clientChannelKey': createResponse,
-                        'takeOrder': true
-                    };
-                    kommunicate.launchParticularConversation(grpy, (launchResponse) => {}, (launchError) => {});
-                }, (createError) => {
-                    console.log("Unable to create chat : " + JSON.stringify(createError));
-                });*/
-    }
   }
 };
 </script>

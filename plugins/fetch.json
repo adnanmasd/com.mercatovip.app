@@ -100,14 +100,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "kommunicate-cordova-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "kommunicate-cordova-plugin@^0.4.1"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-add-swift-support": {
     "source": {
       "type": "registry",
@@ -136,6 +128,14 @@
     "source": {
       "type": "registry",
       "id": "onesignal-cordova-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "kommunicate-cordova-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "kommunicate-cordova-plugin@^0.4.1"
     },
     "is_top_level": true,
     "variables": {}

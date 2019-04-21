@@ -47,21 +47,21 @@
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
-    "kommunicate-cordova-plugin": {
+    "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
-    "onesignal-cordova-plugin": {
+    "kommunicate-cordova-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   },
   "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.mercatovip.app"
+    },
     "cordova-plugin-add-swift-support": {
       "PACKAGE_NAME": "com.mercatovip.app"
     },
     "cordova-plugin-cocoapod-support": {
-      "PACKAGE_NAME": "com.mercatovip.app"
-    },
-    "es6-promise-plugin": {
       "PACKAGE_NAME": "com.mercatovip.app"
     }
   }

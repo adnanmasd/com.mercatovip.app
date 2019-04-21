@@ -1,7 +1,6 @@
 
 
 <template>
-
 <f7-page no-tabbar no-navbar :page-content="false">
 
     <f7-tabs animated>
@@ -159,7 +158,7 @@
             <f7-list media-list form id="shipping_method_form">
                 <f7-list-item group-title :title="$t('checkout.shipping.method')"></f7-list-item>
                 <f7-list-item radio name="shipping_method" v-for="row,index in shipping_methods" :value="row.quote[index].code" checked :title="row.quote[index].title" :after="row.quote[index].text">
-                    <div slot="inner" v-html="'<br/>' + row.details"></div>
+                    <div slot="inner" v-html="'<span class=\'badge color-green\'>' + row.estimated_delivery + '</span><br/><span class=\'badge color-blue\'>' + row.details + '</span>'"></div>
                 </f7-list-item>
                 <f7-list-item group-title :title="$t('checkout.comments')"></f7-list-item>
                 <f7-list-item>

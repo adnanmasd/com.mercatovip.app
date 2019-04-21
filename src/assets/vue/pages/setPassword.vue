@@ -71,7 +71,7 @@ export default {
             t.open();
             navigator.vibrate([80, 80, 80])
             self.$f7.preloader.hide();
-            self.$f7router.navigate("/404",{reloadCurrent:true})
+            self.$f7router.navigate("/login/",{reloadCurrent:true})
         });
     },
     methods: {
@@ -79,39 +79,51 @@ export default {
             let self = this;
             self.$f7.preloader.show();
             let resetObj = self.$f7.form.convertToData("#reset");
-            axios({
-                method: "POST",
-                url: api.baseUrl + api.urls.reset,
-                headers: api.headers(localStorage.getItem('session_id')),
-                data: {
-                    "email": self.email,
-                    "password": resetObj.password,
-                    "confirm": resetObj.confirm
-                }
-            }).then(function (response) {
-                let not = self.$f7.toast.create({
-                    text: self.$t('login.notification.reset.success'),
-                    closeTimeout: 3000,
-                    destroyOnClose: true,
-                    cssClass: 'toast-green',
-                    position: 'top'
-                });
-                not.open();
-                navigator.vibrate(100)
-                self.$f7.preloader.hide();
-                self.$f7router.navigate("/login",{reloadCurrent:true})
-            }).catch(function (error) {
+            if (resetObj.password !== resetObj.confirm){
                 var t = self.$f7.toast.create({
-                    text: error.response.data.error,
-                    closeTimeout: 5000,
-                    destroyOnClose: true,
-                    position: 'top',
-                    cssClass: 'toast-red'
+                        text: self.$t('login.notification.reset.password.mismatch'),
+                        closeTimeout: 5000,
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass: 'toast-red'
+                    });
+                    t.open();
+                    navigator.vibrate([80, 80, 80])
+            } else {
+                axios({
+                    method: "POST",
+                    url: api.baseUrl + api.urls.reset,
+                    headers: api.headers(localStorage.getItem('session_id')),
+                    data: {
+                        "email": self.email,
+                        "password": resetObj.password,
+                        "confirm": resetObj.confirm
+                    }
+                }).then(function (response) {
+                    let not = self.$f7.toast.create({
+                        text: self.$t('login.notification.reset.success'),
+                        closeTimeout: 3000,
+                        destroyOnClose: true,
+                        cssClass: 'toast-green',
+                        position: 'top'
+                    });
+                    not.open();
+                    navigator.vibrate(100)
+                    self.$f7.preloader.hide();
+                    self.$f7router.navigate("/login/",{reloadCurrent:true})
+                }).catch(function (error) {
+                    var t = self.$f7.toast.create({
+                        text: error.response.data.error,
+                        closeTimeout: 5000,
+                        destroyOnClose: true,
+                        position: 'top',
+                        cssClass: 'toast-red'
+                    });
+                    t.open();
+                    navigator.vibrate([80, 80, 80])
+                    self.$f7.preloader.hide();
                 });
-                t.open();
-                navigator.vibrate([80, 80, 80])
-                self.$f7.preloader.hide();
-            });
+            }
         },
 
     }

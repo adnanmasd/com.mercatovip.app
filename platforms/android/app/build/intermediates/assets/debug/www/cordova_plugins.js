@@ -95,6 +95,14 @@ module.exports = [
     "clobbers": [
       "OneSignal"
     ]
+  },
+  {
+    "id": "mobi.moica.whatsapp.whatsapp",
+    "file": "plugins/mobi.moica.whatsapp/www/whatsapp.js",
+    "pluginId": "mobi.moica.whatsapp",
+    "clobbers": [
+      "cordova.plugins.Whatsapp"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -116,7 +124,8 @@ module.exports.metadata =
   "es6-promise-plugin": "4.1.0",
   "cordova-plugin-x-socialsharing": "5.3.1",
   "kommunicate-cordova-plugin": "0.4.1",
-  "onesignal-cordova-plugin": "2.4.6"
+  "onesignal-cordova-plugin": "2.4.6",
+  "mobi.moica.whatsapp": "0.0.1"
 };
 // BOTTOM OF METADATA
 });

@@ -114,7 +114,7 @@ export default {
     let self = this;
     let rmk = localStorage.getItem("remember_me_key");
     console.log(rmk);
-    if (rmk != null) {
+    /*if (rmk !== null) {
       axios({
         async: false,
         method: "GET",
@@ -163,7 +163,7 @@ export default {
             navigator.vibrate(80, 80, 80);
           }
         });
-      }
+    }*/
   },
   filters: {},
   computed: {},
