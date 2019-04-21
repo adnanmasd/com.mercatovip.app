@@ -1,0 +1,4 @@
+#Sun Apr 21 16:46:45 AST 2019
+base.0=D\:\\phonegap\\MercatoVIP-v2\\com.mercatovip.app\\platforms\\android\\app\\build\\intermediates\\transforms\\dex\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
