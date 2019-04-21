@@ -100,14 +100,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-add-swift-support": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-add-swift-support@1.7.2"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
   "cordova-plugin-cocoapod-support": {
     "source": {
       "type": "registry",
@@ -132,12 +124,4 @@
     "is_top_level": true,
     "variables": {}
   },
-  "kommunicate-cordova-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "kommunicate-cordova-plugin@^0.4.1"
-    },
-    "is_top_level": true,
-    "variables": {}
-  }
 }

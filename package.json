@@ -47,6 +47,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "compare-versions": "^3.4.0",
     "cordova": "^8.1.2",
     "cordova-android": "^7.1.4",
     "cordova-browser": "^5.0.4",
@@ -54,7 +55,6 @@
     "cordova-ios-export-compliance": "~1.0.2",
     "cordova-ios-plugin-no-export-compliance": "~0.0.5",
     "cordova-launch-review": "^3.1.0",
-    "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-cocoapod-support": "^1.6.0",
     "cordova-plugin-customurlscheme": "git+https://github.com/EddyVerbruggen/Custom-URL-scheme.git",
     "cordova-plugin-deeplinks": "^1.1.0",
@@ -71,7 +71,6 @@
     "framework7-icons": "^0.9.0",
     "framework7-vue": "^2.0.0",
     "ios-deploy": "^1.9.2",
-    "kommunicate-cordova-plugin": "^0.4.1",
     "loglevel": "^1.4.1",
     "mkpath": "^1.0.0",
     "mobi.moica.whatsapp": "git+https://github.com/ranjitpandit/whatsapp-phonegap-plugin.git",
@@ -101,13 +100,11 @@
       "cordova-plugin-vibration": {},
       "cordova-ios-export-compliance": {},
       "cordova-ios-plugin-no-export-compliance": {},
-      "cordova-plugin-device": {},
-      "kommunicate-cordova-plugin": {}
+      "cordova-plugin-device": {}
     },
     "platforms": [
       "ios",
-      "browser",
-      "android"
+      "browser"
     ]
   }
 }

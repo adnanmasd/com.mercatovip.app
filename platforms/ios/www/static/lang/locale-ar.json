@@ -242,6 +242,11 @@
     "login.notification.welcomeBack" : "مرحبا ",
     "loginRegister.verify.title" : "الرجاء ادخال الرمز المرسل الى رقم جوالك: ",
     "loginRegister.verfiy.verify" : "تأكيد",
+    "loginRegister.reset.password" : "كلمة المرور جديد",
+    "loginRegister.reset.confirm" : "تأكد كلمة المرور",
+    "loginRegister.reset.button.text" : "تغيير كلمة المرور",
+    "login.notification.reset.password.mismatch" : "تاكيد كلمة المرور غير صحيح",
+    "login.notification.reset.success" : "تم تغير كلمة المرور بنجاح. يرجى المتابعة مع تسجيل الخروج",
     "allCategories.title" : "الأقسام",
     "profile.title" : "حسابي",
       "profile.firstname" : "الاسم الأول",
@@ -300,5 +305,7 @@
     "contactus.sumbit.success.msg" : "تم ارسال رسالتك بنجاح",
     "contactus.email" : "بريدك الالكتروني",
     "contactus.email.placeholder" : "بريدك الالكتروني",
-    "home.sideBar.contactus.title" : "اتصل بنا"
+    "home.sideBar.contactus.title" : "اتصل بنا",
+    "app.update.text" : "يتوفر تحديث جديد في المتجر",
+    "app.update.title" : "تحديث"
   }
